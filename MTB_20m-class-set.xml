@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<!--
+  Swedish Navy 20m-class motor torpedo boat.
+
+  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList>
+
+ <sim>
+
+  <description>Swedish Navy 20m motor torpedo boat.</description>
+  <author>Anders Gidenstam</author>
+  <aircraft-version>$Id$</aircraft-version>
+  <status>development</status>
+
+  <!-- status type="string">alpha</status>
+  <rating>
+   <FDM type="int">2</FDM>
+   <systems type="int">2</systems>
+   <cockpit type="int">1</cockpit>
+   <model type="int">2</model>
+  </rating -->
+
+  <flight-model>jsb</flight-model>
+  <aero>MTB_20m</aero>
+
+  <presets>
+   <onground type="bool">true</onground>
+   <!-- altitude-agl-ft type="double">6.0</altitude-agl-ft -->
+  </presets>
+  <startup>
+   <!-- splash-texture>Aircraft/MTB_20m/splash.png</splash-texture -->
+  </startup>
+
+  <!-- 3d model -->
+  <model>
+   <path>Aircraft/MTB_20m/Models/MTB_20m.xml</path>
+  </model>
+
+  <!-- Views -->
+  <view n="0">
+   <!-- Pilot's position. -->
+   <name>Pilot View</name>
+   <internal>true</internal>
+   <config>
+    <!-- x/y/z == right/up/back -->
+    <x-offset-m type="double">  0.000 </x-offset-m>
+    <y-offset-m type="double">  2.000 </y-offset-m>
+    <z-offset-m type="double">  9.700 </z-offset-m>
+    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+   </config>
+  </view>
+
+  <!-- Move the center of the external views. -->
+  <view n="1">
+   <config>
+    <target-z-offset-m> 10.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="2">
+   <config>
+    <target-z-offset-m> 10.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="3">
+   <config>
+    <target-z-offset-m> 10.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="5">
+   <config>
+    <target-z-offset-m> 10.0 </target-z-offset-m>
+   </config>
+  </view>
+  <view n="6">
+   <config>
+    <target-z-offset-m> 10.0 </target-z-offset-m>
+   </config>
+  </view>
+
+  <chase-distance-m type="double">-80.0</chase-distance-m>
+
+  <sound>
+   <audible>true</audible>
+   <path>Aircraft/MTB_20m/Sounds/sound.xml</path>
+  </sound>
+
+  <!-- Aircraft specific help. -->
+  <!-- help include="help.xml"/ -->
+
+  <systems>
+   <electrical>
+    <path/>
+   </electrical>
+  </systems>
+  <instrumentation>
+   <!-- path>Aircraft/Submarine_Scout/Systems/instrumentation.xml</path -->
+  </instrumentation>
+
+  <!-- Armament etc. -->
+  <!-- submodels>
+   <serviceable type="bool">true</serviceable>
+   <path></path>
+  </submodels -->
+
+  <multiplay>
+   <generic>
+   </generic>
+  </multiplay>
+
+  <max-simtime-per-frame n="0" type="double">0.1</max-simtime-per-frame>
+
+  <menubar>
+   <default>
+    <menu n="100">
+     <label>Swedish Navy 20m MTB</label>
+     <item>
+      <label>About</label>
+      <binding>
+       <command>nasal</command>
+       <script>MTB20m.about()</script>
+      </binding>
+     </item>
+    </menu>
+   </default>
+  </menubar>
+
+ </sim>
+
+ <controls>
+  <engines>
+   <engine n="0">
+    <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[0]"/>
+    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[0]"/>
+    <propeller-pitch n="0" alias="/fdm/jsbsim/fcs/advance-cmd-norm[0]"/ -->
+    <clutch alias="/fdm/jsbsim/propulsion/engine[0]/clutch-pos-norm"/>
+   </engine>
+   <engine n="1">
+    <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[0]"/>
+    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[0]"/>
+    <propeller-pitch n="0" alias="/fdm/jsbsim/fcs/advance-cmd-norm[0]"/ -->
+    <clutch alias="/fdm/jsbsim/propulsion/engine[1]/clutch-pos-norm"/>
+   </engine>
+  </engines>
+  <armament>
+   <training-mode type="bool">false</training-mode> 
+  </armament>
+ </controls>
+
+ <payload>
+  <weight>
+   <name type="string">Port torpedo</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[0]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">3307.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Starboard torpedo</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">3307.0</max-lb>
+  </weight>
+  <!-- weight>
+   <name type="string">Water in the starboard boiler</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">20900.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Water in the port boiler</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">20900.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Stores</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">30000.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Ammunition and powder</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">50000.0</max-lb>
+  </weight -->
+ </payload>
+
+ <!-- instrumentation n="0">
+ </instrumentation -->
+
+ <nasal>
+  <MTB20m>
+   <file>Aircraft/MTB_20m/Systems/MTB20m.nas</file>
+  </MTB20m>
+  <!-- Walk View -->
+  <walkview>
+   <file>Aircraft/Generic/WalkView/walkview.nas</file>
+  </walkview>
+  <!-- walkviews>
+   <script>
+###############################################################################
+# Constraints
+
+# Turret floor
+var turretFloor = walkview.makeUnionConstraint
+   (
+    [walkview.CircularXYSurface.new([25.45, 0.00, 3.70], 2.90),
+     walkview.ActionConstraint.new
+         (walkview.SlopingYAlignedPlane.new([ 25.8, -1.16, 3.70], 
+                                            [ 26.3, -0.35, 3.70]),
+         func {
+             #print("Crouching!");
+             walkview.active_walker().set_eye_height(1.40);
+         },
+         func(x, y) {
+             #print("Standing!");
+             walkview.active_walker().set_eye_height(1.70);
+         }),
+     walkview.ActionConstraint.new
+         (walkview.SlopingYAlignedPlane.new([ 25.8,  0.35, 3.70], 
+                                            [ 26.3,  1.16, 3.70]),
+         func {
+             #print("Crouching!");
+             walkview.active_walker().set_eye_height(1.40);
+         },
+         func(x, y) {
+             #print("Standing!");
+             walkview.active_walker().set_eye_height(1.70);
+         })
+    ]); 
+
+# Turret roof
+var turretRoof =
+    walkview.CircularXYSurface.new([25.45, 0.00, 6.28], 2.90);
+
+# Berth deck
+var berthDeck = walkview.makeUnionConstraint
+    (
+     [walkview.LinePlane.new([7.00,  0.00, 0.87], [12.79, 0.00, 0.87], 3.0),
+      walkview.LinePlane.new([12.79, 0.00, 0.50], [25.60, 0.00, 0.50], 5.0),
+      # Main bulkhead doors.
+      walkview.LinePlane.new([25.60,-2.21, 0.33], [25.80,-2.21, 0.33], 0.3),
+      walkview.LinePlane.new([25.60, 2.21, 0.33], [25.80, 2.21, 0.33], 0.3),
+      # Galley
+      walkview.LinePlane.new([25.80, 0.00, 0.33], [26.90, 0.00, 0.33], 6.0),
+      # Outside the boilers.
+      walkview.LinePlane.new([26.90,-2.85, 0.33], [32.50,-2.85, 0.33], 0.3),
+      walkview.LinePlane.new([26.90, 2.85, 0.33], [32.50, 2.85, 0.33], 0.3),
+      # Aft of the boilers.
+      walkview.LinePlane.new([32.50, 0.00, 0.33], [33.50, 0.00, 0.33], 6.0),
+      walkview.LinePlane.new([33.50, 0.00, 0.33], [35.50, 0.00, 0.33], 5.0)
+     ]);
+
+# Create the view managers.
+#var turret_walker =
+#    walkview.Walker.new("Turret View",
+#                        turretFloor);
+#                       [walkview.JSBSimPointmass.new(27)]);
+#var turret_deck_walker =
+#    walkview.Walker.new("Turret Deck View",
+#                        turretRoof);
+#                       [walkview.JSBSimPointmass.new(27)]);
+#var berth_deck_walker =
+#    walkview.Walker.new("Engineer View",
+#                        berthDeck);
+#                       [walkview.JSBSimPointmass.new(28)]);
+
+###############################################################################
+   </script>
+  </walkviews -->
+ </nasal>
+
+ <input>
+  <keyboard include="Aircraft/Generic/WalkView/walk-view-keys.xml">
+   <!-- Keyboard commands -->
+
+  </keyboard>
+ </input>
+
+ <fdm>
+  <jsbsim>
+   <fcs>
+   </fcs>
+   <propulsion>
+    <engine n="0">
+     <clutch-pos-norm type="double">0.0</clutch-pos-norm>
+    </engine>
+    <engine n="1">
+     <clutch-pos-norm type="double">0.0</clutch-pos-norm>
+    </engine>
+   </propulsion>
+  </jsbsim>
+ </fdm>
+
+</PropertyList>

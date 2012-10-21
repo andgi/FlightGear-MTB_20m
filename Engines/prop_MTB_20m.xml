@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
+
+    Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+  
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+  
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  
+-->
+<propeller name="Swedish Navy 20m MTB propeller">
+
+ <documentation>
+   JavaProp: Designed for max power and RPM at 50kt.
+     #blades 4
+     n          2000 RPM
+     D          0.70 m
+     Spinner D  0.15 m
+     Velocity   25.0 m/s
+     Power      1118550 W
+
+   Airfoil
+     Flat plate, Re=100000
+     Flat plate, Re=100000
+     Flat plate, Re=100000
+     Flat plate, Re=100000
+
+   v/(nD)       0.483            v/(ΩR)   0.154
+   Efficiency η 73.427 %         loading  medium
+   Thrust  T    2,736.84 N       Ct       0.1054
+   Power  P     134.22 kW        Cp       0.0958
+   β at 75%R    21.9°            Pitch H  2.55 m
+ </documentation>
+
+ <documentation>
+   The intertia is assumed to be
+     n * 1/3*m_b*(d^2)/4
+   where
+     n is the number of blades,
+     m_b is the mass of a blade and
+     d is the diameter.
+
+   2/3 of the total propeller weight is assumed to be in the blades.
+ </documentation>
+
+ <ixx> 33.2 </ixx>
+ <diameter unit="M">0.70</diameter>
+ <numblades> 4.0 </numblades>
+ <gearratio> 1.5 </gearratio>
+
+ <!-- The blade angle is used to control the power coefficient. -->
+ <minpitch>  0.0 </minpitch>
+ <maxpitch> 10.0 </maxpitch>
+
+ <table name="C_THRUST" type="internal">
+  <tableData>
+   0.000   0.0
+   2.000   0.0
+  </tableData>
+ </table>
+
+ <table name="C_POWER" type="internal">
+  <tableData>
+           0.0   10.0
+   0.000   0.0   1000.0
+   2.000   0.0   1000.0
+  </tableData>
+ </table>
+
+</propeller>

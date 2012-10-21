@@ -1,0 +1,368 @@
+<?xml version="1.0"?>
+<!--
+  Swedish Navy 20m-class motor torpedo boat.
+
+  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList>
+
+ <path>MTB_20m.ac</path>
+ <offsets>
+  <!-- x/y/z == back/right/up. -->
+  <x-m> 0.00 </x-m>
+  <z-m> 0.00 </z-m>
+ </offsets>
+
+ <!-- Shader effects -->
+ <!-- effect>
+  <inherits-from>Effects/reflect</inherits-from>
+  <object-name></object-name>
+ </effect -->
+
+ <!-- Rembrandt transparency markup. -->
+ <!-- effect>
+  <inherits-from>Effects/model-transparent</inherits-from>
+  <object-name></object-name>
+ </effect -->
+
+ <!-- Livery selection =====================================================-->
+ <!-- animation>
+  <type>material</type>
+  <object-name></object-name>
+  <property-base>sim/model/livery</property-base>
+  <texture-prop>texture</texture-prop>
+  <texture>T21.png</texture>
+ </animation -->
+
+ <!-- External lights ======================================================-->
+ <baz>
+ <model>
+  <name>Port navigation light</name>
+  <!-- Horizontal arc of visiblity 135 deg. -->
+  <path>Aircraft/Short_Empire/Models/Lights/RedLight.xml</path>
+  <offsets>
+   <!-- x/y/z == forward/left/up -->
+   <x-m> -8.48 </x-m>
+   <y-m> 16.10 </y-m>
+   <z-m>  3.14 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <rated-power type="double">1.0</rated-power> <!-- Watts -->
+    <min-power   type="double">1.0</min-power>   <!-- Watts -->
+    <current-power-property>controls/lighting/nav-lights</current-power-property>
+   </parameters>
+  </overlay>
+ </model>
+ <model>
+  <name>Starboard navigation light</name>
+  <!-- Horizontal arc of visiblity 135 deg. -->
+  <path>Aircraft/Short_Empire/Models/Lights/GreenLight.xml</path>
+  <offsets>
+   <!-- x/y/z == forward/left/up -->
+   <x-m>  -8.48 </x-m>
+   <y-m> -16.10 </y-m>
+   <z-m>   3.14 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <rated-power type="double">20.0</rated-power> <!-- Watts -->
+    <min-power   type="double">10.0</min-power>   <!-- Watts -->
+    <current-power-property>systems/electrical/lamps/navigation/starboard-power-W</current-power-property>
+   </parameters>
+  </overlay>
+ </model>
+ <model>
+  <name>Tail light</name>
+  <!-- Horizontal arc of visiblity 135 deg. -->
+  <path>Aircraft/Short_Empire/Models/Lights/WhiteLight.xml</path>
+  <offsets>
+   <!-- x/y/z == forward/left/up -->
+   <x-m> -26.85 </x-m>
+   <y-m>   0.00 </y-m>
+   <z-m>   3.26 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <rated-power type="double">10.0</rated-power> <!-- Watts -->
+    <min-power   type="double">5.0</min-power>    <!-- Watts -->
+    <current-power-property>systems/electrical/lamps/navigation/tail-power-W</current-power-property>
+   </parameters>
+  </overlay>
+ </model>
+ <model>
+  <name>Anchor light</name>
+  <!-- Horizontal arc of visiblity 360 deg. -->
+  <path>Aircraft/Short_Empire/Models/Lights/WhiteLight.xml</path>
+  <offsets>
+   <!-- x/y/z == forward/left/up -->
+   <x-m> -4.86 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m>  3.94 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <rated-power type="double">10.0</rated-power> <!-- Watts -->
+    <min-power   type="double">5.0</min-power>    <!-- Watts -->
+    <current-power-property>systems/electrical/lamps/navigation/anchor-power-W</current-power-property>
+   </parameters>
+  </overlay>
+ </model>
+ <model>
+  <name>Steaming light</name>
+  <!-- Horizontal arc of visiblity 225 deg. -->
+  <path>Aircraft/Short_Empire/Models/Lights/WhiteLight.xml</path>
+  <offsets>
+   <!-- x/y/z == forward/left/up -->
+   <x-m> -4.79 </x-m>
+   <y-m>  0.00 </y-m>
+   <z-m>  3.89 </z-m>
+  </offsets>
+  <overlay>
+   <parameters>
+    <rated-power type="double">10.0</rated-power> <!-- Watts -->
+    <min-power   type="double">5.0</min-power>    <!-- Watts -->
+    <current-power-property>systems/electrical/lamps/navigation/steaming-power-W</current-power-property>
+   </parameters>
+  </overlay>
+ </model>
+ </baz>
+
+ <!-- Particle effects -->
+ <model>
+  <name>Fore Port</name>
+  <overlay>
+   <particlesystem>
+    <condition>
+     <greater-than>
+      <property>velocities/groundspeed-kt</property>
+      <value>2.0</value>
+     </greater-than>
+    </condition>
+    <shooter>
+     <phi-min-deg>-90.0</phi-min-deg>
+     <phi-max-deg>-90.0</phi-max-deg>
+     <speed-mps>
+      <value>15.0</value>
+      <spread>0.50</spread>
+     </speed-mps>
+    </shooter>
+    <particle>
+     <end>
+      <size>
+       <value>0.50</value>
+       <spread>0.2</spread>
+      </size>
+     </end>
+     <life-sec>
+      <value>15</value>
+     </life-sec>
+    </particle>
+   </particlesystem>
+  </overlay>
+  <path>Aircraft/Short_Empire/Models/Effects/wake.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  3.00 </x-m>
+   <y-m> -1.50 </y-m>
+   <z-m> -1.50 </z-m>
+  </offsets>
+ </model>
+ <model>
+  <name>Fore Starboard</name>
+  <overlay>
+   <particlesystem>
+    <condition>
+     <greater-than>
+      <property>velocities/groundspeed-kt</property>
+      <value>2.0</value>
+     </greater-than>
+    </condition>
+    <shooter>
+     <phi-min-deg>90.0</phi-min-deg>
+     <phi-max-deg>90.0</phi-max-deg>
+     <speed-mps>
+      <value>15.0</value>
+      <spread>0.50</spread>
+     </speed-mps>
+    </shooter>
+    <particle>
+     <end>
+      <size>
+       <value>0.50</value>
+       <spread>0.2</spread>
+      </size>
+     </end>
+     <life-sec>
+      <value>15</value>
+     </life-sec>
+    </particle>
+   </particlesystem>
+  </overlay>
+  <path>Aircraft/Short_Empire/Models/Effects/wake.xml</path>
+  <offsets>
+   <heading-deg>180</heading-deg>
+   <!-- x/y/z == back/right/up -->
+   <x-m>  3.00 </x-m>
+   <y-m>  1.50 </y-m>
+   <z-m> -1.50 </z-m>
+  </offsets>
+ </model>
+
+ <!-- animation>
+  <type>translate</type>
+  <object-name>Step 1</object-name>
+  <object-name>Step 2</object-name>
+  <property>fdm/jsbsim/hydro/height-agl-ft</property>
+  <factor>-0.3048</factor>
+  <offset-m>2.10</offset-m>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation -->
+
+ <model>
+  <name>Port propeller</name>
+  <overlay>
+   <particlesystem>
+    <condition>
+     <greater-than>
+      <property>engines/engine[0]/rpm</property>
+      <value>800.0</value>
+     </greater-than>
+    </condition>
+    <shooter>
+     <theta-min-deg>30.0</theta-min-deg>
+     <theta-max-deg>50.0</theta-max-deg>
+     <phi-min-deg>175.0</phi-min-deg>
+     <phi-max-deg>185.0</phi-max-deg>
+     <speed-mps>
+      <value>20.0</value>
+      <spread>0.50</spread>
+     </speed-mps>
+     <rotation-speed>
+      <x-min-deg-sec>300</x-min-deg-sec>
+      <x-max-deg-sec>400</x-max-deg-sec>
+      <y-min-deg-sec>0</y-min-deg-sec>
+      <y-max-deg-sec>0</y-max-deg-sec>
+      <z-min-deg-sec>0</z-min-deg-sec>
+      <z-max-deg-sec>0</z-max-deg-sec>
+     </rotation-speed>
+    </shooter>
+    <particle>
+     <end>
+      <size>
+       <value>0.50</value>
+       <spread>0.2</spread>
+      </size>
+     </end>
+     <life-sec>
+      <value>15</value>
+     </life-sec>
+    </particle>
+   </particlesystem>
+  </overlay>
+  <path>Aircraft/Short_Empire/Models/Effects/wake.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 19.70 </x-m>
+   <y-m> -1.00 </y-m>
+   <z-m> -2.00 </z-m>
+  </offsets>
+ </model>
+ <model>
+  <name>Starboard propeller</name>
+  <overlay>
+   <particlesystem>
+    <condition>
+     <greater-than>
+      <property>engines/engine[1]/rpm</property>
+      <value>800.0</value>
+     </greater-than>
+    </condition>
+    <shooter>
+     <theta-min-deg>30.0</theta-min-deg>
+     <theta-max-deg>50.0</theta-max-deg>
+     <phi-min-deg>175.0</phi-min-deg>
+     <phi-max-deg>185.0</phi-max-deg>
+     <speed-mps>
+      <value>20.0</value>
+      <spread>0.50</spread>
+     </speed-mps>
+     <rotation-speed>
+      <x-min-deg-sec>300</x-min-deg-sec>
+      <x-max-deg-sec>400</x-max-deg-sec>
+      <y-min-deg-sec>0</y-min-deg-sec>
+      <y-max-deg-sec>0</y-max-deg-sec>
+      <z-min-deg-sec>0</z-min-deg-sec>
+      <z-max-deg-sec>0</z-max-deg-sec>
+     </rotation-speed>
+    </shooter>
+    <particle>
+     <end>
+      <size>
+       <value>0.50</value>
+       <spread>0.2</spread>
+      </size>
+     </end>
+     <life-sec>
+      <value>15</value>
+     </life-sec>
+    </particle>
+   </particlesystem>
+  </overlay>
+  <path>Aircraft/Short_Empire/Models/Effects/wake.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 19.70 </x-m>
+   <y-m>  1.00 </y-m>
+   <z-m> -2.00 </z-m>
+  </offsets>
+ </model>
+
+ <!-- LOD for the model as a whole =========================================-->
+ <animation>
+  <type>range</type>
+  <min-m>0</min-m>
+  <max-m>15000</max-m>
+ </animation>
+
+ <nasal>
+  <load>
+##############################################################################
+# The on-load Nasal is not executed when this file is loaded as the user
+# aircraft.
+##############################################################################
+var rplayer = cmdarg();
+print("LOAD MTB_20m", rplayer.getPath());
+
+# Set up property aliases for animations.
+#  Wakes.
+#rplayer.getNode("fdm/jsbsim/hydro/coefficients/C_Delta", 1).
+#  alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+
+# Exterior lights.
+#rplayer.getNode("systems/electrical/lamps/navigation/port-power-W", 1).
+#  alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+
+# Set up livery support.
+#var livery_update =
+#  aircraft.livery_update.new("Aircraft/Short_Empire/Models/Liveries", 10);
+
+##############################################################################
+  </load>
+  <unload>
+##############################################################################
+var rplayer = cmdarg();
+print("UNLOAD MTB_20m ", rplayer.getPath());
+# Stop the livery support.
+#livery_update.stop();
+##############################################################################
+  </unload>
+ </nasal>
+
+
+</PropertyList>
