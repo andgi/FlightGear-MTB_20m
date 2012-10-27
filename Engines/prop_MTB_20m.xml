@@ -25,7 +25,7 @@
  <documentation>
    JavaProp: Designed for max power and RPM at 50kt.
      #blades 4
-     n          2000 RPM
+     n          1400 RPM
      D          0.70 m
      Spinner D  0.15 m
      Velocity   25.0 m/s
@@ -37,11 +37,11 @@
      Flat plate, Re=100000
      Flat plate, Re=100000
 
-   v/(nD)       0.483            v/(ΩR)   0.154
-   Efficiency η 73.427 %         loading  medium
-   Thrust  T    2,736.84 N       Ct       0.1054
-   Power  P     134.22 kW        Cp       0.0958
-   β at 75%R    21.9°            Pitch H  2.55 m
+   v/(nD)          1.531        v/(ΩR) 0.487 
+   Efficiency η   70.083 %      loading medium 
+   Thrust  T      31,356.34 N   Ct      0.2334
+   Power  P        1,118.55 kW  Cp      0.5098
+   β at 75%R      40.4°         Pitch H 1.4 m  
  </documentation>
 
  <documentation>
@@ -55,10 +55,10 @@
    2/3 of the total propeller weight is assumed to be in the blades.
  </documentation>
 
- <ixx> 33.2 </ixx>
+ <ixx> 33.2 </ixx> <!-- Guess. -->
  <diameter unit="M">0.70</diameter>
  <numblades> 4.0 </numblades>
- <gearratio> 1.5 </gearratio>
+ <gearratio> 1.5 </gearratio> <!-- Guess. -->
 
  <!-- The blade angle is used to control the power coefficient. -->
  <minpitch>  0.0 </minpitch>
