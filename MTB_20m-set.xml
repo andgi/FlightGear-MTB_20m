@@ -36,6 +36,9 @@
   <!-- 3d model -->
   <model>
    <path>Aircraft/MTB_20m/Models/MTB_20m.xml</path>
+   <livery>
+    <file type="string">T26</file>
+   </livery>
   </model>
 
   <!-- Views -->
@@ -120,6 +123,13 @@
       <binding>
        <command>nasal</command>
        <script>MTB20m.about()</script>
+      </binding>
+     </item>
+     <item>
+      <label>Select Livery</label>
+      <binding>
+       <command>nasal</command>
+       <script>aircraft.livery.dialog.toggle()</script>
       </binding>
      </item>
     </menu>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  Swedish Navy 20m-class motor torpedo boat.
+  Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
   Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
@@ -27,13 +27,13 @@
  </effect -->
 
  <!-- Livery selection =====================================================-->
- <!-- animation>
+ <animation>
   <type>material</type>
-  <object-name></object-name>
+  <object-name>hull</object-name>
   <property-base>sim/model/livery</property-base>
   <texture-prop>texture</texture-prop>
-  <texture>T21.png</texture>
- </animation -->
+  <texture>Liveries/T26.png</texture>
+ </animation>
 
  <!-- External lights ======================================================-->
  <model>
@@ -145,7 +145,7 @@
   <type>rotate</type>
   <object-name>Fore Port</object-name>
   <object-name>Fore Starboard</object-name>
-  <property>fdm/jsbsim/hydro/roll-deg</property>
+  <property>orientation/roll-deg</property>
   <offset-deg>0.0</offset-deg>
   <factor>1.0</factor>
   <center>
@@ -202,39 +202,6 @@
    <z>0.0</z>
   </axis>
  </animation>
-
- <!-- animation>
-  <type>translate</type>
-  <object-name>Fore Port</object-name>
-  <property>fdm/jsbsim/hydro/roll-deg</property>
-  <interpolation>
-   <entry><ind>-45.0</ind><dep>-1.06066</dep></entry>
-   <entry><ind>-20.0</ind><dep>-0.51303</dep></entry>
-   <entry><ind>-10.0</ind><dep>-0.26047</dep></entry>
-   <entry><ind>0.0</ind><dep>0.0</dep></entry>
-   <entry><ind>10.0</ind><dep>0.26047</dep></entry>
-   <entry><ind>20.0</ind><dep>0.51303</dep></entry>
-   <entry><ind>45.0</ind><dep>1.06066</dep></entry>
-  </interpolation>
-  <axis>
-   <x>0.0</x>
-   <y>0.0</y>
-   <z>1.0</z>
-  </axis>
- </animation -->
- <!-- animation>
-  <type>translate</type>
-  <object-name>Step 1</object-name>
-  <object-name>Step 2</object-name>
-  <property>fdm/jsbsim/hydro/height-agl-ft</property>
-  <factor>-0.3048</factor>
-  <offset-m>2.10</offset-m>
-  <axis>
-   <x>0.0</x>
-   <y>0.0</y>
-   <z>1.0</z>
-  </axis>
- </animation -->
 
  <model>
   <name>Port propeller</name>
@@ -309,8 +276,8 @@ print("LOAD MTB_20m", rplayer.getPath());
 #  alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
 
 # Set up livery support.
-#var livery_update =
-#  aircraft.livery_update.new("Aircraft/Short_Empire/Models/Liveries", 10);
+var livery_update =
+  aircraft.livery_update.new("Aircraft/MTB_20m/Models/Liveries", 10);
 
 ##############################################################################
   </load>
@@ -319,7 +286,7 @@ print("LOAD MTB_20m", rplayer.getPath());
 var rplayer = cmdarg();
 print("UNLOAD MTB_20m ", rplayer.getPath());
 # Stop the livery support.
-#livery_update.stop();
+livery_update.stop();
 ##############################################################################
   </unload>
  </nasal>

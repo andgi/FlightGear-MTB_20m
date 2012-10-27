@@ -1,6 +1,6 @@
 ###############################################################################
 ##
-## Swedish Navy 20m-class motor torpedo boat.
+## Swedish Navy 20m-class motor torpedo boat for FlightGear.
 ##
 ##  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
@@ -16,8 +16,16 @@ var ground = func {
     settimer(ground, 0.0);
 }
 
-settimer(ground, 0.0);
+var _MTB20m_initialized = 0;
+setlistener("/sim/signals/fdm-initialized", func {
+    if (_MTB20m_initialized) return;
+    aircraft.livery.init("Aircraft/MTB_20m/Models/Liveries");
+    settimer(ground, 0.0);
+    print("Hydrodynamics initialized.");
+    _MTB20m_initialized = 1;
+});
 
+###############################################################################
 # On-screen displays
 var left  = screen.display.new(20, 10);
 var right = screen.display.new(-300, 10);
@@ -66,10 +74,14 @@ right.add("/fdm/jsbsim/propulsion/engine[1]/real-thrust-lbs");
 #right.add("/fdm/jsbsim/propulsion/engine[1]/advance-ratio");
 #right.add("/fdm/jsbsim/");
 
+###############################################################################
+# Control overrides.
+
+# The clutch must be disengaged while starting.
 controls.startEngine = func(v = 1, which...) {
     if (!v and !size(which)) {
         props.setAll("/controls/engines/engine", "clutch", 1);
-        return props.setAll("/controls/engines/engine", "starter-cmd", 0);
+        return props.setAll("/controls/engines/engine", "starter", 0);
     }
     if(size(which)) {
         foreach(var i; which)
