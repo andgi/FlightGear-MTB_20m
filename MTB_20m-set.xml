@@ -12,15 +12,14 @@
   <description>Swedish Navy 20m motor torpedo boat.</description>
   <author>Anders Gidenstam</author>
   <aircraft-version>$Id$</aircraft-version>
-  <status>development</status>
 
-  <!-- status type="string">alpha</status>
+  <status type="string">alpha</status>
   <rating>
    <FDM type="int">2</FDM>
-   <systems type="int">2</systems>
-   <cockpit type="int">1</cockpit>
-   <model type="int">2</model>
-  </rating -->
+   <systems type="int">1</systems>
+   <cockpit type="int">0</cockpit>
+   <model type="int">1</model>
+  </rating>
 
   <flight-model>jsb</flight-model>
   <aero>MTB_20m</aero>
