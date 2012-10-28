@@ -30,7 +30,7 @@
    <!-- altitude-agl-ft type="double">6.0</altitude-agl-ft -->
   </presets>
   <startup>
-   <!-- splash-texture>Aircraft/MTB_20m/splash.png</splash-texture -->
+   <splash-texture>Aircraft/MTB_20m/splash.png</splash-texture>
   </startup>
 
   <!-- 3d model -->
