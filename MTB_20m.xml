@@ -533,55 +533,9 @@
 
  </system>
 
- <system name="propulsion">
-
-  <!-- The main engines can be disconnected from the propellers. -->
-  <property value="0.0">propulsion/engine[0]/clutch-pos-norm</property>
-  <property value="0.0">propulsion/engine[1]/clutch-pos-norm</property>
-
-  <channel name="Temporary system for engine functions.">
-
-   <!-- Functions in the engine file cannot have <output>-elements. -->
-
-   <!-- Set the power required from the engines. -->
-   <fcs_function name="tmp/blade-angle-deg[0]">
-    <function>
-     <product>
-      <value>0.01</value>
-      <property>propulsion/engine[0]/required-aero-power-coefficient</property>
-     </product>
-    </function>
-    <output>propulsion/engine[0]/blade-angle</output>
-   </fcs_function>
-   <fcs_function name="tmp/blade-angle-deg[1]">
-    <function>
-     <product>
-      <value>0.01</value>
-      <property>propulsion/engine[1]/required-aero-power-coefficient</property>
-     </product>
-    </function>
-    <output>propulsion/engine[1]/blade-angle</output>
-   </fcs_function>
-
-   <!-- Set the real thrust. -->
-   <fcs_function name="tmp/thrust-lbs[0]">
-    <function>
-      <property>propulsion/engine[0]/real-thrust-lbs</property>
-    </function>
-    <output>external_reactions/propeller[0]/magnitude</output>
-   </fcs_function>
-   <fcs_function name="tmp/thrust-lbs[1]">
-    <function>
-     <property>propulsion/engine[1]/real-thrust-lbs</property>
-    </function>
-    <output>external_reactions/propeller[1]/magnitude</output>
-   </fcs_function>
-  </channel>
-
- </system>
-
  <system file="hydrodynamics"/>
  <system file="MTB_20m-hydrodynamics"/>
+ <system file="propulsion"/>
 
  <!-- system file="fgfs4jsbsim" -->
  <!-- system file="mooring-jsbsim" -->    <!-- Mooring setup for FlightGear. -->
@@ -595,7 +549,7 @@
 
  <aerodynamics>
 
-  <axis name="DRAG">
+  <axis name="DRAG"> <!-- FIXME! -->
 
    <!-- Wild guess: D = K A q_inf -->
    <!-- A = cross sectional area (ft^2); -->

@@ -20,28 +20,48 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
   
 -->
-<propeller name="Swedish Navy 20m MTB propeller">
+<propeller name="Swedish Navy 20m MTB propeller (power sink)">
 
  <documentation>
-   JavaProp: Designed for max power and RPM at 50kt.
-     #blades 4
-     n          1400 RPM
-     D          0.70 m
-     Spinner D  0.15 m
-     Velocity   25.0 m/s
-     Power      1118550 W
+  This propeller is designed to draw a controllable amount of power
+  while producing no thrust.
 
-   Airfoil
-     Flat plate, Re=100000
-     Flat plate, Re=100000
-     Flat plate, Re=100000
-     Flat plate, Re=100000
+  The thrust, which in this case is from a marine propeller, is modelled
+  and applied separately, see propulsion.xml.
 
-   v/(nD)          1.531        v/(ΩR) 0.487 
-   Efficiency η   70.083 %      loading medium 
-   Thrust  T      31,356.34 N   Ct      0.2334
-   Power  P        1,118.55 kW  Cp      0.5098
-   β at 75%R      40.4°         Pitch H 1.4 m  
+  The following system is used to set the blade angle of this "propeller"
+  to draw amount of power required by the marine propeller from the engine.
+
+  <channel name="main engine">
+
+   <fcs_function name="propulsion/engine[#]/required-power-coefficient">
+    <function>
+     <max>
+      <product>
+       <quotient>
+        <property>hydro/rho-slug_ft3</property>
+        <property>atmosphere/rho-slugs_ft3</property>
+       </quotient>
+       <property>propulsion/propeller[#]/power-coefficient</property>
+      </product>
+      <value>0.05</value>
+     </max>
+    </function>
+   </fcs_function>
+
+   <!-- Set the power required from the engine. -->
+   <fcs_function name="tmp/blade-angle-deg[#]">
+    <function>
+     <product>
+      <value>0.01</value>
+      <property>propulsion/engine[#]/required-power-coefficient</property>
+     </product>
+    </function>
+    <output>propulsion/engine[#]/blade-angle</output>
+   </fcs_function>
+
+  </channel>
+
  </documentation>
 
  <documentation>
