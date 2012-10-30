@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+  Swedish Navy 20m-class motor torpedo boat for FlightGear.
+
+  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+  This file is licensed under the GPL license version 2 or later.
+-->
+<PropertyList>
+
+ <title>Royal Swedish Navy motor torpedo boat of the 20m class</title>
+ <!-- Specific keys -->
+ <key>
+  <name>q/Q</name>
+  <desc>Engage/disengage the clutches for the main engines.</desc>
+ </key>
+ <key>
+  <name>e/E</name>
+  <desc>Engage/disengage the clutches for the auxiliary engines.</desc>
+ </key>
+ <!-- key>
+  <name>r/R</name>
+  <desc>Dis/engage the reversing gear for the auxiliary engines.</desc>
+ </key -->
+
+ <!-- key>
+  <name>w</name>
+  <desc>Walk view: walk forward, +shift to run.</desc>
+ </key>
+ <key>
+  <name>s</name>
+  <desc>Walk view: walk backward.</desc>
+ </key>
+ <key>
+  <name>a</name>
+  <desc>Walk view: side step left, +shift to run.</desc>
+ </key>
+ <key>
+  <name>d</name>
+  <desc>Walk view: side step right, +shift to run.</desc>
+ </key -->
+
+ <!-- Handling instructions. -->
+ <!-- text>
+ ________________FlightGear Pilot's Notes_______________
+
+ http://wiki.flightgear.org/index.php/
+ </text -->
+</PropertyList>

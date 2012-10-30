@@ -75,10 +75,10 @@
    2/3 of the total propeller weight is assumed to be in the blades.
  </documentation>
 
- <ixx> 33.2 </ixx> <!-- Guess. -->
+ <ixx> 33.2 </ixx> <!-- Guess. Lower for the sake of the auxiliary engines? -->
  <diameter unit="M">0.70</diameter>
  <numblades> 4.0 </numblades>
- <gearratio> 1.5 </gearratio> <!-- Guess. -->
+ <gearratio> 1.0 </gearratio> <!-- Don't change. -->
 
  <!-- The blade angle is used to control the power coefficient. -->
  <minpitch>  0.0 </minpitch>

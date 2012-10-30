@@ -26,6 +26,15 @@ setlistener("/sim/signals/fdm-initialized", func {
 });
 
 ###############################################################################
+
+var clutches =
+    [props.globals.getNode("controls/engines/transmission[0]/clutch"),
+     props.globals.getNode("controls/engines/transmission[1]/clutch")];
+var reversers =
+    [props.globals.getNode("controls/engines/transmission[0]/reverse"),
+     props.globals.getNode("controls/engines/transmission[1]/reverse")];
+
+###############################################################################
 # On-screen displays
 var left  = screen.display.new(20, 10);
 var right = screen.display.new(-300, 10);
@@ -58,42 +67,20 @@ right.add("/fdm/jsbsim/hydro/Frode-number");
 right.add("/fdm/jsbsim/hydro/speed-length-ratio");
 right.add("/fdm/jsbsim/propulsion/engine[0]/engine-rpm");
 right.add("/fdm/jsbsim/propulsion/engine[0]/power-hp");
+right.add("/fdm/jsbsim/propulsion/engine[2]/engine-rpm");
+right.add("/fdm/jsbsim/propulsion/engine[2]/power-hp");
 right.add("/fdm/jsbsim/propulsion/propeller[0]/power-required-hp");
-right.add("/fdm/jsbsim/propulsion/engine[0]/required-power-coefficient");
 right.add("/fdm/jsbsim/propulsion/propeller[0]/thrust-lbs");
 right.add("/fdm/jsbsim/propulsion/propeller[0]/advance-ratio");
 right.add("/fdm/jsbsim/propulsion/engine[1]/engine-rpm");
 right.add("/fdm/jsbsim/propulsion/engine[1]/power-hp");
+right.add("/fdm/jsbsim/propulsion/engine[3]/engine-rpm");
+right.add("/fdm/jsbsim/propulsion/engine[3]/power-hp");
 right.add("/fdm/jsbsim/propulsion/propeller[1]/power-required-hp");
-right.add("/fdm/jsbsim/propulsion/engine[1]/required-power-coefficient");
 right.add("/fdm/jsbsim/propulsion/propeller[1]/thrust-lbs");
 right.add("/fdm/jsbsim/propulsion/propeller[1]/advance-ratio");
 #right.add("/fdm/jsbsim/");
 
 ###############################################################################
-# Control overrides.
-
-# The clutch must be disengaged while starting.
-controls.startEngine = func(v = 1, which...) {
-    if (!v and !size(which)) {
-        props.setAll("/controls/engines/engine", "clutch", 1);
-        return props.setAll("/controls/engines/engine", "starter", 0);
-    }
-    if(size(which)) {
-        foreach(var i; which)
-            foreach(var e; controls.engines)
-                if(e.index == i) {
-                    e.controls.getNode("starter").setBoolValue(v);
-                    e.controls.getNode("clutch").setDoubleValue(v ? 0.0 : 1.0);
-                }
-    } else {
-        foreach(var e; controls.engines)
-            if(e.selected.getValue()) {
-                e.controls.getNode("starter").setBoolValue(v);
-                e.controls.getNode("clutch").setDoubleValue(v ? 0.0 : 1.0);
-            }
-    }
-}
-
 
 ###############################################################################

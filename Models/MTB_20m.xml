@@ -208,13 +208,10 @@
   <overlay>
    <particlesystem>
     <condition>
-     <and>
-      <property>controls/engines/engine[0]/clutch</property>
-      <greater-than>
-       <property>engines/engine[0]/thruster/rpm</property>
-       <value>600.0</value>
-      </greater-than>
-     </and>
+     <greater-than>
+      <property>engines/propeller[1]/rpm</property>
+      <value>500.0</value>
+     </greater-than>
     </condition>
    </particlesystem>
   </overlay>
@@ -231,13 +228,10 @@
   <overlay>
    <particlesystem>
     <condition>
-     <and>
-      <property>controls/engines/engine[1]/clutch</property>
-      <greater-than>
-       <property>engines/engine[1]/thruster/rpm</property>
-       <value>600.0</value>
-      </greater-than>
-     </and>
+     <greater-than>
+      <property>engines/propeller[1]/rpm</property>
+      <value>500.0</value>
+     </greater-than>
     </condition>
    </particlesystem>
   </overlay>

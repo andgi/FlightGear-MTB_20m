@@ -250,7 +250,7 @@
   <!--
   === Engine ================================================
   -->
-  <!-- Port engine -->
+  <!-- Port main engine -->
   <engine file="eng_IsottaFraschini_IF184">
    <location unit="M">
     <x>  12.0 </x>
@@ -278,12 +278,68 @@
    </thruster>
   </engine>
 
-  <!-- Starboard engine -->
+  <!-- Starboard main engine -->
   <engine file="eng_IsottaFraschini_IF184">
    <location unit="M">
     <x>  12.0 </x>
     <y>   1.0 </y>
     <z>  -1.0 </z>
+   </location>
+   <orient unit="DEG">
+    <roll>  0.0 </roll>
+    <pitch> 0.0 </pitch>
+    <yaw>   0.0 </yaw>
+   </orient>
+   <feed>0</feed>
+   <feed>1</feed>
+   <thruster file="prop_MTB_20m">
+    <location unit="M">
+     <x>  19.7 </x>
+     <y>   1.0 </y>
+     <z>  -2.4 </z>
+    </location>
+    <orient unit="DEG">
+     <roll>  0.0 </roll>
+     <pitch> 0.0 </pitch>
+     <yaw>   0.0 </yaw>
+    </orient>
+   </thruster>
+  </engine>
+
+  <!-- Port auxiliary engine -->
+  <engine file="eng_FordV8-48">
+   <location unit="M">
+    <x>  14.0 </x>
+    <y>  -1.0 </y>
+    <z>  -1.2 </z>
+   </location>
+   <orient unit="DEG">
+    <roll>  0.0 </roll>
+    <pitch> 0.0 </pitch>
+    <yaw>   0.0 </yaw>
+   </orient>
+   <feed>0</feed>
+   <feed>1</feed>
+   <thruster file="prop_MTB_20m">
+    <location unit="M">
+     <x>  19.7 </x>
+     <y>  -1.0 </y>
+     <z>  -2.4 </z>
+    </location>
+    <orient unit="DEG">
+     <roll>  0.0 </roll>
+     <pitch> 0.0 </pitch>
+     <yaw>   0.0 </yaw>
+    </orient>
+   </thruster>
+  </engine>
+
+  <!-- Starboard auxiliary engine -->
+  <engine file="eng_FordV8-48">
+   <location unit="M">
+    <x>  14.0 </x>
+    <y>   1.0 </y>
+    <z>  -1.2 </z>
    </location>
    <orient unit="DEG">
     <roll>  0.0 </roll>

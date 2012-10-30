@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-  Swedish Navy 20m-class motor torpedo boat.
+  Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
   Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
@@ -89,7 +89,7 @@
   </sound>
 
   <!-- Aircraft specific help. -->
-  <!-- help include="help.xml"/ -->
+  <help include="help.xml"/>
 
   <systems>
    <electrical>
@@ -141,21 +141,41 @@
   <engines>
    <engine n="0">
     <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[0]"/>
-    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[0]"/>
-    <propeller-pitch n="0" alias="/fdm/jsbsim/fcs/advance-cmd-norm[0]"/ -->
-    <clutch alias="/fdm/jsbsim/propulsion/engine[0]/clutch-pos-norm"/>
+    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[0]"/ -->
    </engine>
    <engine n="1">
-    <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[0]"/>
-    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[0]"/>
-    <propeller-pitch n="0" alias="/fdm/jsbsim/fcs/advance-cmd-norm[0]"/ -->
-    <clutch alias="/fdm/jsbsim/propulsion/engine[1]/clutch-pos-norm"/>
+    <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[1]"/>
+    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[1]"/ -->
    </engine>
+   <engine n="2">
+    <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[2]"/>
+    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[2]"/ -->
+   </engine>
+   <engine n="3">
+    <!-- throttle n="0" alias="/fdm/jsbsim/fcs/throttle-cmd-norm[3]"/>
+    <mixture  n="0" alias="/fdm/jsbsim/fcs/mixture-cmd-norm[3]"/ -->
+   </engine>
+   <transmission n="0">
+    <clutch  alias="/fdm/jsbsim/fcs/clutch-cmd-norm[0]"/>    
+    <reverse alias="/fdm/jsbsim/fcs/reverse-cmd-norm[0]"/>    
+   </transmission>
+   <transmission n="1">
+    <clutch  alias="/fdm/jsbsim/fcs/clutch-cmd-norm[1]"/>    
+    <reverse alias="/fdm/jsbsim/fcs/reverse-cmd-norm[1]"/>    
+   </transmission>
   </engines>
   <armament>
    <training-mode type="bool">false</training-mode> 
   </armament>
  </controls>
+ <engines>
+  <propeller n="0">
+   <rpm alias="/fdm/jsbsim/propulsion/propeller[0]/rpm"/>    
+  </propeller>
+  <propeller n="1">
+   <rpm alias="/fdm/jsbsim/propulsion/propeller[1]/rpm"/>    
+  </propeller>
+ </engines>
 
  <payload>
   <weight>
@@ -170,30 +190,6 @@
    <min-lb type="double">0.0</min-lb>
    <max-lb type="double">3307.0</max-lb>
   </weight>
-  <!-- weight>
-   <name type="string">Water in the starboard boiler</name>
-   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
-   <min-lb type="double">0.0</min-lb>
-   <max-lb type="double">20900.0</max-lb>
-  </weight>
-  <weight>
-   <name type="string">Water in the port boiler</name>
-   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
-   <min-lb type="double">0.0</min-lb>
-   <max-lb type="double">20900.0</max-lb>
-  </weight>
-  <weight>
-   <name type="string">Stores</name>
-   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[4]"/>
-   <min-lb type="double">0.0</min-lb>
-   <max-lb type="double">30000.0</max-lb>
-  </weight>
-  <weight>
-   <name type="string">Ammunition and powder</name>
-   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[5]"/>
-   <min-lb type="double">0.0</min-lb>
-   <max-lb type="double">50000.0</max-lb>
-  </weight -->
  </payload>
 
  <!-- instrumentation n="0">
@@ -284,6 +280,63 @@ var berthDeck = walkview.makeUnionConstraint
  <input>
   <keyboard include="Aircraft/Generic/WalkView/walk-view-keys.xml">
    <!-- Keyboard commands -->
+   <key n="113">
+    <name>q</name>
+    <desc>Engage the main engines</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Engaging the main engines.");
+       foreach (var c; MTB20m.clutches) {
+         c.setDoubleValue(1.0);
+       }
+     </script>
+    </binding>
+   </key>
+   <key n="81">
+    <name>Q</name>
+    <desc>Disengage the main engines</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Disengaging the main engines.");
+       foreach (var c; MTB20m.clutches) {
+         c.setDoubleValue(math.min(0.0, c.getValue()));
+       }
+     </script>
+    </binding>
+   </key>
+
+   <key n="101">
+    <name>e</name>
+    <desc>Engage the auxiliary engines</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Engaging the auxiliary engines.");
+       foreach (var c; MTB20m.clutches) {
+         c.setDoubleValue(-1.0);
+       }
+     </script>
+    </binding>
+   </key>
+   <key n="69">
+    <name>E</name>
+    <desc>Disengage the auxiliary engines</desc>
+    <repeatable type="bool">false</repeatable>
+    <binding>
+     <command>nasal</command>
+     <script>
+       gui.popupTip("Disengaging the auxiliary engines.");
+       foreach (var c; MTB20m.clutches) {
+         c.setDoubleValue(math.max(0.0, c.getValue()));
+       }
+     </script>
+    </binding>
+   </key>
 
   </keyboard>
  </input>
@@ -291,15 +344,11 @@ var berthDeck = walkview.makeUnionConstraint
  <fdm>
   <jsbsim>
    <fcs>
+    <clutch-cmd-norm n="0" type="double">1.0</clutch-cmd-norm>
+    <clutch-cmd-norm n="1" type="double">1.0</clutch-cmd-norm>
+    <reverse-cmd-norm n="0" type="double">0.0</reverse-cmd-norm>
+    <reverse-cmd-norm n="1" type="double">0.0</reverse-cmd-norm>
    </fcs>
-   <propulsion>
-    <engine n="0">
-     <clutch-pos-norm type="double">0.0</clutch-pos-norm>
-    </engine>
-    <engine n="1">
-     <clutch-pos-norm type="double">0.0</clutch-pos-norm>
-    </engine>
-   </propulsion>
   </jsbsim>
  </fdm>
 

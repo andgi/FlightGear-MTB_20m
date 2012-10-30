@@ -26,10 +26,10 @@
    According to [BorgenstamNyman:1981:MTB] these motor torpedo boats had a
    propulsion system consisting of
    - Two high performance Isotta Fraschini/Polar IF 184 main engines.
-   - Two Ford V8 marine engines as transport engines.
+   - Two Ford V8 marine engines as auxiliary engines.
 
-   Each pair of main and transport engine was connected to a propeller
-   via a clutch and gear box. The transport engines had a reversing gear.
+   Each pair of main and auxiliary engine was connected to a propeller
+   via a clutch and gear box. The auxiliary engines had a reversing gear.
  </documentation>
  <documentation>
    JavaProp: Designed for max power and RPM at 50kt.
@@ -53,9 +53,46 @@
    β at 75%R      40.4°         Pitch H 1.4 m  
  </documentation>
 
- <!-- The main engines can be disconnected from the propellers. -->
- <property value="0.0">propulsion/engine[0]/clutch-pos-norm</property>
- <property value="0.0">propulsion/engine[1]/clutch-pos-norm</property>
+ <!-- The main and auxiliary engines can be disconnected from the propellers.
+      The clutch positions are
+        -1   auxiliary engines
+         0   disconnected
+         1   main engines
+ -->
+ <property value="0.0">fcs/clutch-cmd-norm[0]</property>
+ <property value="0.0">fcs/clutch-cmd-norm[1]</property>
+
+ <!-- The clutches ==========================================================-->
+
+ <channel name="clutches">
+
+  <switch name="propulsion/engine[0]/clutch-pos-norm">
+   <default value="0.0"/>
+   <test logic="AND" value="1.0">
+     fcs/clutch-cmd-norm[0] GT 0.5
+   </test>
+  </switch>
+  <switch name="propulsion/engine[1]/clutch-pos-norm">
+   <default value="0.0"/>
+   <test logic="AND" value="1.0">
+     fcs/clutch-cmd-norm[1] GT 0.5
+   </test>
+  </switch>
+
+  <switch name="propulsion/engine[2]/clutch-pos-norm">
+   <default value="0.0"/>
+   <test logic="AND" value="1.0">
+     fcs/clutch-cmd-norm[0] LT -0.5
+   </test>
+  </switch>
+  <switch name="propulsion/engine[3]/clutch-pos-norm">
+   <default value="0.0"/>
+   <test logic="AND" value="1.0">
+     fcs/clutch-cmd-norm[1] LT -0.5
+   </test>
+  </switch>
+
+ </channel>
 
  <!-- The propellers. =======================================================-->
 
@@ -63,10 +100,18 @@
 
   <fcs_function name="propulsion/propeller[0]/rpm">
    <function>
-    <product>
-     <property>propulsion/engine[0]/clutch-pos-norm</property>
-     <property>propulsion/engine[0]/propeller-rpm</property>
-    </product>
+    <sum>
+     <product>
+      <value>0.666667</value> <!-- 1/gear ratio. Guessed. -->
+      <property>propulsion/engine[0]/clutch-pos-norm</property>
+      <property>propulsion/engine[0]/engine-rpm</property>
+     </product>
+     <product>
+      <value>0.25</value>     <!-- 1/gear ratio. Guessed. -->
+      <property>propulsion/engine[2]/clutch-pos-norm</property>
+      <property>propulsion/engine[2]/engine-rpm</property>
+     </product>
+    </sum>
    </function>
   </fcs_function>
 
@@ -232,10 +277,18 @@
 
   <fcs_function name="propulsion/propeller[1]/rpm">
    <function>
-    <product>
-     <property>propulsion/engine[1]/clutch-pos-norm</property>
-     <property>propulsion/engine[1]/propeller-rpm</property>
-    </product>
+    <sum>
+     <product>
+      <value>0.666667</value> <!-- 1/gear ratio. Guessed. -->
+      <property>propulsion/engine[1]/clutch-pos-norm</property>
+      <property>propulsion/engine[1]/engine-rpm</property>
+     </product>
+     <product>
+      <value>0.25</value>     <!-- 1/gear ratio. Guessed. -->
+      <property>propulsion/engine[3]/clutch-pos-norm</property>
+      <property>propulsion/engine[3]/engine-rpm</property>
+     </product>
+    </sum>
    </function>
   </fcs_function>
 
@@ -406,6 +459,7 @@
     <max>
      <product>
       <property>propulsion/engine[0]/clutch-pos-norm</property>
+      <value>0.296296</value> <!-- (1/gear ratio)^3 -->
       <quotient>
        <property>hydro/rho-slug_ft3</property>
        <property>atmosphere/rho-slugs_ft3</property>
@@ -437,6 +491,7 @@
     <max>
      <product>
       <property>propulsion/engine[1]/clutch-pos-norm</property>
+      <value>0.296296</value> <!-- (1/gear ratio)^3 -->
       <quotient>
        <property>hydro/rho-slug_ft3</property>
        <property>atmosphere/rho-slugs_ft3</property>
@@ -457,6 +512,72 @@
     </product>
    </function>
    <output>propulsion/engine[1]/blade-angle</output>
+  </fcs_function>
+
+ </channel>
+
+ <!-- The auxiliary engines. ================================================-->
+
+ <channel name="port auxiliary engine">
+
+  <fcs_function name="propulsion/engine[2]/required-power-coefficient">
+   <function>
+    <max>
+     <product>
+      <property>propulsion/engine[2]/clutch-pos-norm</property>
+      <value>0.015625</value> <!-- (1/gear ratio)^3 -->
+      <quotient>
+       <property>hydro/rho-slug_ft3</property>
+       <property>atmosphere/rho-slugs_ft3</property>
+      </quotient>
+      <property>propulsion/propeller[0]/power-coefficient</property>
+     </product>
+     <value>0.05</value>
+    </max>
+   </function>
+  </fcs_function>
+
+  <!-- Set the power required from the engine. -->
+  <fcs_function name="tmp/blade-angle-deg[2]">
+   <function>
+    <product>
+     <value>0.01</value>
+     <property>propulsion/engine[2]/required-power-coefficient</property>
+    </product>
+   </function>
+   <output>propulsion/engine[2]/blade-angle</output>
+  </fcs_function>
+
+ </channel>
+
+ <channel name="starboard auxiliary engine">
+
+  <fcs_function name="propulsion/engine[3]/required-power-coefficient">
+   <function>
+    <max>
+     <product>
+      <property>propulsion/engine[3]/clutch-pos-norm</property>
+      <value>0.015625</value> <!-- (1/gear ratio)^3 -->
+      <quotient>
+       <property>hydro/rho-slug_ft3</property>
+       <property>atmosphere/rho-slugs_ft3</property>
+      </quotient>
+      <property>propulsion/propeller[1]/power-coefficient</property>
+     </product>
+     <value>0.05</value>
+    </max>
+   </function>
+  </fcs_function>
+
+  <!-- Set the power required from the engine. -->
+  <fcs_function name="tmp/blade-angle-deg[3]">
+   <function>
+    <product>
+     <value>0.01</value>
+     <property>propulsion/engine[3]/required-power-coefficient</property>
+    </product>
+   </function>
+   <output>propulsion/engine[3]/blade-angle</output>
   </fcs_function>
 
  </channel>

@@ -24,7 +24,7 @@
  <documentation>
    Isotta Fraschini/Polar IF 184 high performance marine petrol engine.
 
-   [Borgenstam:...]:
+   [BorgenstamNyman:1981:MTB]:
      1500 hp @ 2000 RPM, 1100hp@2000 RPM without supercharger
      57 litre
      18 cylinders
@@ -69,7 +69,7 @@
 
  <maxhp>                  1100.00 </maxhp>
 
- <idlerpm>                 400.00 </idlerpm>
+ <idlerpm>                 300.00 </idlerpm>
  <maxrpm>                 2000.00 </maxrpm>
 
  <!-- bsfc unit="LBS/HP*HR">     0.37 </bsfc -->
