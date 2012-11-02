@@ -127,7 +127,7 @@
     <description>Side force due to hull. Guessed.</description>
     <product>
      <value>-1.0</value>
-     <property>hydro/qbar-psf</property>
+     <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft2</property>
      <property>hydro/side-tweak-factor</property>
      <sin><property>hydro/beta-rad</property></sin>
@@ -218,11 +218,14 @@
     Lift due to planing. Guessed.
    </documentation>
    <function> <!-- Guess -->
-    <product>
-     <value>0.0005</value>
-     <property>hydro/qbar-u-psf</property>
-     <property>hydro/buoyancy-lbs</property>
-    </product>
+    <max>
+     <value>0.0</value>
+     <product>
+      <value>0.0005</value>
+      <property>hydro/qbar-u-psf</property>
+      <property>hydro/buoyancy-lbs</property>
+     </product>
+    </max>
    </function>
   </fcs_function>
 
@@ -258,7 +261,7 @@
      <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft3</property>
      <sin><property>hydro/beta-rad</property></sin>
-     <value>0.25</value> <!-- FIXME? Does beta have the right sign? -->
+     <value>0.125</value> <!-- FIXME? Does beta have the right sign? -->
     </product>
    </function>
   </fcs_function>
@@ -273,7 +276,7 @@
      <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft3</property>
      <property>fcs/rudder-pos-norm</property>
-     <value>-0.10</value>
+     <value>-0.05</value>
     </product>
    </function>
   </fcs_function>
