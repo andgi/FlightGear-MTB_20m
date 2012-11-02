@@ -130,10 +130,10 @@
   <type>translate</type>
   <object-name>Fore Port</object-name>
   <object-name>Fore Starboard</object-name>
-  <property>velocities/groundspeed-kt</property>
+  <property>fdm/jsbsim/hydro/vbx-fps</property>
   <interpolation>
    <entry><ind>0.0</ind><dep>0.0</dep></entry>
-   <entry><ind>50.0</ind><dep>-0.4</dep></entry>
+   <entry><ind>84.0</ind><dep>-0.4</dep></entry>
   </interpolation>
   <axis>
    <x>0.0</x>
@@ -163,10 +163,10 @@
   <type>translate</type>
   <object-name>Fore Port</object-name>
   <object-name>Fore Starboard</object-name>
-  <property>velocities/groundspeed-kt</property>
+  <property>fdm/jsbsim/hydro/vbx-fps</property>
   <interpolation>
    <entry><ind>0.0</ind><dep>0.0</dep></entry>
-   <entry><ind>50.0</ind><dep>3.0</dep></entry>
+   <entry><ind>84.0</ind><dep>3.0</dep></entry>
   </interpolation>
   <axis>
    <x>1.0</x>
@@ -177,10 +177,10 @@
  <animation>
   <type>translate</type>
   <object-name>Fore Port</object-name>
-  <property>velocities/groundspeed-kt</property>
+  <property>fdm/jsbsim/hydro/vbx-fps</property>
   <interpolation>
    <entry><ind>0.0</ind><dep>0.0</dep></entry>
-   <entry><ind>50.0</ind><dep>1.0</dep></entry>
+   <entry><ind>84.0</ind><dep>1.0</dep></entry>
   </interpolation>
   <axis>
    <x>0.0</x>
@@ -191,10 +191,10 @@
  <animation>
   <type>translate</type>
   <object-name>Fore Starboard</object-name>
-  <property>velocities/groundspeed-kt</property>
+  <property>fdm/jsbsim/hydro/vbx-fps</property>
   <interpolation>
    <entry><ind>0.0</ind><dep>0.0</dep></entry>
-   <entry><ind>50.0</ind><dep>1.0</dep></entry>
+   <entry><ind>84.0</ind><dep>1.0</dep></entry>
   </interpolation>
   <axis>
    <x>0.0</x>
