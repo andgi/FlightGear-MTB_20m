@@ -22,7 +22,7 @@
   <desc>Dis/engage the reversing gear for the auxiliary engines.</desc>
  </key -->
 
- <!-- key>
+ <key>
   <name>w</name>
   <desc>Walk view: walk forward, +shift to run.</desc>
  </key>
@@ -37,7 +37,7 @@
  <key>
   <name>d</name>
   <desc>Walk view: side step right, +shift to run.</desc>
- </key -->
+ </key>
 
  <!-- Handling instructions. -->
  <text>
