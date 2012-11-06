@@ -7,7 +7,7 @@
 -->
 <PropertyList>
 
- <title>Royal Swedish Navy motor torpedo boat of the 20m class</title>
+ <title>Royal Swedish Navy motor torpedo boat of the T21 - T31 class</title>
  <!-- Specific keys -->
  <key>
   <name>q/Q</name>
@@ -40,9 +40,36 @@
  </key -->
 
  <!-- Handling instructions. -->
- <!-- text>
+ <text>
+ _______________Main Engine Start_________________
+ 1. Disengage the main engine clutches (Q).
+    (This action also selects the two main engines.)
+ 2. Mixture rich.
+ 3. Magnetos BOTH.
+ 4. Start the engines.
+ 5. Engage the main engine cluches (q).
+    (This action also selects the two main engines.)
+
+ ______________Auxiliary Engine Start_____________
+ 1. Disengage the auxiliary engine clutches (E).
+    (This action also selects the two auxiliary engines.)
+ 2. Mixture rich.
+ 3. Magnetos BOTH.
+ 4. Start the engines.
+ 5. Engage the auxiliary engine cluches (e).
+    (This action also selects the two auxiliary engines.)
+
+ <!-- Real data -->
+ ________________Main Engine Limits_______________
+                        Maximum RPM
+ Max 10 minutes        2000
+ Max 30 minutes        1875
+ Max continuous        1750
+
+<!--
  ________________FlightGear Pilot's Notes_______________
 
  http://wiki.flightgear.org/index.php/
- </text -->
+-->
+ </text>
 </PropertyList>

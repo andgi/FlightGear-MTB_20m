@@ -136,7 +136,7 @@
   </documentation>
 
   <pointmass name="Port torpedo">
-   <weight unit="KG"> 1500.0 </weight>
+   <weight unit="KG"> 1500.0 </weight> <!-- 1800kg for Torped 61, 1965- -->
    <location unit="M">
     <x> 11.52 </x>
     <y> -1.60 </y>
