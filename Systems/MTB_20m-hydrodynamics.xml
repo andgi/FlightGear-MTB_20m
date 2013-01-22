@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -414,7 +414,7 @@
    <function>
     <product>
      <value>1.0</value>
-     <value>-100000000.0</value> <!-- Guess -->
+     <value>-10000000.0</value> <!-- Guess -->
      <property>velocities/thetadot-rad_sec</property>
     </product>
    </function>
@@ -424,6 +424,7 @@
    <input>hydro/buoyancy-pitch-moment-lbsft</input>
    <input>hydro/planing-pitch-moment-lbsft</input>
    <input>hydro/bow-wave-pitch-moment-lbsft</input>
+   <!-- Numerical failure on startup? Try reducing pitch damping first. -->
    <input>hydro/damping-pitch-moment-lbsft</input>
   </summer>
 
