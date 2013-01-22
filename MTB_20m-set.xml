@@ -112,7 +112,7 @@
    </electrical>
   </systems>
   <instrumentation>
-   <!-- path>Aircraft/Submarine_Scout/Systems/instrumentation.xml</path -->
+   <path>Aircraft/MTB_20m/Systems/instrumentation.xml</path>
   </instrumentation>
 
   <!-- Armament etc. -->

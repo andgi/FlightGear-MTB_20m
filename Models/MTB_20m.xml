@@ -35,6 +35,18 @@
   <texture>Liveries/T26.png</texture>
  </animation>
 
+ <!-- Instruments ==========================================================-->
+ <model>
+  <name>Magnetic compass</name>
+  <path>Aircraft/Nordstern/Instruments/MagneticCompass/compass.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 9.40 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 1.15 </z-m>
+  </offsets>
+ </model>
+
  <!-- External lights ======================================================-->
  <model>
   <name>Port navigation light</name>
