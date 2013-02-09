@@ -2,7 +2,7 @@
 ##
 ## Swedish Navy 20m-class motor torpedo boat for FlightGear.
 ##
-##  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2012 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
 ##
 ###############################################################################
@@ -50,14 +50,18 @@ left.add("/fdm/jsbsim/inertia/cg-x-in");
 left.add("/fdm/jsbsim/inertia/cg-z-in");
 left.add("/fdm/jsbsim/fcs/rudder-pos-norm");
 left.add("/fdm/jsbsim/hydro/fdrag-lbs");
+left.add("/fdm/jsbsim/hydro/hull-displacement-drag-lbs");
+left.add("/fdm/jsbsim/hydro/hull-planing-drag-lbs");
 left.add("/fdm/jsbsim/hydro/fbz-lbs");
 left.add("/fdm/jsbsim/hydro/X/force-lbs");
 left.add("/fdm/jsbsim/hydro/Y/force-lbs");
 left.add("/fdm/jsbsim/hydro/yaw-moment-lbsft");
 left.add("/fdm/jsbsim/hydro/pitch-moment-lbsft");
 left.add("/fdm/jsbsim/hydro/roll-moment-lbsft");
-#left.add("/fdm/jsbsim/");
-#left.add("/fdm/jsbsim/");
+left.add("/fdm/jsbsim/hydro/transverse-wave/wave-length-ft");
+left.add("/fdm/jsbsim/hydro/transverse-wave/wave-amplitude-ft");
+left.add("/fdm/jsbsim/hydro/transverse-wave/squat-ft");
+left.add("/fdm/jsbsim/hydro/transverse-wave/pitch-trim-change-deg");
 
 right.add("/fdm/jsbsim/hydro/v-kt");
 right.add("/fdm/jsbsim/hydro/vbx-fps");

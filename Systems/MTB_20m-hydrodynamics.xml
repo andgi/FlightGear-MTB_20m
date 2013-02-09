@@ -86,11 +86,169 @@
 
  </channel>
 
+ <channel name="Displacement wave making">
+
+  <fcs_function name="hydro/transverse-wave/wave-length-ft">
+   <description>The wave length of the transverse wave</description>
+   <function>
+    <product>
+     <quotient>
+      <value>6.2831853</value>
+      <property>hydro/gravity-ft_sec2</property>
+     </quotient>
+     <property>hydro/vbx-fps</property>
+     <property>hydro/vbx-fps</property>
+    </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/transverse-wave/wave-amplitude-ft">
+   <description>The amplitude of the transverse wave. Guessed.</description>
+   <function>
+    <product>
+     <value>0.25</value>
+     <table>
+      <independentVar lookup="row">hydro/speed-length-ratio</independentVar>
+      <tableData>
+        0.0  1.0
+        1.3  1.0
+        2.0  0.6
+        2.5  0.0
+      </tableData>
+     </table>
+     <pow>
+      <quotient>
+       <product>
+        <value>2.0</value>
+        <property>hydro/hull-displacement-drag-lbs</property>
+        <property>hydro/transverse-wave/wave-length-ft</property>
+       </product>
+       <product>
+        <value>3.1415927</value>
+        <property>hydro/rho-slug_ft3</property>
+        <property>hydro/gravity-ft_sec2</property>
+        <max>
+         <value>0.0001</value>
+         <property>hydro/vbx-fps</property>
+        </max>
+       </product>
+      </quotient>
+      <value>0.5</value>
+     </pow>
+    </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/transverse-wave/squat-ft">
+   <description>
+    The average water level change by the transverse wave
+   </description>
+   <function>
+    <!-- The integral of the sine wave evaluated at the stern. -->
+    <quotient>
+     <product>
+      <value>0.15915494</value>
+      <property>hydro/transverse-wave/wave-amplitude-ft</property>
+      <property>hydro/transverse-wave/wave-length-ft</property>
+      <sin>
+       <quotient>
+        <product>
+         <value>6.2831853</value>
+         <property>hydro/hull-length-ft</property>
+        </product>
+        <property>hydro/transverse-wave/wave-length-ft</property>
+       </quotient>
+      </sin>
+     </product>
+     <property>hydro/hull-length-ft</property>
+    </quotient>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/transverse-wave/pitch-trim-change-deg">
+   <description>
+    The pitch trim change due to the transverse wave. Guessed.
+   </description>
+   <!-- deltaTrim = atan2(water line at bow - water line at stern, LWL) -->
+   <function>
+    <product>
+     <value>57.29578</value>
+     <table>
+      <independentVar lookup="row">hydro/speed-length-ratio</independentVar>
+      <tableData>
+        0.0  0.0
+        1.2  0.0
+        1.3  1.0
+      </tableData>
+     </table>
+     <atan2>
+      <difference>
+       <property>hydro/transverse-wave/wave-amplitude-ft</property>
+       <product>
+        <property>hydro/transverse-wave/wave-amplitude-ft</property>
+        <sin>
+         <quotient>
+          <product>
+           <value>6.2831853</value>
+           <property>hydro/hull-length-ft</property>
+          </product>
+          <property>hydro/transverse-wave/wave-length-ft</property>
+         </quotient>
+        </sin>
+       </product>
+      </difference>
+      <property>hydro/hull-length-ft</property>
+     </atan2>
+    </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/transverse-wave/hull-height-agl-ft">
+   <description>
+    The hull height with squat due to the transverse wave applied
+   </description>
+   <function>
+    <sum>
+     <property>hydro/height-agl-ft</property>
+     <max>
+      <value>-10.0</value>
+      <min>
+       <property>hydro/transverse-wave/squat-ft</property>
+       <value>0.0</value>
+      </min>
+     </max>
+    </sum>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/transverse-wave/hull-pitch-deg">
+   <description>
+    The hull pitch with the trim change due to the transverse wave applied
+   </description>
+   <function>
+    <sum>
+     <property>hydro/pitch-deg</property>
+     <product>
+      <value>-1.0</value>
+      <max>
+       <value>-30.0</value>
+       <min>
+        <property>hydro/transverse-wave/pitch-trim-change-deg</property>
+        <value>30.0</value>
+       </min>
+      </max>
+     </product>
+    </sum>
+   </function>
+  </fcs_function>
+
+ </channel>
+
  <channel name="Drag">
 
-  <fcs_function name="hydro/hull-drag-lbs">
+  <fcs_function name="hydro/hull-displacement-drag-lbs">
    <function>
-    <description>Drag due to hull</description>
+    <description>Drag due to displacement of hull</description>
     <product>
      <value>1.0</value>
      <property>hydro/qbar-psf</property>
@@ -99,7 +257,7 @@
      <max>
       <quotient> <!-- Reduce when planing. Needs refinement. -->
        <property>hydro/buoyancy-lbs</property>
-       <value>50000</value>
+       <property>inertia/weight-lbs</property>
       </quotient>
       <value>0.20</value>
      </max>
@@ -114,8 +272,39 @@
    </function>
   </fcs_function>
 
+  <fcs_function name="hydro/hull-planing-drag-lbs">
+   <function>
+    <description>Drag due to planing</description> <!-- Guess -->
+    <product>
+     <!-- Assumption: Lift ~ sin(2*pitch) and Drag ~ 1+sin(2*pitch-pi/2). -->
+     <quotient>
+      <sum>
+       <value>1.0</value>
+       <sin>
+        <sum>
+         <product>
+          <value>2.0</value>
+          <abs><property>attitude/pitch-rad</property></abs>
+         </product>
+         <value>-1.5707963</value>
+        </sum>
+       </sin>
+      </sum>
+      <sin>
+       <product>
+        <value>2.0</value>
+        <abs><property>attitude/pitch-rad</property></abs>
+       </product>
+      </sin>
+     </quotient>
+     <property>hydro/planing-lift-lbs</property>
+    </product>
+   </function>
+  </fcs_function>
+
   <summer name="hydro/fdrag-lbs">
-   <input>hydro/hull-drag-lbs</input>
+   <input>hydro/hull-displacement-drag-lbs</input>
+   <input>hydro/hull-planing-drag-lbs</input>
   </summer>
 
  </channel>
@@ -155,9 +344,9 @@
      <property>hydro/rho-slug_ft3</property>
      <value>32.185039</value>
      <table>
-      <independentVar lookup="row">hydro/pitch-deg</independentVar>
+      <independentVar lookup="row">hydro/transverse-wave/hull-pitch-deg</independentVar>
       <independentVar lookup="column">hydro/roll-deg</independentVar>
-      <independentVar lookup="table">hydro/height-agl-ft</independentVar>
+      <independentVar lookup="table">hydro/transverse-wave/hull-height-agl-ft</independentVar>
       <tableData breakPoint="4.0">
    -4.0  -2.0   0.0   2.0   4.0
 -8 2598.87 2588.51 2589.1 2588.51 2598.91
@@ -221,7 +410,7 @@
     <max>
      <value>0.0</value>
      <product>
-      <value>0.0005</value>
+      <value>0.005</value>
       <property>hydro/qbar-u-psf</property>
       <property>hydro/buoyancy-lbs</property>
      </product>
@@ -316,9 +505,9 @@
      <property>hydro/rho-slug_ft3</property>
      <value>32.185039</value>
      <table>
-      <independentVar lookup="row">hydro/pitch-deg</independentVar>
+      <independentVar lookup="row">hydro/transverse-wave/hull-pitch-deg</independentVar>
       <independentVar lookup="column">hydro/roll-deg</independentVar>
-      <independentVar lookup="table">hydro/height-agl-ft</independentVar>
+      <independentVar lookup="table">hydro/transverse-wave/hull-height-agl-ft</independentVar>
       <tableData breakPoint="4.0">
    -4.0  -2.0   0.0   2.0   4.0
 -8 41790 41789.7 41694.5 41789.7 41789.7
@@ -387,7 +576,7 @@
    </function>
   </fcs_function>
 
-  <fcs_function name="hydro/bow-wave-pitch-moment-lbsft">
+  <!-- fcs_function name="hydro/bow-wave-pitch-moment-lbsft">
    <documentation>
     Pitch moment due to running up and over the bow wave. Guessed.
    </documentation>
@@ -396,7 +585,7 @@
      <value>1.0</value>
      <property>hydro/rho-slug_ft3</property>
      <value>32.185039</value>
-     <table> <!-- Guessed -->
+     <table>
       <independentVar lookup="row">hydro/speed-length-ratio</independentVar>
       <tableData>
        0.0     0.0
@@ -408,7 +597,7 @@
      </table>
     </product>
    </function>
-  </fcs_function>
+  </fcs_function -->
 
   <fcs_function name="hydro/damping-pitch-moment-lbsft">
    <function>
@@ -423,7 +612,7 @@
   <summer name="hydro/pitch-moment-lbsft">
    <input>hydro/buoyancy-pitch-moment-lbsft</input>
    <input>hydro/planing-pitch-moment-lbsft</input>
-   <input>hydro/bow-wave-pitch-moment-lbsft</input>
+   <!-- input>hydro/bow-wave-pitch-moment-lbsft</input -->
    <!-- Numerical failure on startup? Try reducing pitch damping first. -->
    <input>hydro/damping-pitch-moment-lbsft</input>
   </summer>
@@ -443,9 +632,9 @@
      <property>hydro/rho-slug_ft3</property>
      <value>32.185039</value>
      <table>
-      <independentVar lookup="row">hydro/pitch-deg</independentVar>
+      <independentVar lookup="row">hydro/transverse-wave/hull-pitch-deg</independentVar>
       <independentVar lookup="column">hydro/roll-deg</independentVar>
-      <independentVar lookup="table">hydro/height-agl-ft</independentVar>
+      <independentVar lookup="table">hydro/transverse-wave/hull-height-agl-ft</independentVar>
       <tableData breakPoint="4.0">
    -4.0  -2.0   0.0   2.0   4.0
 -8 -156.809 -82.5443 0.00790108 82.533 156.776

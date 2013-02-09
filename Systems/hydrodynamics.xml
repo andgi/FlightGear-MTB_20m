@@ -3,7 +3,7 @@
 
   Hydrodynamics section for JSBSim.
 
-    Copyright (C) 2008 - 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2008 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -236,6 +236,15 @@
      <value>32.174049</value>
      <property>hydro/rho-slug_ft3</property>
     </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/gravity-ft_sec2">
+   <function>
+    <quotient>
+     <property>inertia/weight-lbs</property>
+     <property>inertia/mass-slugs</property>
+    </quotient>
    </function>
   </fcs_function>
 
