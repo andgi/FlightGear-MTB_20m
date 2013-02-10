@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="http://www.jsbsim.org/JSBSimScript.xsl"?>
+<runscript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="http://jsbsim.sf.net/JSBSimScript.xsd"
+           name="MTB 20m start and acceleration test">
+ <description>This is an start and acceleration test for MTB 20m.</description>
+
+ <use aircraft="MTB_20m" initialize="reset00"/>
+ <run start="0.0" end="200" dt="0.0041666667">
+
+  <property value="0"> simulation/notify-time-trigger </property>
+
+  <event name="Initialize 1">
+   <description>Setup for engine start</description>
+   <condition>
+    simulation/sim-time-sec GE 0.0
+   </condition>
+   <notify>
+    <property>inertia/cg-x-in</property>
+    <property>inertia/weight-lbs</property>
+    <property>inertia/empty-weight-lbs</property>
+   </notify>
+   <!-- Disengage the clutches. -->
+   <set name="fcs/clutch-cmd-norm[0]" value="0.0"/>
+   <set name="fcs/clutch-cmd-norm[1]" value="0.0"/>
+   <!-- Set sea level to the terrain elevation. -->
+   <set name="hydro/water-level-ft">
+    <function>
+     <property>ic/terrain-elevation-ft</property>
+    </function>
+   </set>
+  </event>
+
+  <event name="Engine start 1">
+   <description>Start the engines</description>
+   <condition>
+    simulation/sim-time-sec GE 10.0
+   </condition>
+   <notify/>
+   <set name="fcs/throttle-cmd-norm[0]" value="0.3"/>
+   <set name="fcs/throttle-cmd-norm[1]" value="0.3"/>
+   <set name="fcs/throttle-cmd-norm[2]" value="0.0"/>
+   <set name="fcs/throttle-cmd-norm[3]" value="0.0"/>
+   <set name="fcs/mixture-cmd-norm[0]" value="1.0"/>
+   <set name="fcs/mixture-cmd-norm[1]" value="1.0"/>
+   <set name="fcs/mixture-cmd-norm[2]" value="0.0"/>
+   <set name="fcs/mixture-cmd-norm[3]" value="0.0"/>
+   <set name="propulsion/magneto_cmd"  value="3"/>
+   <set name="propulsion/starter_cmd"  value="1"/>
+  </event>
+  <event name="Engine start 2">
+   <description>The engines have started</description>
+   <condition>
+    propulsion/engine[0]/engine-rpm GE 370
+    propulsion/engine[1]/engine-rpm GE 370
+   </condition>
+   <notify>
+    <property>propulsion/engine[0]/engine-rpm</property>
+    <property>propulsion/engine[0]/power-hp</property>
+    <property>propulsion/engine[0]/starter-norm</property>
+    <property>propulsion/engine[1]/engine-rpm</property>
+    <property>propulsion/engine[1]/power-hp</property>
+    <property>propulsion/engine[1]/starter-norm</property>
+   </notify>
+   <set name="propulsion/starter_cmd"  value="0"/>
+   <set name="fcs/throttle-cmd-norm[0]" value="0.00"/>
+   <set name="fcs/throttle-cmd-norm[1]" value="0.00"/>
+   <set name="fcs/throttle-cmd-norm[2]" value="0.00"/>
+   <set name="fcs/throttle-cmd-norm[3]" value="0.00"/>
+  </event>
+
+  <event name="Engine start 3">
+   <description>Engage the main engine clutches</description>
+   <condition>
+    simulation/sim-time-sec GE 15.0
+   </condition>
+   <notify/>
+   <set name="fcs/clutch-cmd-norm[0]" value="1.0"/>
+   <set name="fcs/clutch-cmd-norm[1]" value="1.0"/>
+  </event>
+
+  <event name="Open throttles 1">
+   <description>Open up the throttles to full power</description>
+   <condition>
+    simulation/sim-time-sec GE 20.0
+   </condition>
+   <notify>
+    <property>position/distance-from-start-mag-mt</property>
+    <property>attitude/heading-true-rad</property>
+    <property>hydro/pitch-deg</property>
+    <property>hydro/roll-deg</property>
+    <property>hydro/beta-deg</property>
+   </notify>
+   <set name="fcs/throttle-cmd-norm[0]"
+        value="1.00" action="FG_RAMP" tc ="10.0"/>
+   <set name="fcs/throttle-cmd-norm[1]"
+        value="1.00" action="FG_RAMP" tc ="10.0"/>
+  </event>
+
+  <event name="Time Notify" type="FG_DELTA" persistent="true">
+   <description>Output message at 5 seconds intervals</description>
+   <condition>
+    simulation/sim-time-sec GE simulation/notify-time-trigger
+   </condition>
+   <notify>
+    <property>position/distance-from-start-mag-mt</property>
+    <property>hydro/v-kt</property>
+    <property>hydro/vbx-fps</property>
+    <property>hydro/vby-fps</property>
+    <property>hydro/qbar-u-psf</property>
+    <property>hydro/speed-length-ratio</property>
+    <property>hydro/true-course-deg</property>
+    <property>hydro/beta-deg</property>
+    <property>hydro/pitch-deg</property>
+    <property>hydro/roll-deg</property>
+    <property>hydro/height-agl-ft</property>
+    <property>hydro/fdrag-lbs</property>
+    <property>hydro/displacement-drag-lbs</property>
+    <property>hydro/planing-drag-lbs</property>
+    <property>hydro/fbz-lbs</property>
+    <property>hydro/buoyancy-lbs</property>
+    <property>hydro/planing-lift-lbs</property>
+    <property>hydro/yaw-moment-lbsft</property>
+    <property>hydro/pitch-moment-lbsft</property>
+    <property>hydro/roll-moment-lbsft</property>
+    <property>propulsion/engine[0]/engine-rpm</property>
+    <property>propulsion/engine[0]/power-hp</property>
+    <property>propulsion/engine[2]/engine-rpm</property>
+    <property>propulsion/engine[2]/power-hp</property>
+    <property>propulsion/propeller[0]/power-required-hp</property>
+    <property>propulsion/propeller[0]/thrust-lbs</property>
+    <property>propulsion/propeller[0]/advance-ratio</property>
+    <property>propulsion/engine[1]/engine-rpm</property>
+    <property>propulsion/engine[1]/power-hp</property>
+    <property>propulsion/engine[3]/engine-rpm</property>
+    <property>propulsion/engine[3]/power-hp</property>
+    <property>propulsion/propeller[1]/power-required-hp</property>
+    <property>propulsion/propeller[1]/thrust-lbs</property>
+    <property>propulsion/propeller[1]/advance-ratio</property>
+   </notify>
+   <set name="simulation/notify-time-trigger" value="5" type="FG_DELTA"/>
+  </event>
+
+ </run>
+
+</runscript>
