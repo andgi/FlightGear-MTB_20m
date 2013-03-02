@@ -10,7 +10,7 @@
 
 ###############################################################################
 var ground = func {
-    setprop("/fdm/jsbsim/hydro/water-level-ft",
+    setprop("/fdm/jsbsim/hydro/environment/water-level-ft",
             getprop("/position/ground-elev-ft"));
 
     settimer(ground, 0.0);

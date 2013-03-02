@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
   and applied separately, see propulsion.xml.
 
   The following system is used to set the blade angle of this "propeller"
-  to draw amount of power required by the marine propeller from the engine.
+  to draw the amount of power required by the marine propeller from the engine.
 
   <channel name="main engine">
 
@@ -39,7 +39,7 @@
      <max>
       <product>
        <quotient>
-        <property>hydro/rho-slug_ft3</property>
+        <property>hydro/environment/rho-slug_ft3</property>
         <property>atmosphere/rho-slugs_ft3</property>
        </quotient>
        <property>propulsion/propeller[#]/power-coefficient</property>

@@ -243,7 +243,7 @@
    <function>
     <min>
      <product>
-      <property>hydro/rho-slug_ft3</property>
+      <property>hydro/environment/rho-slug_ft3</property>
       <value>0.000277777</value> <!-- 1/60^2 -->
       <property>propulsion/propeller[0]/rpm</property>
       <property>propulsion/propeller[0]/rpm</property>
@@ -260,7 +260,7 @@
    <function>
     <product>
      <value>0.0018181818</value> <!-- slug ft^2 / s^3 -> hp -->
-     <property>hydro/rho-slug_ft3</property>
+     <property>hydro/environment/rho-slug_ft3</property>
      <value>0.000004629</value>  <!-- 1/60^3 -->
      <property>propulsion/propeller[0]/rpm</property>
      <property>propulsion/propeller[0]/rpm</property>
@@ -420,7 +420,7 @@
    <function>
     <min>
      <product>
-      <property>hydro/rho-slug_ft3</property>
+      <property>hydro/environment/rho-slug_ft3</property>
       <value>0.000277777</value> <!-- 1/60^2 -->
       <property>propulsion/propeller[1]/rpm</property>
       <property>propulsion/propeller[1]/rpm</property>
@@ -437,7 +437,7 @@
    <function>
     <product>
      <value>0.0018181818</value> <!-- slug ft^2 / s^3 -> hp -->
-     <property>hydro/rho-slug_ft3</property>
+     <property>hydro/environment/rho-slug_ft3</property>
      <value>0.000004629</value>  <!-- 1/60^3 -->
      <property>propulsion/propeller[1]/rpm</property>
      <property>propulsion/propeller[1]/rpm</property>
@@ -461,7 +461,7 @@
       <property>propulsion/engine[0]/clutch-pos-norm</property>
       <value>0.296296</value> <!-- (1/gear ratio)^3 -->
       <quotient>
-       <property>hydro/rho-slug_ft3</property>
+       <property>hydro/environment/rho-slug_ft3</property>
        <property>atmosphere/rho-slugs_ft3</property>
       </quotient>
       <property>propulsion/propeller[0]/power-coefficient</property>
@@ -493,7 +493,7 @@
       <property>propulsion/engine[1]/clutch-pos-norm</property>
       <value>0.296296</value> <!-- (1/gear ratio)^3 -->
       <quotient>
-       <property>hydro/rho-slug_ft3</property>
+       <property>hydro/environment/rho-slug_ft3</property>
        <property>atmosphere/rho-slugs_ft3</property>
       </quotient>
       <property>propulsion/propeller[1]/power-coefficient</property>
@@ -527,7 +527,7 @@
       <property>propulsion/engine[2]/clutch-pos-norm</property>
       <value>0.015625</value> <!-- (1/gear ratio)^3 -->
       <quotient>
-       <property>hydro/rho-slug_ft3</property>
+       <property>hydro/environment/rho-slug_ft3</property>
        <property>atmosphere/rho-slugs_ft3</property>
       </quotient>
       <property>propulsion/propeller[0]/power-coefficient</property>
@@ -559,7 +559,7 @@
       <property>propulsion/engine[3]/clutch-pos-norm</property>
       <value>0.015625</value> <!-- (1/gear ratio)^3 -->
       <quotient>
-       <property>hydro/rho-slug_ft3</property>
+       <property>hydro/environment/rho-slug_ft3</property>
        <property>atmosphere/rho-slugs_ft3</property>
       </quotient>
       <property>propulsion/propeller[1]/power-coefficient</property>

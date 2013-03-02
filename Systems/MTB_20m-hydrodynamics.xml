@@ -75,7 +75,7 @@
      <property>hydro/vbx-fps</property>
      <pow>
       <product>
-       <property>hydro/gravity-ft_sec2</property>
+       <property>hydro/environment/gravity-ft_sec2</property>
        <property>hydro/hull-length-ft</property>
       </product>
       <value>0.5</value>
@@ -94,7 +94,7 @@
     <product>
      <quotient>
       <value>6.2831853</value>
-      <property>hydro/gravity-ft_sec2</property>
+      <property>hydro/environment/gravity-ft_sec2</property>
      </quotient>
      <property>hydro/vbx-fps</property>
      <property>hydro/vbx-fps</property>
@@ -125,8 +125,8 @@
        </product>
        <product>
         <value>3.1415927</value>
-        <property>hydro/rho-slug_ft3</property>
-        <property>hydro/gravity-ft_sec2</property>
+        <property>hydro/environment/rho-slug_ft3</property>
+        <property>hydro/environment/gravity-ft_sec2</property>
         <max>
          <value>0.0001</value>
          <property>hydro/vbx-fps</property>
@@ -344,8 +344,8 @@
    <function>
     <product>
      <value>1.0</value>
-     <property>hydro/rho-slug_ft3</property>
-     <property>hydro/gravity-ft_sec2</property>
+     <property>hydro/environment/rho-slug_ft3</property>
+     <property>hydro/environment/gravity-ft_sec2</property>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
       <independentVar lookup="column">hydro/roll-deg</independentVar>
@@ -505,8 +505,8 @@
    <function>
     <product>
      <value>1.0</value>
-     <property>hydro/rho-slug_ft3</property>
-     <property>hydro/gravity-ft_sec2</property>
+     <property>hydro/environment/rho-slug_ft3</property>
+     <property>hydro/environment/gravity-ft_sec2</property>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
       <independentVar lookup="column">hydro/roll-deg</independentVar>
@@ -608,8 +608,8 @@
    <function>
     <product>
      <value>1.0</value>
-     <property>hydro/rho-slug_ft3</property>
-     <property>hydro/gravity-ft_sec2</property>
+     <property>hydro/environment/rho-slug_ft3</property>
+     <property>hydro/environment/gravity-ft_sec2</property>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
       <independentVar lookup="column">hydro/roll-deg</independentVar>
