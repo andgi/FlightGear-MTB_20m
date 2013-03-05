@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2012 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -253,6 +253,18 @@
    <x-m> 19.70 </x-m>
    <y-m>  0.80 </y-m>
    <z-m> -2.00 </z-m>
+  </offsets>
+ </model>
+
+ <!-- Water ================================================================-->
+ <model>
+  <name>Water</name>
+  <path>Aircraft/MTB_20m/Models/water.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 0.00 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 0.00 </z-m>
   </offsets>
  </model>
 

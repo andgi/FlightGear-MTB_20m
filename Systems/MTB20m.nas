@@ -11,7 +11,20 @@
 ###############################################################################
 var ground = func {
     setprop("/fdm/jsbsim/hydro/environment/water-level-ft",
-            getprop("/position/ground-elev-ft"));
+            getprop("/position/ground-elev-ft") +
+            getprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft"));
+    setprop("environment/waves/time-sec",
+            getprop("/fdm/jsbsim/simulation/sim-time-sec"));
+    setprop("environment/waves/from-deg",
+            getprop("/fdm/jsbsim/hydro/environment/waves-from-deg"));
+    setprop("environment/waves/length-ft",
+            getprop("/fdm/jsbsim/hydro/environment/wave-length-ft"));
+    setprop("environment/waves/amplitude-ft",
+            getprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft"));
+    setprop("environment/waves/angular-frequency-rad_sec",
+            getprop("/fdm/jsbsim/hydro/environment/wave/angular-frequency-rad_sec"));
+    setprop("environment/waves/wave-number-rad_ft",
+            getprop("/fdm/jsbsim/hydro/environment/wave/wave-number-rad_ft"));
 
     settimer(ground, 0.0);
 }
@@ -64,6 +77,11 @@ left.add("/fdm/jsbsim/hydro/transverse-wave/wave-length-ft");
 left.add("/fdm/jsbsim/hydro/transverse-wave/wave-amplitude-ft");
 left.add("/fdm/jsbsim/hydro/transverse-wave/squat-ft");
 left.add("/fdm/jsbsim/hydro/transverse-wave/pitch-trim-change-deg");
+left.add("/fdm/jsbsim/hydro/environment/wave/relative-heading-rad");
+left.add("/fdm/jsbsim/hydro/orientation/wave-pitch-trim-change-deg");
+left.add("/fdm/jsbsim/hydro/orientation/wave-roll-trim-change-deg");
+left.add("/fdm/jsbsim/hydro/environment/wave/angular-frequency-rad_sec");
+left.add("/fdm/jsbsim/hydro/environment/wave/wave-number-rad_ft");
 
 right.add("/fdm/jsbsim/hydro/v-kt");
 right.add("/fdm/jsbsim/hydro/vbx-fps");

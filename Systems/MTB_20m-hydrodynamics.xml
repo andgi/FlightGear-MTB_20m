@@ -29,6 +29,9 @@
  <property value="0.0">metrics/hydro-rp-y-in</property>
  <property value="0.0">metrics/hydro-rp-z-in</property>
 
+ <property value="16.40">metrics/hydro-beam-ft</property>
+ <property value="65.62">metrics/hydro-length-ft</property>
+
  <documentation>
   The hull beam is used as the reference length and to define both
   reference area and volume.
@@ -208,13 +211,20 @@
 
   <fcs_function name="hydro/hull/height-agl-ft">
    <description>
-    The hull height with squat due to the transverse wave applied
+    The hull height with waves and squat due to the transverse wave applied.
    </description>
    <function>
     <sum>
      <property>hydro/height-agl-ft</property>
      <max>
-      <value>-10.0</value>
+      <value>-100.0</value>
+      <min>
+       <property>hydro/orientation/wave/level-change-ft</property>
+       <value>100.0</value>
+      </min>
+     </max>
+     <max>
+      <value>-0.0</value>
       <min>
        <property>hydro/transverse-wave/squat-ft</property>
        <value>0.0</value>
@@ -226,11 +236,22 @@
 
   <fcs_function name="hydro/hull/pitch-deg">
    <description>
-    The hull pitch with the trim change due to the transverse wave applied
+    The hull pitch with the trim change due to waves and 
+    the displacement wave applied.
    </description>
    <function>
     <sum>
      <property>hydro/pitch-deg</property>
+     <product>
+      <value>1.0</value>
+      <max>
+       <value>-30.0</value>
+       <min>
+        <property>hydro/orientation/wave-pitch-trim-change-deg</property>
+        <value>30.0</value>
+       </min>
+      </max>
+     </product>
      <product>
       <value>-1.0</value>
       <max>
@@ -238,6 +259,27 @@
        <min>
         <property>hydro/transverse-wave/pitch-trim-change-deg</property>
         <value>30.0</value>
+       </min>
+      </max>
+     </product>
+    </sum>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/hull/roll-deg">
+   <description>
+    The hull roll with the trim change due to waves applied.
+   </description>
+   <function>
+    <sum>
+     <property>hydro/roll-deg</property>
+     <product>
+      <value>1.0</value>
+      <max>
+       <value>-80.0</value>
+       <min>
+        <property>hydro/orientation/wave-roll-trim-change-deg</property>
+        <value>80.0</value>
        </min>
       </max>
      </product>
@@ -348,7 +390,7 @@
      <property>hydro/environment/gravity-ft_sec2</property>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
-      <independentVar lookup="column">hydro/roll-deg</independentVar>
+      <independentVar lookup="column">hydro/hull/roll-deg</independentVar>
       <independentVar lookup="table">hydro/hull/height-agl-ft</independentVar>
       <tableData breakPoint="4.0">
    -4.0  -2.0   0.0   2.0   4.0
@@ -425,7 +467,7 @@
    <function>
     <product>
      <value>1.0</value>
-     <value>4000.0</value> <!-- Guess -->
+     <value>2000.0</value> <!-- Guess -->
      <property>velocities/v-down-fps</property>
     </product>
    </function>
@@ -480,7 +522,7 @@
    <function>
     <product>
      <value>0.0</value>
-     <value>-25000.0</value> <!-- Guess -->
+     <value>-12500.0</value> <!-- Guess -->
      <property>hydro/yaw-tweak-factor</property>
      <property>velocities/psidot-rad_sec</property>
     </product>
@@ -509,7 +551,7 @@
      <property>hydro/environment/gravity-ft_sec2</property>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
-      <independentVar lookup="column">hydro/roll-deg</independentVar>
+      <independentVar lookup="column">hydro/hull/roll-deg</independentVar>
       <independentVar lookup="table">hydro/hull/height-agl-ft</independentVar>
       <tableData breakPoint="4.0">
    -4.0  -2.0   0.0   2.0   4.0
@@ -583,7 +625,7 @@
    <function>
     <product>
      <value>1.0</value>
-     <value>-10000000.0</value> <!-- Guess -->
+     <value>-2500000.0</value> <!-- Guess -->
      <property>velocities/thetadot-rad_sec</property>
     </product>
    </function>
@@ -612,7 +654,7 @@
      <property>hydro/environment/gravity-ft_sec2</property>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
-      <independentVar lookup="column">hydro/roll-deg</independentVar>
+      <independentVar lookup="column">hydro/hull/roll-deg</independentVar>
       <independentVar lookup="table">hydro/hull/height-agl-ft</independentVar>
       <tableData breakPoint="4.0">
    -4.0  -2.0   0.0   2.0   4.0
@@ -701,7 +743,7 @@
    <function>
     <product>
      <value>1.0</value>
-     <value>-10000.0</value> <!-- Guess -->
+     <value>-5000.0</value> <!-- Guess -->
      <property>velocities/phidot-rad_sec</property>
     </product>
    </function>
