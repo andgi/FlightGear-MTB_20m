@@ -125,6 +125,12 @@
 
   <multiplay>
    <generic>
+    <float n="0" alias="/environment/waves/time-sec"/>
+    <float n="1" alias="/environment/waves/from-deg"/>
+    <float n="2" alias="/environment/waves/amplitude-ft"/>
+    <float n="3" alias="/environment/waves/angular-frequency-rad_sec"/>
+    <float n="4" alias="/environment/waves/wave-number-rad_ft"/>
+    <float n="5" alias="/fdm/jsbsim/hydro/height-agl-ft"/>
    </generic>
   </multiplay>
 

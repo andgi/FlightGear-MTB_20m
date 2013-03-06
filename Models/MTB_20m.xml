@@ -285,13 +285,19 @@ var rplayer = cmdarg();
 print("LOAD MTB_20m", rplayer.getPath());
 
 # Set up property aliases for animations.
-#  Wakes.
-#rplayer.getNode("fdm/jsbsim/hydro/coefficients/C_Delta", 1).
-#  alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
-
-# Exterior lights.
-#rplayer.getNode("systems/electrical/lamps/navigation/port-power-W", 1).
-#  alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+#  Waves.
+rplayer.getNode("environment/waves/time-sec", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+rplayer.getNode("environment/waves/from-deg", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+rplayer.getNode("environment/waves/amplitude-ft", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
+rplayer.getNode("environment/waves/angular-frequency-rad_sec", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
+rplayer.getNode("environment/waves/wave-number-rad_ft", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+rplayer.getNode("fdm/jsbsim/hydro/height-agl-ft", 1).
+  alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
 
 # Set up livery support.
 var livery_update =
