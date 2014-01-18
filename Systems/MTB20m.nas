@@ -10,9 +10,23 @@
 
 ###############################################################################
 var ground = func {
+    # Send the current ground level to the JSBSim hydrodynamics model.
     setprop("/fdm/jsbsim/hydro/environment/water-level-ft",
             getprop("/position/ground-elev-ft") +
             getprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft"));
+
+    # Connect the FlightGear wave model to the JSBSim hydrodynamics wave model.
+    #setprop("/fdm/jsbsim/hydro/environment/waves-from-deg",
+    #        getprop("/environment/wave/angle") - 90.0);
+    #setprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft",
+    #        getprop("/environment/wave/amp"));
+    # Additional properties:
+    #   /environment/wave/dangle
+    #   /environment/wave/factor
+    #   /environment/wave/freq
+    #   /environment/wave/sharp
+
+    # Connect the JSBSim hydrodynamics wave model with the custom water shader.
     setprop("environment/waves/time-sec",
             getprop("/fdm/jsbsim/simulation/sim-time-sec"));
     setprop("environment/waves/from-deg",
@@ -25,6 +39,7 @@ var ground = func {
             getprop("/fdm/jsbsim/hydro/environment/wave/angular-frequency-rad_sec"));
     setprop("environment/waves/wave-number-rad_ft",
             getprop("/fdm/jsbsim/hydro/environment/wave/wave-number-rad_ft"));
+
 
     settimer(ground, 0.0);
 }
@@ -82,6 +97,10 @@ left.add("/fdm/jsbsim/hydro/orientation/wave-pitch-trim-change-deg");
 left.add("/fdm/jsbsim/hydro/orientation/wave-roll-trim-change-deg");
 left.add("/fdm/jsbsim/hydro/environment/wave/angular-frequency-rad_sec");
 left.add("/fdm/jsbsim/hydro/environment/wave/wave-number-rad_ft");
+left.add("/fdm/jsbsim/hydro/environment/wave/level-fwd-ft");
+left.add("/fdm/jsbsim/hydro/environment/wave/level-at-hrp-ft");
+left.add("/fdm/jsbsim/hydro/environment/wave/level-aft-ft");
+
 
 right.add("/fdm/jsbsim/hydro/v-kt");
 right.add("/fdm/jsbsim/hydro/vbx-fps");

@@ -262,11 +262,23 @@
   <path>Aircraft/MTB_20m/Models/water.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up -->
-   <x-m> 0.00 </x-m>
-   <y-m> 0.00 </y-m>
-   <z-m> 0.00 </z-m>
+   <x-m>12.00</x-m>
+   <y-m>0.00</y-m>
+   <z-m>0.00</z-m>
   </offsets>
  </model>
+
+
+ <!-- Markers for debugging ================================================-->
+ <!-- model>
+  <name>Markers</name>
+  <path>Aircraft/MTB_20m/Models/markers.xml</path>
+  <offsets>
+   <x-m>12.00</x-m>
+   <y-m>0.00</y-m>
+   <z-m>0.00</z-m>
+  </offsets>
+ </model -->
 
  <!-- LOD for the model as a whole =========================================-->
  <animation>
@@ -314,6 +326,5 @@ livery_update.stop();
 ##############################################################################
   </unload>
  </nasal>
-
 
 </PropertyList>

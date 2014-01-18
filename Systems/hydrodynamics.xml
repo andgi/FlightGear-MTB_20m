@@ -202,9 +202,9 @@
  <property value="0.0">hydro/environment/current-from-north-fps</property>
  <property value="0.0">hydro/environment/current-from-east-fps</property>
 
- <property value="0.0">hydro/environment/waves-from-deg</property>
+ <property value="40.0">hydro/environment/waves-from-deg</property>
  <property value="0.0">hydro/environment/wave-amplitude-ft</property>
- <property value="0.0">hydro/environment/wave-length-ft</property>
+ <property value="150.0">hydro/environment/wave-length-ft</property>
 
  <!-- Model parameters -->
  <!--   HRP location. Must be defined.
@@ -267,7 +267,10 @@
     <difference>
      <sum>
       <value>3.1415927</value>
-      <property>hydro/environment/waves-from-deg</property>
+      <product>
+       <value>0.017453293</value>
+       <property>hydro/environment/waves-from-deg</property>
+      </product>
      </sum>
      <property>attitude/psi-rad</property>
     </difference>
@@ -377,17 +380,117 @@
    </function>
   </fcs_function>
 
-  <fcs_function name="hydro/orientation/wave/level-change-ft">
+  <fcs_function name="hydro/environment/wave/level-change-ft">
    <description>
     The water level change due to the waves. Guessed.
-    Replace by integration over hydro-length-ft?
+    Integrated over -0.5 * hydro-length-ft to 0.5 * hydro-length-ft.
+   </description>
+   <function>
+    <quotient>
+     <sum>
+      <product>
+       <property>hydro/environment/wave-amplitude-ft</property>
+       <sin>
+        <difference>
+         <product>
+          <value>0.5</value>
+          <property>metrics/hydro-length-ft</property>
+          <property>hydro/environment/wave/hull-x-factor</property>
+          <property>hydro/environment/wave/wave-number-rad_ft</property>
+         </product>
+         <product>
+          <property>hydro/environment/wave/angular-frequency-rad_sec</property>
+          <property>simulation/sim-time-sec</property>
+         </product>
+        </difference>
+       </sin>
+      </product>
+      <product>
+       <property>hydro/environment/wave-amplitude-ft</property>
+       <sin>
+        <difference>
+         <product>
+          <value>-0.5</value>
+          <property>metrics/hydro-length-ft</property>
+          <property>hydro/environment/wave/hull-x-factor</property>
+          <property>hydro/environment/wave/wave-number-rad_ft</property>
+         </product>
+         <product>
+          <property>hydro/environment/wave/angular-frequency-rad_sec</property>
+          <property>simulation/sim-time-sec</property>
+         </product>
+        </difference>
+       </sin>
+      </product>
+     </sum>
+     <product>
+      <property>hydro/environment/wave/hull-x-factor</property>
+      <property>hydro/environment/wave/wave-number-rad_ft</property>
+      <property>hydro/hull-length-ft</property>
+     </product>
+    </quotient>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/environment/wave/level-at-hrp-ft">
+   <description>
+    The water level change at the HRP location. For debugging.
+   </description>
+   <function>
+    <product>
+     <property>hydro/environment/wave-amplitude-ft</property>
+     <cos>
+      <product>
+       <property>hydro/environment/wave/angular-frequency-rad_sec</property>
+       <property>simulation/sim-time-sec</property>
+      </product>
+     </cos>
+    </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/environment/wave/level-fwd-ft">
+   <description>
+    The water level change at 0.5 * metrics/hydro-length-ft forward of
+    the HRP location.
    </description>
    <function>
     <product>
      <property>hydro/environment/wave-amplitude-ft</property>
      <cos>
       <difference>
-       <value>0.0</value>
+       <product>
+        <value>0.5</value>
+        <property>metrics/hydro-length-ft</property>
+        <property>hydro/environment/wave/hull-x-factor</property>
+        <property>hydro/environment/wave/wave-number-rad_ft</property>
+       </product>
+       <product>
+        <property>hydro/environment/wave/angular-frequency-rad_sec</property>
+        <property>simulation/sim-time-sec</property>
+       </product>
+      </difference>
+     </cos>
+    </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/environment/wave/level-aft-ft">
+   <description>
+    The water level change at 0.5 * metrics/hydro-length-ft aft of
+    the HRP location.
+   </description>
+   <function>
+    <product>
+     <property>hydro/environment/wave-amplitude-ft</property>
+     <cos>
+      <difference>
+       <product>
+        <value>-0.5</value>
+        <property>metrics/hydro-length-ft</property>
+        <property>hydro/environment/wave/hull-x-factor</property>
+        <property>hydro/environment/wave/wave-number-rad_ft</property>
+       </product>
        <product>
         <property>hydro/environment/wave/angular-frequency-rad_sec</property>
         <property>simulation/sim-time-sec</property>
@@ -408,40 +511,8 @@
      <value>57.29578</value>
      <atan2>
       <difference>
-       <product>
-        <property>hydro/environment/wave-amplitude-ft</property>
-        <cos>
-         <difference>
-          <product>
-           <value>0.5</value>
-           <property>metrics/hydro-length-ft</property>
-           <property>hydro/environment/wave/hull-x-factor</property>
-           <property>hydro/environment/wave/wave-number-rad_ft</property>
-          </product>
-          <product>
-           <property>hydro/environment/wave/angular-frequency-rad_sec</property>
-           <property>simulation/sim-time-sec</property>
-          </product>
-         </difference>
-        </cos>
-       </product>
-       <product>
-        <property>hydro/environment/wave-amplitude-ft</property>
-        <cos>
-         <difference>
-          <product>
-           <value>-0.5</value>
-           <property>metrics/hydro-length-ft</property>
-           <property>hydro/environment/wave/hull-x-factor</property>
-           <property>hydro/environment/wave/wave-number-rad_ft</property>
-          </product>
-          <product>
-           <property>hydro/environment/wave/angular-frequency-rad_sec</property>
-           <property>simulation/sim-time-sec</property>
-          </product>
-         </difference>
-        </cos>
-       </product>
+       <property>hydro/environment/wave/level-fwd-ft</property>
+       <property>hydro/environment/wave/level-aft-ft</property>
       </difference>
       <property>metrics/hydro-length-ft</property>
      </atan2>

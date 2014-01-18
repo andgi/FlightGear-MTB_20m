@@ -81,20 +81,23 @@ void main()
 {
     // Water specific 
     // Compute vertex position in object space.
-    vec2 wave_direction = vec2(cos(0.017453293*waves_from_deg),
-                               sin(0.017453293*waves_from_deg));
+    vec2 wave_direction = vec2(-cos(0.017453293*waves_from_deg),
+                               -sin(0.017453293*waves_from_deg));
     vec4 oPosition = gl_Vertex;
     vec3 oNormal   = gl_Normal;
 
     float k = 3.2808399 * wave_number_rad_ft;         // [rad/m]
     float omega = wave_angular_frequency_rad_sec;     // [rad/s]
-    //float k = 20.614125 / (wave_length_ft + 0.001); // [rad/m]
-    //float omega = sqrt(9.81 * k);                   // [rad/s]
 
     float h = 
-      -0.3048 * wave_amplitude_ft * cos(dot(wave_direction, oPosition.xy) * k  -
-                                        omega * wave_time_sec);
-    oPosition.z += h * (1.0 - 0.005 * length(oPosition.xy));
+      0.3048 * wave_amplitude_ft * cos(dot(wave_direction, oPosition.xy) * k  -
+                                       omega * wave_time_sec);
+
+    // Reduce amplitude and level towards the edges.
+    float d = clamp(1.0 - 0.005 * (length(oPosition.xy) - 50.0), 0.0, 1.0);
+    oPosition.z += h*sqrt(d) - 0.0*(1.0-d)*wave_amplitude_ft;
+
+    // Compute the vertex normal.
     oNormal = vec3(-k * h * wave_direction, 1.0);
     oNormal = normalize(oNormal);
     // End Water specific

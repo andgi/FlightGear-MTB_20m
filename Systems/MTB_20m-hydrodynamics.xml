@@ -29,8 +29,8 @@
  <property value="0.0">metrics/hydro-rp-y-in</property>
  <property value="0.0">metrics/hydro-rp-z-in</property>
 
- <property value="16.40">metrics/hydro-beam-ft</property>
- <property value="65.62">metrics/hydro-length-ft</property>
+ <property value="13.12">metrics/hydro-beam-ft</property>
+ <property value="52.49">metrics/hydro-length-ft</property>
 
  <documentation>
   The hull beam is used as the reference length and to define both
@@ -216,13 +216,16 @@
    <function>
     <sum>
      <property>hydro/height-agl-ft</property>
-     <max>
-      <value>-100.0</value>
-      <min>
-       <property>hydro/orientation/wave/level-change-ft</property>
-       <value>100.0</value>
-      </min>
-     </max>
+     <product>
+      <value>-1.0</value>
+      <max>
+       <value>-100.0</value>
+       <min>
+        <property>hydro/environment/wave/level-at-hrp-ft</property>
+        <value>100.0</value>
+       </min>
+      </max>
+     </product>
      <max>
       <value>-0.0</value>
       <min>
@@ -243,7 +246,7 @@
     <sum>
      <property>hydro/pitch-deg</property>
      <product>
-      <value>1.0</value>
+      <value>-1.0</value>
       <max>
        <value>-30.0</value>
        <min>

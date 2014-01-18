@@ -5,8 +5,7 @@
 # Usage: run_experiment.sh <base dir> <name base>
 
 # Setup paths for gerris.
-export PATH=$PATH:/home/anders/FlightGear/gerris/201207/bin
-export PKG_CONFIG_PATH=/home/anders/FlightGear/gerris/201207/lib/pkgconfig
+. /opt/Gerris/setpaths.sh
 
 BASEDIR=$1
 BASE=$2
