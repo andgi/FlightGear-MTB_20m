@@ -3,7 +3,7 @@
 //
 //  Copyright (C) 2009 - 2011  Tim Moore         (timoore(at)redhat.com)
 //  Copyright (C) 2011 - 2012  Thorsten Renk
-//  Copyright (C) 2013  Anders Gidenstam  (anders(at)gidenstam.org)
+//  Copyright (C) 2013 - 2014  Anders Gidenstam  (anders(at)gidenstam.org)
 //  This file is licensed under the GPL license version 2 or later.
 
 // Shader that uses OpenGL state values to do per-pixel lighting
@@ -82,7 +82,7 @@ void main()
     // Water specific 
     // Compute vertex position in object space.
     vec2 wave_direction = vec2(-cos(0.017453293*waves_from_deg),
-                               -sin(0.017453293*waves_from_deg));
+                               sin(0.017453293*waves_from_deg));
     vec4 oPosition = gl_Vertex;
     vec3 oNormal   = gl_Normal;
 

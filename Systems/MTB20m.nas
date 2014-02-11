@@ -2,7 +2,7 @@
 ##
 ## Swedish Navy 20m-class motor torpedo boat for FlightGear.
 ##
-##  Copyright (C) 2012 - 2013  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2012 - 2014  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
 ##
 ###############################################################################
