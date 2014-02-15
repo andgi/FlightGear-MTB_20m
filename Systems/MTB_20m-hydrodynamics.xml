@@ -652,7 +652,7 @@
    </documentation>
    <function>
     <product>
-     <value>1.0</value>
+     <value>2.5</value> <!-- Note: should be 1.0. -->
      <property>hydro/environment/rho-slug_ft3</property>
      <property>hydro/environment/gravity-ft_sec2</property>
      <table>

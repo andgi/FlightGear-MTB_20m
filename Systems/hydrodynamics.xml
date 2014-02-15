@@ -345,7 +345,7 @@
     <sum>
      <!-- Deep water gravity wave. -->
      <product>
-      <value>-0.0</value> <!-- Hack: Make the waves stationary for now. -->
+      <value>-1.0</value> <!-- Note: Set to 0 to make the waves stationary. -->
       <pow>
        <quotient>
         <product>

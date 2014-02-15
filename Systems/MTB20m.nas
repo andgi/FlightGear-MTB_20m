@@ -73,6 +73,8 @@ left.add("/fdm/jsbsim/hydro/true-course-deg");
 left.add("/fdm/jsbsim/hydro/beta-deg");
 left.add("/fdm/jsbsim/hydro/pitch-deg");
 left.add("/fdm/jsbsim/hydro/roll-deg");
+left.add("/fdm/jsbsim/hydro/hull/pitch-deg");
+left.add("/fdm/jsbsim/hydro/hull/roll-deg");
 left.add("/fdm/jsbsim/hydro/height-agl-ft");
 left.add("/fdm/jsbsim/inertia/cg-x-in");
 left.add("/fdm/jsbsim/inertia/cg-z-in");
