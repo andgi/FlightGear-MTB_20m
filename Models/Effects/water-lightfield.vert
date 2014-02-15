@@ -88,17 +88,19 @@ void main()
 
     float k = 3.2808399 * wave_number_rad_ft;         // [rad/m]
     float omega = wave_angular_frequency_rad_sec;     // [rad/s]
+    float amplitude = 0.3048 * wave_amplitude_ft;     // [m]
+    float angle =                                     // [rad]
+      dot(wave_direction, oPosition.xy) * k  - omega * wave_time_sec;
 
-    float h = 
-      0.3048 * wave_amplitude_ft * cos(dot(wave_direction, oPosition.xy) * k  -
-                                       omega * wave_time_sec);
+    float h = amplitude * cos(angle);
 
     // Reduce amplitude and level towards the edges.
     float d = clamp(1.0 - 0.005 * (length(oPosition.xy) - 50.0), 0.0, 1.0);
     oPosition.z += h*sqrt(d) - 0.0*(1.0-d)*wave_amplitude_ft;
 
-    // Compute the vertex normal.
-    oNormal = vec3(-k * h * wave_direction, 1.0);
+    // Compute the vertex normal. Note: Not entierly correct.
+    float dh_dxy = amplitude * sin(angle) * k;
+    oNormal = vec3(dh_dxy * wave_direction, 1.0);
     oNormal = normalize(oNormal);
     // End Water specific
 

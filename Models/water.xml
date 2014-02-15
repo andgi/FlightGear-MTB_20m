@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2013  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2013 - 2014  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -90,10 +90,13 @@
  <animation>
   <type>select</type>
   <condition>
-   <greater-than>
-    <property>environment/waves/amplitude-ft</property>
-    <value>0.00</value>
-   </greater-than>
+   <and>
+    <property>/sim/rendering/shaders/water</property>
+    <greater-than>
+     <property>environment/waves/amplitude-ft</property>
+     <value>0.00</value>
+    </greater-than>
+   </and>
   </condition>
  </animation>
 
