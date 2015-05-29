@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2013  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2013 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -23,7 +23,7 @@
   </predicate>
   <pass n="0">
    <program n="0">
-    <vertex-shader n="0">Aircraft/MTB_20m/Models/Effects/water-lightfield.vert</vertex-shader>
+    <vertex-shader n="1">Aircraft/MTB_20m/Models/Effects/water-lightfield.vert</vertex-shader>
    </program>
    <uniform n="8">
     <name>wave_time_sec</name>

@@ -2,7 +2,7 @@
 ##
 ## Swedish Navy 20m-class motor torpedo boat for FlightGear.
 ##
-##  Copyright (C) 2012 - 2014  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2012 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
 ##
 ###############################################################################
@@ -11,9 +11,13 @@
 ###############################################################################
 var ground = func {
     # Send the current ground level to the JSBSim hydrodynamics model.
-    setprop("/fdm/jsbsim/hydro/environment/water-level-ft",
-            getprop("/position/ground-elev-ft") +
-            getprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft"));
+    var pos = geo.aircraft_position();
+    var material = geodinfo(pos.lat(), pos.lon());
+    if (contains(material[1], "solid") and !material[1].solid) {
+        setprop("/fdm/jsbsim/hydro/environment/water-level-ft",
+                getprop("/position/ground-elev-ft") +
+                getprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft"));
+    }
 
     # Connect the FlightGear wave model to the JSBSim hydrodynamics wave model.
     #setprop("/fdm/jsbsim/hydro/environment/waves-from-deg",

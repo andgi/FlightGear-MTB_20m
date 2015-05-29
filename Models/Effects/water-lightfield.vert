@@ -3,7 +3,7 @@
 //
 //  Copyright (C) 2009 - 2011  Tim Moore         (timoore(at)redhat.com)
 //  Copyright (C) 2011 - 2012  Thorsten Renk
-//  Copyright (C) 2013 - 2014  Anders Gidenstam  (anders(at)gidenstam.org)
+//  Copyright (C) 2013 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
 //  This file is licensed under the GPL license version 2 or later.
 
 // Shader that uses OpenGL state values to do per-pixel lighting
@@ -98,9 +98,9 @@ void main()
     float d = clamp(1.0 - 0.005 * (length(oPosition.xy) - 50.0), 0.0, 1.0);
     oPosition.z += h*sqrt(d) - 0.0*(1.0-d)*wave_amplitude_ft;
 
-    // Compute the vertex normal. Note: Not entierly correct.
-    float dh_dxy = amplitude * sin(angle) * k;
-    oNormal = vec3(dh_dxy * wave_direction, 1.0);
+    // Compute the vertex normal.
+    float a = atan(amplitude * sin(angle) * k);
+    oNormal = vec3(sin(a) * wave_direction, cos(a));
     oNormal = normalize(oNormal);
     // End Water specific
 
