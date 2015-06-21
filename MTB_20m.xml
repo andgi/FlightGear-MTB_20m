@@ -32,7 +32,7 @@
   <filecreationdate>2012-09-29</filecreationdate>
   <version>$Id$</version>
 
-  <description>Models a Swedish Navy 20m motor torpedo boat.</description>
+  <description>Models a Swedish Navy 20m T21 class motor torpedo boat.</description>
 
   <license>
    <licenseName>GPL</licenseName>
@@ -195,49 +195,66 @@
    The hydrostatic interactions of the hull are modelled by external forces.
   </documentation>
 
-  <contact type="STRUCTURE" name="BOW">
+  <contact type="BOGEY" name="BOW">
    <location unit="M">
-    <x>   0.00 </x>
+    <x>   1.00 </x>
     <y>   0.00 </y>
-    <z>   1.00 </z>
+    <z>  -1.70 </z>
    </location>
-   <static_friction>  0.00 </static_friction>
-   <dynamic_friction> 0.00 </dynamic_friction>
+   <static_friction>  0.70 </static_friction>
+   <dynamic_friction> 0.60 </dynamic_friction>
+   <rolling_friction> 0.30 </rolling_friction>
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
 
-  <contact type="STRUCTURE" name="STERN">
+  <contact type="BOGEY" name="STEP">
+   <location unit="M">
+    <x>   8.00 </x>
+    <y>   0.00 </y>
+    <z>  -2.30 </z>
+   </location>
+   <static_friction>  0.70 </static_friction>
+   <dynamic_friction> 0.60 </dynamic_friction>
+   <rolling_friction> 0.30 </rolling_friction>
+   <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
+   <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
+  </contact>
+
+  <contact type="BOGEY" name="STERN">
    <location unit="M">
     <x>  20.00 </x>
     <y>   0.00 </y>
-    <z>   1.00 </z>
+    <z>  -2.05 </z>
    </location>
-   <static_friction>  0.00 </static_friction>
-   <dynamic_friction> 0.00 </dynamic_friction>
+   <static_friction>  0.70 </static_friction>
+   <dynamic_friction> 0.60 </dynamic_friction>
+   <rolling_friction> 0.30 </rolling_friction>
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
 
-  <contact type="STRUCTURE" name="PORT SIDE">
+  <contact type="BOGEY" name="PORT SIDE">
    <location unit="M">
     <x>  7.00 </x>
     <y> -2.50 </y>
-    <z>  1.00 </z>
+    <z> -1.90 </z>
    </location>
-   <static_friction>  0.00 </static_friction>
-   <dynamic_friction> 0.00 </dynamic_friction>
+   <static_friction>  0.70 </static_friction>
+   <dynamic_friction> 0.60 </dynamic_friction>
+   <rolling_friction> 0.30 </rolling_friction>
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
-  <contact type="STRUCTURE" name="STARBOARD SIDE">
+  <contact type="BOGEY" name="STARBOARD SIDE">
    <location unit="M">
     <x>  7.00 </x>
     <y>  2.50 </y>
-    <z>  1.00 </z>
+    <z> -1.90 </z>
    </location>
-   <static_friction>  0.00 </static_friction>
-   <dynamic_friction> 0.00 </dynamic_friction>
+   <static_friction>  0.70 </static_friction>
+   <dynamic_friction> 0.60 </dynamic_friction>
+   <rolling_friction> 0.30 </rolling_friction>
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
@@ -573,6 +590,7 @@
 
  <system file="hydrodynamics"/>
  <system file="MTB_20m-hydrodynamics"/>
+ <system file="MTB_20m-ground_reactions"/>
  <system file="propulsion"/>
 
  <system name="steering gear">
@@ -606,7 +624,6 @@
 
  </system>
 
- <!-- system file="fgfs4jsbsim" -->
  <!-- system file="mooring-jsbsim" -->    <!-- Mooring setup for FlightGear. -->
   <!-- Configuration -->
   <!--  Mooring rope -->

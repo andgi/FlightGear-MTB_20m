@@ -13,7 +13,8 @@ var ground = func {
     # Send the current ground level to the JSBSim hydrodynamics model.
     var pos = geo.aircraft_position();
     var material = geodinfo(pos.lat(), pos.lon());
-    if (contains(material[1], "solid") and !material[1].solid) {
+    if (!(material[1] == nil) and contains(material[1], "solid") and
+        !material[1].solid) {
         setprop("/fdm/jsbsim/hydro/environment/water-level-ft",
                 getprop("/position/ground-elev-ft") +
                 getprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft"));
@@ -72,7 +73,7 @@ var left  = screen.display.new(20, 10);
 var right = screen.display.new(-300, 10);
 
 left.add("/fdm/jsbsim/sim-time-sec");
-left.add("/orientation/heading-magnetic-deg");
+left.add("/fdm/jsbsim/hydro/active-norm");
 left.add("/fdm/jsbsim/hydro/true-course-deg");
 left.add("/fdm/jsbsim/hydro/beta-deg");
 left.add("/fdm/jsbsim/hydro/pitch-deg");
@@ -108,6 +109,7 @@ left.add("/fdm/jsbsim/hydro/environment/wave/level-at-hrp-ft");
 left.add("/fdm/jsbsim/hydro/environment/wave/level-aft-ft");
 
 
+right.add("/orientation/heading-magnetic-deg");
 right.add("/fdm/jsbsim/hydro/v-kt");
 right.add("/fdm/jsbsim/hydro/vbx-fps");
 right.add("/fdm/jsbsim/hydro/vby-fps");
