@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012 - 2014  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2012-09-29</filecreationdate>
-  <version>$Id$</version>
+  <version>2015-07-28</version>
 
   <description>Models a Swedish Navy 20m T21 class motor torpedo boat.</description>
 
@@ -55,6 +55,11 @@
              author="Curt Borgenstam and Bo Nyman"
              title="Motortorpedbåt - En krönika i ord och bild om 'Havets flygande brigad'"
              date="1981"/>
+
+  <reference refID="Wagner:1932:POW"
+             author="Herbert Wagner"
+             title="Planing of Watercraft  Translated as NACA-TM-1139"
+             date="1933/1948"/>
 
  </fileheader>
 
@@ -234,7 +239,7 @@
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
 
-  <contact type="BOGEY" name="PORT SIDE">
+  <contact type="BOGEY" name="PORT CHINE">
    <location unit="M">
     <x>  7.00 </x>
     <y> -2.50 </y>
@@ -246,7 +251,7 @@
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
-  <contact type="BOGEY" name="STARBOARD SIDE">
+  <contact type="BOGEY" name="STARBOARD CHINE">
    <location unit="M">
     <x>  7.00 </x>
     <y>  2.50 </y>

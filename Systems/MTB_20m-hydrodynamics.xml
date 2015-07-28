@@ -43,14 +43,6 @@
 
  <property value="65.62">hydro/hull-length-ft</property>
 
- <!-- Tweak factors. :) -->
- <property value="1.0">hydro/drag-tweak-factor</property>
- <property value="1.0">hydro/side-tweak-factor</property>
- <property value="1.0">hydro/lift-tweak-factor</property>
- <property value="1.0">hydro/pitch-tweak-factor</property>
- <property value="1.0">hydro/yaw-tweak-factor</property>
- <property value="1.0">hydro/yaw-stability-tweak-factor</property>
-
  <!-- The bx and by channels of the body frame are not used. -->
  <property value="0.0">hydro/fbx-lbs</property>
  <property value="0.0">hydro/fby-lbs</property>
@@ -309,6 +301,18 @@
     </sum>
    </function>
   </fcs_function>
+  <fcs_function name="hydro/hull/pitch-rad">
+   <description>
+    The hull pitch with the trim change due to waves and
+    the displacement wave applied.
+   </description>
+   <function>
+    <product>
+     <value>0.017453293</value>
+     <property>hydro/hull/pitch-deg</property>
+    </product>
+   </function>
+  </fcs_function>
 
   <fcs_function name="hydro/hull/roll-deg">
    <description>
@@ -330,7 +334,195 @@
     </sum>
    </function>
   </fcs_function>
+  <fcs_function name="hydro/hull/roll-rad">
+   <description>
+    The hull roll with the trim change due to waves and
+    the displacement wave applied.
+   </description>
+   <function>
+    <product>
+     <value>0.017453293</value>
+     <property>hydro/hull/roll-deg</property>
+    </product>
+   </function>
+  </fcs_function>
 
+ </channel>
+
+ <!-- Parameters defining the planing surfaces of the hull. -->
+ <!-- NOTE: Coordinates in the hydro RP frame. -->
+ <property value="27.20">hydro/planing/forebody-length-ft</property>
+ <property value="14.76">hydro/planing/forebody-beam-ft</property>
+ <property value="-7.22">hydro/planing/forebody-keel-z-ft</property>
+ <property value="-12.17">hydro/planing/forebody-end-x-ft</property>
+
+ <property value="11.06">hydro/planing/middlebody-length-ft</property>
+ <property value="14.76">hydro/planing/middlebody-beam-ft</property>
+ <property value="-6.99">hydro/planing/middlebody-keel-z-ft</property>
+ <property value="-0.98">hydro/planing/middlebody-end-x-ft</property>
+
+ <property value="25.39">hydro/planing/afterbody-length-ft</property>
+ <property value="11.54">hydro/planing/afterbody-beam-ft</property>
+ <property value="-6.43">hydro/planing/afterbody-keel-z-ft</property>
+ <property value="26.25">hydro/planing/afterbody-end-x-ft</property>
+
+ <channel name="Planing dynamics based on [Wagner:1932:POW]">
+
+  <fcs_function name="hydro/planing/forebody-entry-point-x-ft">
+   <function>
+    <description>The intersection point with the water surface.</description>
+    <quotient>
+     <sum>
+      <quotient>
+       <property>hydro/hull/height-agl-ft</property>
+       <cos><property>hydro/hull/pitch-rad</property></cos>
+      </quotient>
+      <property>hydro/planing/forebody-keel-z-ft</property>
+     </sum>
+     <tan><property>hydro/hull/pitch-rad</property></tan>
+    </quotient>
+   </function>
+  </fcs_function>
+  <fcs_function name="hydro/planing/middlebody-entry-point-x-ft">
+   <function>
+    <description>The intersection point with the water surface.</description>
+    <quotient>
+     <sum>
+      <quotient>
+       <property>hydro/hull/height-agl-ft</property>
+       <cos><property>hydro/hull/pitch-rad</property></cos>
+      </quotient>
+      <property>hydro/planing/middlebody-keel-z-ft</property>
+     </sum>
+     <tan><property>hydro/hull/pitch-rad</property></tan>
+    </quotient>
+   </function>
+  </fcs_function>
+  <fcs_function name="hydro/planing/afterbody-entry-point-x-ft">
+   <function>
+    <description>The intersection point with the water surface.</description>
+    <quotient>
+     <sum>
+      <quotient>
+       <property>hydro/hull/height-agl-ft</property>
+       <cos><property>hydro/hull/pitch-rad</property></cos>
+      </quotient>
+      <property>hydro/planing/afterbody-keel-z-ft</property>
+     </sum>
+     <tan><property>hydro/hull/pitch-rad</property></tan>
+    </quotient>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/planing/forebody-wetted-keel-ft">
+   <function>
+    <description>The length of keel below the free water surface.</description>
+    <max>
+     <value>0.0</value>
+     <min>
+      <difference>
+       <property>hydro/planing/forebody-end-x-ft</property>
+       <property>hydro/planing/forebody-entry-point-x-ft</property>
+      </difference>
+      <property>hydro/planing/forebody-length-ft</property>
+     </min>
+    </max>
+   </function>
+  </fcs_function>
+  <fcs_function name="hydro/planing/middlebody-wetted-keel-ft">
+   <function>
+    <description>The length of keel below the free water surface.</description>
+    <max>
+     <value>0.0</value>
+     <min>
+      <difference>
+       <property>hydro/planing/middlebody-end-x-ft</property>
+       <property>hydro/planing/middlebody-entry-point-x-ft</property>
+      </difference>
+      <property>hydro/planing/middlebody-length-ft</property>
+     </min>
+    </max>
+   </function>
+  </fcs_function>
+  <fcs_function name="hydro/planing/afterbody-wetted-keel-ft">
+   <function>
+    <description>The length of keel below the free water surface.</description>
+    <max>
+     <value>0.0</value>
+     <min>
+      <difference>
+       <property>hydro/planing/afterbody-end-x-ft</property>
+       <property>hydro/planing/afterbody-entry-point-x-ft</property>
+      </difference>
+      <property>hydro/planing/afterbody-length-ft</property>
+     </min>
+    </max>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/planing/forebody-normal-force-lbs">
+   <function>
+    <description>
+     The normal force produced by the planing surface.
+     NOTE: The formulation is only valid for very small pitch angles and
+           the pitch angle should also be adjusted for down-wash.
+           See [Wagner:1932:POW].
+    </description>
+    <max>
+     <value>0.0</value> <!-- FIXME: the lift coefficient. -->
+     <product>
+      <value>0.1</value>
+      <value>3.1415927</value>
+      <property>hydro/qbar-u-psf</property>
+      <property>hydro/planing/forebody-beam-ft</property>
+      <property>hydro/planing/forebody-wetted-keel-ft</property>
+      <sin><property>hydro/hull/pitch-rad</property></sin>
+     </product>
+    </max>
+   </function>
+  </fcs_function>
+  <fcs_function name="hydro/planing/middlebody-normal-force-lbs">
+   <function>
+    <description>
+     The normal force produced by the planing surface.
+     NOTE: The formulation is only valid for very small pitch angles and
+           the pitch angle should also be adjusted for down-wash.
+           See [Wagner:1932:POW].
+    </description>
+    <max>
+     <value>0.0</value> <!-- FIXME: the lift coefficient. -->
+     <product>
+      <value>0.1</value>
+      <value>3.1415927</value>
+      <property>hydro/qbar-u-psf</property>
+      <property>hydro/planing/middlebody-beam-ft</property>
+      <property>hydro/planing/middlebody-wetted-keel-ft</property>
+      <sin><property>hydro/hull/pitch-rad</property></sin>
+     </product>
+    </max>
+   </function>
+  </fcs_function>
+  <fcs_function name="hydro/planing/afterbody-normal-force-lbs">
+   <function>
+    <description>
+     The normal force produced by the planing surface.
+     NOTE: The formulation is only valid for very small pitch angles and
+           the pitch angle should also be adjusted for down-wash.
+           See [Wagner:1932:POW].
+    </description>
+    <max>
+     <value>0.0</value> <!-- FIXME: the lift coefficient. -->
+     <product>
+      <value>0.1</value>
+      <value>3.1415927</value>
+      <property>hydro/qbar-u-psf</property>
+      <property>hydro/planing/afterbody-beam-ft</property>
+      <property>hydro/planing/afterbody-wetted-keel-ft</property>
+      <sin><property>hydro/hull/pitch-rad</property></sin>
+     </product>
+    </max>
+   </function>
+  </fcs_function>
  </channel>
 
  <channel name="Drag">
@@ -339,21 +531,14 @@
    <function>
     <description>Drag due to displacement of hull</description>
     <product>
-     <value>1.0</value>
+     <value>0.00000025</value> <!-- Base Cd per lbs buoyancy. -->
      <property>hydro/qbar-psf</property>
      <property>hydro/hull-beam-ft2</property>
-     <property>hydro/drag-tweak-factor</property>
-     <max>
-      <quotient> <!-- Reduce when planing. Needs refinement. -->
-       <property>hydro/buoyancy-lbs</property>
-       <property>inertia/weight-lbs</property>
-      </quotient>
-      <value>0.20</value>
-     </max>
+     <property>hydro/buoyancy-lbs</property>
      <sum>
-      <value>0.04</value>
+      <value>1.0</value>
       <product>  <!-- Increase drag with beta. -->
-       <value>0.5</value>
+       <value>10.0</value>
        <abs><sin><property>hydro/beta-rad</property></sin></abs>
       </product>
      </sum>
@@ -363,30 +548,33 @@
 
   <fcs_function name="hydro/planing-drag-lbs">
    <function>
-    <description>Drag due to planing</description> <!-- Guess -->
-    <product>
-     <!-- Assumption: Lift ~ sin(2*pitch) and Drag ~ 1+sin(2*pitch-pi/2). -->
-     <quotient>
+    <description>Drag due to planing. FIXME: direction/frame?</description>
+    <max>
+     <value>0.0</value>
+     <product>
       <sum>
-       <value>1.0</value>
-       <sin>
-        <sum>
-         <product>
-          <value>2.0</value>
-          <abs><property>attitude/pitch-rad</property></abs>
-         </product>
-         <value>-1.5707963</value>
-        </sum>
-       </sin>
+       <property>hydro/planing/forebody-normal-force-lbs</property>
+       <property>hydro/planing/middlebody-normal-force-lbs</property>
+       <property>hydro/planing/afterbody-normal-force-lbs</property>
       </sum>
-      <sin>
-       <product>
-        <value>2.0</value>
-        <abs><property>attitude/pitch-rad</property></abs>
-       </product>
-      </sin>
-     </quotient>
-     <property>hydro/planing-lift-lbs</property>
+      <sin><property>hydro/hull/pitch-rad</property></sin>
+     </product>
+    </max>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/friction-drag-lbs">
+   <function>
+    <description>Drag due to skin friction.</description>
+    <product>
+     <value>0.0033</value>
+     <property>hydro/qbar-u-psf</property>
+     <property>hydro/hull-beam-ft</property>
+     <sum>
+      <property>hydro/planing/forebody-wetted-keel-ft</property>
+      <property>hydro/planing/middlebody-wetted-keel-ft</property>
+      <property>hydro/planing/afterbody-wetted-keel-ft</property>
+     </sum>
     </product>
    </function>
   </fcs_function>
@@ -398,6 +586,7 @@
      <sum>
       <property>hydro/displacement-drag-lbs</property>
       <property>hydro/planing-drag-lbs</property>
+      <property>hydro/friction-drag-lbs</property>
      </sum>
     </product>
    </function>
@@ -408,15 +597,29 @@
  <channel name="Side">
 
   <fcs_function name="hydro/hull-side-lbs">
-   <function>
+   <function> <!-- FIXME. Displacement. -->
     <description>Side force due to hull. Guessed.</description>
     <product>
      <value>-1.0</value>
      <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft2</property>
-     <property>hydro/side-tweak-factor</property>
      <sin><property>hydro/beta-rad</property></sin>
      <value>0.20</value>
+    </product>
+   </function>
+  </fcs_function>
+
+  <fcs_function name="hydro/planing-side-lbs">
+   <function>
+    <description>Side force due to planing. FIXME: direction/frame?</description>
+    <product>
+     <sum>
+      <property>hydro/planing/forebody-normal-force-lbs</property>
+      <property>hydro/planing/middlebody-normal-force-lbs</property>
+      <property>hydro/planing/afterbody-normal-force-lbs</property>
+     </sum>
+     <cos><property>hydro/hull/pitch-rad</property></cos>
+     <sin><property>hydro/hull/roll-rad</property></sin>
     </product>
    </function>
   </fcs_function>
@@ -506,16 +709,18 @@
   </fcs_function>
 
   <fcs_function name="hydro/planing-lift-lbs">
-   <documentation>
-    Lift due to planing. Guessed.
-   </documentation>
-   <function> <!-- Guess -->
+   <function>
+    <description>Drag due to planing. FIXME: direction/frame?</description>
     <max>
      <value>0.0</value>
      <product>
-      <value>0.005</value>
-      <property>hydro/qbar-u-psf</property>
-      <property>hydro/buoyancy-lbs</property>
+      <sum>
+       <property>hydro/planing/forebody-normal-force-lbs</property>
+       <property>hydro/planing/middlebody-normal-force-lbs</property>
+       <property>hydro/planing/afterbody-normal-force-lbs</property>
+      </sum>
+      <cos><property>hydro/hull/pitch-rad</property></cos>
+      <cos><property>hydro/hull/roll-rad</property></cos>
      </product>
     </max>
    </function>
@@ -547,6 +752,7 @@
  </channel>
 
  <channel name="Yaw">
+  <!-- FIXME: planing yaw moment. -->
 
   <fcs_function name="hydro/hull-yaw-moment-lbsft">
    <documentation>
@@ -556,7 +762,6 @@
     <description>Yaw moment due to hull (per radian beta)</description>
     <product>
      <value>1.0</value>
-     <property>hydro/yaw-stability-tweak-factor</property>
      <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft3</property>
      <sin><property>hydro/beta-rad</property></sin>
@@ -588,7 +793,6 @@
     <product>
      <value>0.0</value>
      <value>-12500.0</value> <!-- Guess -->
-     <property>hydro/yaw-tweak-factor</property>
      <property>velocities/psidot-rad_sec</property>
     </product>
    </function>
@@ -681,15 +885,40 @@
   </fcs_function>
 
   <fcs_function name="hydro/planing-pitch-moment-lbsft">
-   <documentation>
-    Pitch moment due to planing. Guessed.
-   </documentation>
+   <description>
+    Pitch moment due to planing.
+    FIXME: direction/frame? Limits on the acting point?
+   </description>
    <function>
-    <product>
-     <value>0.01</value>
-     <property>hydro/qbar-u-psf</property>
-     <property>hydro/buoyancy-pitch-moment-lbsft</property>
-    </product>
+    <sum>
+     <product>
+      <property>hydro/planing/forebody-normal-force-lbs</property>
+      <property>hydro/hull/pitch-rad</property>
+      <value>0.05</value>
+      <difference>
+       <property>hydro/planing/forebody-end-x-ft</property>
+       <property>hydro/planing/forebody-wetted-keel-ft</property>
+      </difference>
+     </product>
+     <product>
+      <property>hydro/planing/middlebody-normal-force-lbs</property>
+      <property>hydro/hull/pitch-rad</property>
+      <value>0.05</value>
+      <difference>
+       <property>hydro/planing/middlebody-end-x-ft</property>
+       <property>hydro/planing/middlebody-wetted-keel-ft</property>
+      </difference>
+     </product>
+     <product>
+      <property>hydro/planing/afterbody-normal-force-lbs</property>
+      <property>hydro/hull/pitch-rad</property>
+      <value>0.05</value>
+      <difference>
+       <property>hydro/planing/afterbody-end-x-ft</property>
+       <property>hydro/planing/afterbody-wetted-keel-ft</property>
+      </difference>
+     </product>
+    </sum>
    </function>
   </fcs_function>
 
@@ -792,11 +1021,11 @@
 
   <fcs_function name="hydro/planing-roll-moment-lbsft">
    <documentation>
-    Roll moment due to planing. Guessed.
+    Roll moment due to planing. Guessed. FIXME.
    </documentation>
    <function>
     <product>
-     <value>0.01</value>
+     <value>0.005</value>
      <property>hydro/qbar-u-psf</property>
      <property>hydro/buoyancy-roll-moment-lbsft</property>
     </product>

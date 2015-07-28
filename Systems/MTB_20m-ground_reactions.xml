@@ -22,7 +22,7 @@
 -->
 <system name="MTB 20m ground reactions">
 
- <channel name="ground gear control">
+ <channel name="ground contact control">
 
   <switch name="gear/unit[0]/z-position-in">
    <default value="-66.929134"/>

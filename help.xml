@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2012  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2012 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -66,6 +66,8 @@
  Max 30 minutes        1875
  Max continuous        1750
 
+<!-- And for your own safety.. -->
+ Max speed             50 kts
 <!--
  ________________FlightGear Pilot's Notes_______________
 
