@@ -11,7 +11,7 @@
 
   <description>Swedish Navy 20m T21 class motor torpedo boat.</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>2015-07-28</aircraft-version>
+  <aircraft-version>2015-08-07</aircraft-version>
 
   <status type="string">alpha</status>
   <rating>
@@ -212,6 +212,19 @@
    <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[1]"/>
    <min-lb type="double">0.0</min-lb>
    <max-lb type="double">3307.0</max-lb>
+  </weight>
+
+  <weight>
+   <name type="string">Fore debug trim weight</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[2]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">5000.0</max-lb>
+  </weight>
+  <weight>
+   <name type="string">Aft debug trim weight</name>
+   <weight-lb alias="/fdm/jsbsim/inertia/pointmass-weight-lbs[3]"/>
+   <min-lb type="double">0.0</min-lb>
+   <max-lb type="double">5000.0</max-lb>
   </weight>
  </payload>
 

@@ -9,16 +9,16 @@
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.
-  
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-  
+
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-  
+
 -->
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 <fdm_config name="MTB_20m" version="2.0" release="ALPHA"
@@ -30,7 +30,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2012-09-29</filecreationdate>
-  <version>2015-07-28</version>
+  <version>2015-08-07</version>
 
   <description>Models a Swedish Navy 20m T21 class motor torpedo boat.</description>
 
@@ -56,7 +56,7 @@
              title="Motortorpedbåt - En krönika i ord och bild om 'Havets flygande brigad'"
              date="1981"/>
 
-  <reference refID="Wagner:1932:POW"
+  <reference refID="Wagner:1933:POW"
              author="Herbert Wagner"
              title="Planing of Watercraft  Translated as NACA-TM-1139"
              date="1933/1948"/>
@@ -109,7 +109,7 @@
 
     % The hull is a uniform 20.00x5.00x2.00 meter box.
     % CG in the middle (i.e. at (10, 0, -1)) m.
-    m_hull = 0.7*(27000 - 6000 - 2*1500 - 2*2500) % KG
+    m_hull = 9100 %0.7*(27000 - 6000 - 2*1500 - 2*2500 - 2*150) % KG
     a = 20.00    % m
     b = 5.0      % m
     c = 2.0      % m
@@ -131,7 +131,7 @@
   <izz unit="KG*M2"> 3.2229e+05 </izz>
   <emptywt unit="KG" > 9100 </emptywt>
   <location name="CG" unit="M">
-   <x> 10.00 </x>
+   <x> 12.00 </x>
    <y>  0.00 </y>
    <z> -1.00 </z>
   </location>
@@ -154,6 +154,23 @@
     <x> 11.52 </x>
     <y>  1.60 </y>
     <z>  0.60 </z>
+   </location>
+  </pointmass>
+
+  <pointmass name="Fore debug trim weight">
+   <weight unit="LBS">500.0</weight>
+   <location unit="M">
+    <x>  2.00 </x>
+    <y>  0.00 </y>
+    <z> -1.00 </z>
+   </location>
+  </pointmass>
+  <pointmass name="Aft debug trim weight">
+   <weight unit="LBS">500.0</weight>
+   <location unit="M">
+    <x>  20.00 </x>
+    <y>   0.00 </y>
+    <z>  -1.00 </z>
    </location>
   </pointmass>
 
@@ -188,6 +205,24 @@
    <weight unit="LBS">1500.0</weight>
    <location unit="M">
     <x> 12.00 </x>
+    <y>  1.00 </y>
+    <z> -1.00 </z>
+   </location>
+  </pointmass>
+
+  <pointmass name="Port auxiliary engine">
+   <weight unit="KG">150.0</weight>
+   <location unit="M">
+    <x> 14.00 </x>
+    <y> -1.00 </y>
+    <z> -1.00 </z>
+   </location>
+  </pointmass>
+
+  <pointmass name="Starboard auxiliary engine">
+   <weight unit="LBS">150.0</weight>
+   <location unit="M">
+    <x> 14.00 </x>
     <y>  1.00 </y>
     <z> -1.00 </z>
    </location>
@@ -594,6 +629,35 @@
  </external_reactions>
 
  <system file="hydrodynamics"/>
+ <system file="hydrodynamic-planing">
+  <!-- Parameters defining the planing surfaces of the hull. -->
+  <!-- NOTE: Coordinates in the hydro RP frame. -->
+  <property value="27.20">hydro/planing/forebody-length-ft</property>
+  <property value="14.76">hydro/planing/forebody-beam-ft</property>
+  <property value="-7.28">hydro/planing/forebody-keel-z-ft</property>
+  <property value="-12.17">hydro/planing/forebody-end-x-ft</property>
+
+  <property value="11.06">hydro/planing/middlebody-length-ft</property>
+  <property value="14.76">hydro/planing/middlebody-beam-ft</property>
+  <property value="-6.96">hydro/planing/middlebody-keel-z-ft</property>
+  <property value="-0.98">hydro/planing/middlebody-end-x-ft</property>
+
+  <property value="25.39">hydro/planing/afterbody-length-ft</property>
+  <property value="11.54">hydro/planing/afterbody-beam-ft</property>
+  <property value="-6.56">hydro/planing/afterbody-keel-z-ft</property>
+  <property value="26.25">hydro/planing/afterbody-end-x-ft</property>
+
+  <property value="0.80">hydro/planing/forebody-normal-force-factor</property>
+  <property value="0.80">hydro/planing/middlebody-normal-force-factor</property>
+  <property value="0.80">hydro/planing/afterbody-normal-force-factor</property>
+
+  <!-- FIXME: Replace with Reynolds number based coefficient?
+  -->
+  <property value="0.016">hydro/planing/forebody-skin-friction-coefficient</property>
+  <property value="0.016">hydro/planing/middlebody-skin-friction-coefficient</property>
+  <property value="0.016">hydro/planing/afterbody-skin-friction-coefficient</property>
+
+ </system>
  <system file="MTB_20m-hydrodynamics"/>
  <system file="MTB_20m-ground_reactions"/>
  <system file="propulsion"/>
@@ -644,13 +708,17 @@
 
    <!-- Wild guess: D = K A q_inf -->
    <!-- A = cross sectional area (ft^2); -->
-   <function name="aero/force/D_turret">
+   <function name="aero/force/D_hull">
     <description>Drag</description>
     <product>
      <property>aero/qbar-psf</property>
-     <value> 193.5 </value>
+     <value> 100.0 </value>
      <!-- Start CD -->
      <value> 0.5 </value>
+     <product>  <!-- Increase drag with beta. -->
+      <value>5.0</value>
+      <abs><sin><property>aero/beta-rad</property></sin></abs>
+     </product>
     </product>
    </function>
   </axis>
