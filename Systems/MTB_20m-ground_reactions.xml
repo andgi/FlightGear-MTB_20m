@@ -26,7 +26,7 @@
 
   <switch name="gear/unit[0]/z-position-in">
    <default value="-66.929134"/>
-   <test logic="AND" value="4.0">
+   <test logic="AND" value="40.0">
      gear/unit[0]/solid EQ 0
    </test>
    <output>gear/unit[0]/z-position</output>
@@ -34,7 +34,7 @@
 
   <switch name="gear/unit[1]/z-position-in">
    <default value="-90.551181"/>
-   <test logic="AND" value="4.0">
+   <test logic="AND" value="40.0">
      gear/unit[1]/solid EQ 0
    </test>
    <output>gear/unit[1]/z-position</output>
@@ -42,7 +42,7 @@
 
   <switch name="gear/unit[2]/z-position-in">
    <default value="-80.708661"/>
-   <test logic="AND" value="4.0">
+   <test logic="AND" value="40.0">
      gear/unit[2]/solid EQ 0
    </test>
    <output>gear/unit[2]/z-position</output>
@@ -50,7 +50,7 @@
 
   <switch name="gear/unit[3]/z-position-in">
    <default value="-74.80315"/>
-   <test logic="AND" value="4.0">
+   <test logic="AND" value="40.0">
      gear/unit[3]/solid EQ 0
    </test>
    <output>gear/unit[3]/z-position</output>
@@ -58,7 +58,7 @@
 
   <switch name="gear/unit[4]/z-position-in">
    <default value="-74.80315"/>
-   <test logic="AND" value="4.0">
+   <test logic="AND" value="40.0">
      gear/unit[4]/solid EQ 0
    </test>
    <output>gear/unit[4]/z-position</output>
