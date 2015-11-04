@@ -372,7 +372,9 @@
      <property>hydro/active-norm</property>
      <sum>
       <property>hydro/displacement-drag-lbs</property>
-      <property>-hydro/planing-drag-lbs</property>
+      <abs>
+       <property>hydro/planing-drag-lbs</property>
+      </abs>
      </sum>
     </product>
    </function>
