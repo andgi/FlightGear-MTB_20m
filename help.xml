@@ -47,7 +47,7 @@
  2. Mixture rich.
  3. Magnetos BOTH.
  4. Start the engines.
- 5. Engage the main engine cluches (q).
+ 5. Engage the main engine clutches (q).
     (This action also selects the two main engines.)
 
  ______________Auxiliary Engine Start_____________
@@ -56,7 +56,7 @@
  2. Mixture rich.
  3. Magnetos BOTH.
  4. Start the engines.
- 5. Engage the auxiliary engine cluches (e).
+ 5. Engage the auxiliary engine clutches (e).
     (This action also selects the two auxiliary engines.)
 
  <!-- Real data -->
@@ -66,12 +66,11 @@
  Max 30 minutes        1875
  Max continuous        1750
 
-<!-- And for your own safety.. -->
+ <!-- And for your own safety.. -->
  Max speed             50 kts
-<!--
+
  ________________FlightGear Pilot's Notes_______________
 
- http://wiki.flightgear.org/index.php/
--->
+ http://wiki.flightgear.org/Swedish_Navy_T21_class_MTB
  </text>
 </PropertyList>
