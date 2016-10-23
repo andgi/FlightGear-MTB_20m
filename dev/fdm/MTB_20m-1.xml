@@ -6,9 +6,10 @@
  <description>This is an start and acceleration test for MTB 20m.</description>
 
  <use aircraft="MTB_20m" initialize="reset00"/>
- <run start="0.0" end="200" dt="0.0041666667">
+ <run start="0.0" end="200" dt="0.001041667">
 
-  <property value="0"> simulation/notify-time-trigger </property>
+  <property value="0">simulation/notify-time-trigger</property>
+  <property value="0.0">hydro/water-level-ft</property>
 
   <event name="Initialize 1">
    <description>Setup for engine start</description>
@@ -16,6 +17,7 @@
     simulation/sim-time-sec GE 0.0
    </condition>
    <notify>
+    <property>hydro/active-norm</property>
     <property>inertia/cg-x-in</property>
     <property>inertia/weight-lbs</property>
     <property>inertia/empty-weight-lbs</property>
@@ -63,10 +65,6 @@
     <property>propulsion/engine[1]/starter-norm</property>
    </notify>
    <set name="propulsion/starter_cmd"  value="0"/>
-   <set name="fcs/throttle-cmd-norm[0]" value="0.00"/>
-   <set name="fcs/throttle-cmd-norm[1]" value="0.00"/>
-   <set name="fcs/throttle-cmd-norm[2]" value="0.00"/>
-   <set name="fcs/throttle-cmd-norm[3]" value="0.00"/>
   </event>
 
   <event name="Engine start 3">
@@ -92,9 +90,9 @@
     <property>hydro/beta-deg</property>
    </notify>
    <set name="fcs/throttle-cmd-norm[0]"
-        value="1.00" action="FG_RAMP" tc ="10.0"/>
+        value="0.95" action="FG_RAMP" tc ="10.0"/>
    <set name="fcs/throttle-cmd-norm[1]"
-        value="1.00" action="FG_RAMP" tc ="10.0"/>
+        value="0.95" action="FG_RAMP" tc ="10.0"/>
   </event>
 
   <event name="Time Notify" type="FG_DELTA" persistent="true">
@@ -104,6 +102,7 @@
    </condition>
    <notify>
     <property>position/distance-from-start-mag-mt</property>
+    <property>hydro/active-norm</property>
     <property>hydro/v-kt</property>
     <property>hydro/vbx-fps</property>
     <property>hydro/vby-fps</property>
