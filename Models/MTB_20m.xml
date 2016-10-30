@@ -100,6 +100,27 @@
   </overlay>
  </model>
 
+ <!-- Animations ============================================================-->
+
+ <animation>
+  <type>rotate</type>
+  <object-name>wheel</object-name>
+  <object-name>wheel_spokes</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <offset-deg>0.0</offset-deg>
+  <factor>-360.0</factor>
+  <center>
+   <x-m>9.60</x-m>
+   <y-m>0.00</y-m>
+   <z-m>1.20</z-m>
+  </center>
+  <axis>
+   <x>1.0</x>
+   <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
  <!-- Particle effects ======================================================-->
  <model>
   <name>Fore Port</name>
