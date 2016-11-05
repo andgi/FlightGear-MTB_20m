@@ -102,6 +102,7 @@
 
  <!-- Animations ============================================================-->
 
+ <!-- Helm and rudders -->
  <animation>
   <type>rotate</type>
   <object-name>wheel</object-name>
@@ -118,6 +119,40 @@
    <x>1.0</x>
    <y>0.0</y>
    <z>0.0</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>rudder.L</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <offset-deg>0.0</offset-deg>
+  <factor>60.0</factor>
+  <center>
+   <x-m>20.11</x-m>
+   <y-m>-0.76</y-m>
+   <z-m>0.00</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>rudder.R</object-name>
+  <property>surface-positions/rudder-pos-norm</property>
+  <offset-deg>0.0</offset-deg>
+  <factor>60.0</factor>
+  <center>
+   <x-m>20.11</x-m>
+   <y-m>0.76</y-m>
+   <z-m>0.00</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>0.0</y>
+   <z>1.0</z>
   </axis>
  </animation>
 
