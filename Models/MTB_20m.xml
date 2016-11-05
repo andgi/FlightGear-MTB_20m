@@ -41,7 +41,7 @@
   <path>Aircraft/Nordstern/Instruments/MagneticCompass/compass.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up -->
-   <x-m> 9.20 </x-m>
+   <x-m> 9.10 </x-m>
    <y-m> 0.00 </y-m>
    <z-m> 1.15 </z-m>
   </offsets>
@@ -117,6 +117,82 @@
   <axis>
    <x>1.0</x>
    <y>0.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- Main engine throttles -->
+ <animation>
+  <type>rotate</type>
+  <object-name>ME_throttle_handle.L</object-name>
+  <object-name>ME_throttle_knob.L</object-name>
+  <property>controls/engines/engine[0]/throttle</property>
+  <offset-deg>30.0</offset-deg>
+  <factor>-90.0</factor>
+  <center>
+   <x-m>9.40</x-m>
+   <y-m>0.51</y-m>
+   <z-m>1.20</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>ME_throttle_handle.R</object-name>
+  <object-name>ME_throttle_knob.R</object-name>
+  <property>controls/engines/engine[1]/throttle</property>
+  <offset-deg>30.0</offset-deg>
+  <factor>-90.0</factor>
+  <center>
+   <x-m>9.40</x-m>
+   <y-m>0.51</y-m>
+   <z-m>1.20</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+
+ <!-- Auxiliary engine throttles -->
+ <animation>
+  <type>rotate</type>
+  <object-name>AE_throttle_handle.L</object-name>
+  <object-name>AE_throttle_knob.L</object-name>
+  <property>controls/engines/engine[2]/throttle</property>
+  <offset-deg>30.0</offset-deg>
+  <factor>-90.0</factor>
+  <center>
+   <x-m>9.40</x-m>
+   <y-m>0.67</y-m>
+   <z-m>1.33</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
+   <z>0.0</z>
+  </axis>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>AE_throttle_handle.R</object-name>
+  <object-name>AE_throttle_knob.R</object-name>
+  <property>controls/engines/engine[3]/throttle</property>
+  <offset-deg>30.0</offset-deg>
+  <factor>-90.0</factor>
+  <center>
+   <x-m>9.40</x-m>
+   <y-m>0.67</y-m>
+   <z-m>1.33</z-m>
+  </center>
+  <axis>
+   <x>0.0</x>
+   <y>1.0</y>
    <z>0.0</z>
   </axis>
  </animation>
