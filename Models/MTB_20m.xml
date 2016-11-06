@@ -87,7 +87,7 @@
   <path>Aircraft/Short_Empire/Models/Lights/WhiteLight.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up. -->
-   <x-m> 9.10 </x-m>
+   <x-m> 9.08 </x-m>
    <y-m> 0.00 </y-m>
    <z-m> 4.15 </z-m>
   </offsets>
