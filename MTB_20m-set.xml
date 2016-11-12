@@ -11,7 +11,7 @@
 
   <description>Swedish Navy 20m T21 class motor torpedo boat.</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>2016-11-05</aircraft-version>
+  <aircraft-version>2016-11-12</aircraft-version>
 
   <status type="string">alpha</status>
   <rating>
@@ -38,7 +38,7 @@
   <model>
    <path>Aircraft/MTB_20m/Models/MTB_20m.xml</path>
    <livery>
-    <file type="string">T26</file>
+    <file type="string">T21</file>
    </livery>
   </model>
 

@@ -32,7 +32,7 @@
   <object-name>hull</object-name>
   <property-base>sim/model/livery</property-base>
   <texture-prop>texture</texture-prop>
-  <texture>Liveries/T26.png</texture>
+  <texture>Liveries/T21.png</texture>
  </animation>
 
  <!-- Instruments ==========================================================-->

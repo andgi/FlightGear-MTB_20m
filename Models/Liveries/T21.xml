@@ -2,16 +2,16 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2012 - 2016  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2016  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
  <sim>
   <model>
    <livery>
-    <name type="string">T26</name>
-    <index type="int">2</index>
-    <texture>Liveries/T26.png</texture>
+    <name type="string">T21</name>
+    <index type="int">1</index>
+    <texture>Liveries/T21.png</texture>
    </livery>
   </model>
  </sim>
