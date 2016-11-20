@@ -69,19 +69,31 @@ C_Power1 = [JP(:,1) JP(:,4)];
 
 Efficiency = C_Thrust1(:,1) .* C_Thrust1(:,2) ./ C_Power1(:,2);
 
+%% Full speed: 50kt at 1400 RPM (RPM guessed)
+fullspeed_advance = 25/(1400/60*0.7); % v/(nD)
+
 %% Thrust and Power v.s. advance ratio.
 
 figure();
 axis();
-plot(C_Thrust1(:,1), C_Thrust1(:,2),\
-     C_Power1(:,1), C_Power1(:,2));
+plot(C_Thrust1(:,1), C_Thrust1(:,2), ";Thrust coeff.;",
+     C_Power1(:,1), C_Power1(:,2),   ";Power coeff.;",
+     [fullspeed_advance; fullspeed_advance+0.001], [0; 1], "r;full speed v/nD;");
+xlabel("Advance ratio");
+ylabel("Thrust and power coefficients");
+title("Thrust and power v.s. advance ratio.");
 
 %% Efficiency v.s. advance ratio.
 figure();
 axis([0 1 0 1]);
-plot(C_Thrust1(:,1), Efficiency);
+plot(C_Thrust1(:,1), Efficiency, ";efficiency;",
+     [fullspeed_advance; fullspeed_advance+0.001], [0; 1], "r;full speed v/nD;");
+axis([0 2 0 1]);
+xlabel("Advance ratio");
+ylabel("Efficiency");
+title("Efficiency v.s. advance ratio.");
 
-Advance = 0:0.05:2.00;
+Advance = 0:0.05:3.00;
 
 C_Thrust = [Advance' \
             interp1(C_Thrust1(:,1),C_Thrust1(:,2), Advance, 'extrap')'];
@@ -91,3 +103,9 @@ C_Power = [Advance' \
 
 figure();
 plot(Advance, C_Thrust(:,2), Advance, C_Power(:,2));
+plot(Advance, C_Thrust(:,2), ";Thrust coeff.;",
+     Advance, C_Power(:,2),  ";Power coeff.;",
+     [fullspeed_advance; fullspeed_advance+0.001], [0; 1], "r;full speed v/nD;");
+xlabel("Advance ratio");
+ylabel("Thrust and power coefficients");
+title("Thrust and power v.s. advance ratio.");
