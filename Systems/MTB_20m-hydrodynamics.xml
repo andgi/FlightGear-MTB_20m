@@ -360,7 +360,7 @@
    <function>
     <description>Drag due to displacement of hull</description>
     <product>
-     <value>0.00000025</value> <!-- Base Cd per lbs buoyancy. -->
+     <value>0.000000125</value> <!-- Base Cd per lbs buoyancy. -->
      <property>hydro/qbar-psf</property>
      <property>hydro/hull-beam-ft2</property>
      <property>hydro/buoyancy-lbs</property>
@@ -375,12 +375,31 @@
    </function>
   </fcs_function>
 
+  <fcs_function name="hydro/rudder-drag-lbs">
+   <function>
+    <description>Drag due to rudders (not reduced by planing)</description>
+    <product>
+     <value>0.0025</value> <!-- Base Cd per ft^2 of hull cross section. -->
+     <property>hydro/qbar-psf</property>
+     <property>hydro/hull-beam-ft2</property>
+     <sum>
+      <value>1.0</value>
+      <product>  <!-- Increase drag with rudder angle. -->
+       <value>10.0</value>
+       <abs><property>fcs/rudder-pos-norm</property></abs>
+      </product>
+     </sum>
+    </product>
+   </function>
+  </fcs_function>
+
   <fcs_function name="hydro/fdrag-lbs">
    <function>
     <product>
      <property>hydro/active-norm</property>
      <sum>
       <property>hydro/displacement-drag-lbs</property>
+      <property>hydro/rudder-drag-lbs</property>
       <abs>
        <property>hydro/planing-drag-lbs</property>
       </abs>

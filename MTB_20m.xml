@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2016  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2012-09-29</filecreationdate>
-  <version>2015-08-07</version>
+  <version>2016-11-24</version>
 
   <description>Models a Swedish Navy 20m T21 class motor torpedo boat.</description>
 
@@ -138,6 +138,33 @@
 
   <documentation>
    Adjustable payload pointmasses.
+
+   No specific details on the torpedoes have been found.
+   The following data from [http://www.navweaps.com/Weapons/WTBR_PreWWII.php]
+   is for a British 21" Mark IV torpedo which may well be somewhat similar
+   (it was used throughout WWI and WWII):
+     Date Of Design     About 1912
+     Date In Service    About 1916
+     Weight             3,206 lbs. (1,454 kg)
+     Overall Length     22 ft 7.5 in (6.896 m)
+     Explosive Charge   515 lbs. (234 kg) TNT
+     Range / Speed      8,000 yards (7,300 m) / 35 knots
+                        10,000 yards (9,150 m) / 29 knots
+                        13,500 yards (12,350 m) / 25 knots
+                        World War II Submarines, only:
+                        6,000 yards (5,500 m) / 40 knots
+                        9,500 yards (8,700 m) / 35 knots
+     Power              Wet-heater
+   The later 21" Mark V was somewhat longer and heavier:
+     Date Of Design     About 1917
+     Date In Service    1918
+     Weight             3,828 lbs. (1,736 kg)
+     Overall Length     23 ft 3 in (7.086 m)
+     Explosive Charge   N/A
+     Range / Speed      5,000 yards (4,570 m) / 40 knots
+                        13,500 yards (12,340 m) / 25 knots
+     Power              Wet-heater
+   The torpedo tubes do not allow torpedoes longer than about 7 m.
   </documentation>
 
   <pointmass name="Port torpedo">
@@ -647,15 +674,15 @@
   <property value="-6.56">hydro/planing/afterbody-keel-z-ft</property>
   <property value="26.25">hydro/planing/afterbody-end-x-ft</property>
 
-  <property value="0.80">hydro/planing/forebody-normal-force-factor</property>
-  <property value="0.80">hydro/planing/middlebody-normal-force-factor</property>
+  <property value="0.90">hydro/planing/forebody-normal-force-factor</property>
+  <property value="0.85">hydro/planing/middlebody-normal-force-factor</property>
   <property value="0.80">hydro/planing/afterbody-normal-force-factor</property>
 
   <!-- FIXME: Replace with Reynolds number based coefficient?
   -->
-  <property value="0.016">hydro/planing/forebody-skin-friction-coefficient</property>
-  <property value="0.016">hydro/planing/middlebody-skin-friction-coefficient</property>
-  <property value="0.016">hydro/planing/afterbody-skin-friction-coefficient</property>
+  <property value="0.010">hydro/planing/forebody-skin-friction-coefficient</property>
+  <property value="0.010">hydro/planing/middlebody-skin-friction-coefficient</property>
+  <property value="0.010">hydro/planing/afterbody-skin-friction-coefficient</property>
 
  </system>
  <system file="MTB_20m-hydrodynamics"/>

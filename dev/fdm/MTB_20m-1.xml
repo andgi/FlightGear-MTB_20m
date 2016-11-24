@@ -90,9 +90,9 @@
     <property>hydro/beta-deg</property>
    </notify>
    <set name="fcs/throttle-cmd-norm[0]"
-        value="0.95" action="FG_RAMP" tc ="10.0"/>
+        value="1.00" action="FG_RAMP" tc ="10.0"/>
    <set name="fcs/throttle-cmd-norm[1]"
-        value="0.95" action="FG_RAMP" tc ="10.0"/>
+        value="1.00" action="FG_RAMP" tc ="10.0"/>
   </event>
 
   <event name="Time Notify" type="FG_DELTA" persistent="true">

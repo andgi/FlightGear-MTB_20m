@@ -59,7 +59,7 @@ fgfs = dlmread("datalog.csv", ",");
 
 %% Extract the relevant data.
 speed_kt = fgfs(:,151);
-drag_lbf = fgfs(:,209);
+drag_lbf = fgfs(:,210);
 %% Conversion factors
 ft_sec_from_knot = 1.6878099;
 hp_from_slugft2_sec3 = 0.0018181818;
