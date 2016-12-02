@@ -95,7 +95,7 @@
  </channel>
 
  <!-- The propellers. =======================================================-->
- <property value="1.0">propulsion/propeller-thrust-factor</property>
+ <property value="0.8">propulsion/propeller-thrust-factor</property>
  <property value="1.0">propulsion/propeller-power-factor</property>
 
  <channel name="port propeller">

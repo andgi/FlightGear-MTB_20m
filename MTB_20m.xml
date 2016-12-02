@@ -30,7 +30,7 @@
   <email>anders at gidenstam dot org</email>
 
   <filecreationdate>2012-09-29</filecreationdate>
-  <version>2016-11-24</version>
+  <version>2016-12-02</version>
 
   <description>Models a Swedish Navy 20m T21 class motor torpedo boat.</description>
 
@@ -674,15 +674,15 @@
   <property value="-6.56">hydro/planing/afterbody-keel-z-ft</property>
   <property value="26.25">hydro/planing/afterbody-end-x-ft</property>
 
-  <property value="0.90">hydro/planing/forebody-normal-force-factor</property>
-  <property value="0.85">hydro/planing/middlebody-normal-force-factor</property>
-  <property value="0.80">hydro/planing/afterbody-normal-force-factor</property>
+  <property value="0.95">hydro/planing/forebody-normal-force-factor</property>
+  <property value="0.90">hydro/planing/middlebody-normal-force-factor</property>
+  <property value="0.85">hydro/planing/afterbody-normal-force-factor</property>
 
   <!-- FIXME: Replace with Reynolds number based coefficient?
   -->
-  <property value="0.010">hydro/planing/forebody-skin-friction-coefficient</property>
-  <property value="0.010">hydro/planing/middlebody-skin-friction-coefficient</property>
-  <property value="0.010">hydro/planing/afterbody-skin-friction-coefficient</property>
+  <property value="0.001">hydro/planing/forebody-skin-friction-coefficient</property>
+  <property value="0.001">hydro/planing/middlebody-skin-friction-coefficient</property>
+  <property value="0.001">hydro/planing/afterbody-skin-friction-coefficient</property>
 
  </system>
  <system file="MTB_20m-hydrodynamics"/>

@@ -360,7 +360,7 @@
    <function>
     <description>Drag due to displacement of hull</description>
     <product>
-     <value>0.000000125</value> <!-- Base Cd per lbs buoyancy. -->
+     <value>0.0000025</value> <!-- Base Cd per lbs buoyancy. -->
      <property>hydro/qbar-psf</property>
      <property>hydro/hull-beam-ft2</property>
      <property>hydro/buoyancy-lbs</property>
@@ -379,7 +379,7 @@
    <function>
     <description>Drag due to rudders (not reduced by planing)</description>
     <product>
-     <value>0.0025</value> <!-- Base Cd per ft^2 of hull cross section. -->
+     <value>0.0035</value> <!-- Base Cd per ft^2 of hull cross section. -->
      <property>hydro/qbar-psf</property>
      <property>hydro/hull-beam-ft2</property>
      <sum>
@@ -508,6 +508,15 @@
      <value>1.0</value>
      <property>hydro/environment/rho-slug_ft3</property>
      <property>hydro/environment/gravity-ft_sec2</property>
+     <table>
+      <independentVar lookup="row">hydro/v-kt</independentVar>
+      <tableData>
+         0.0  1.0
+        15.0  1.0
+        35.0  0.5
+        55.0  0.2
+      </tableData>
+     </table>
      <table>
       <independentVar lookup="row">hydro/hull/pitch-deg</independentVar>
       <independentVar lookup="column">hydro/hull/roll-deg</independentVar>

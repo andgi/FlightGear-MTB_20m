@@ -60,14 +60,23 @@ fgfs = dlmread("datalog.csv", ",");
 %% Extract the relevant data.
 speed_kt = fgfs(:,151);
 drag_lbf = fgfs(:,210);
+displacement_drag_lbf = fgfs(:,208);
+rudder_drag_lbf       = fgfs(:,209);
+planing_drag_lbf      = abs(fgfs(:,211));
 %% Conversion factors
 ft_sec_from_knot = 1.6878099;
 hp_from_slugft2_sec3 = 0.0018181818;
 %% Power is force * speed
 tow_power_hp = drag_lbf .* speed_kt .* ft_sec_from_knot .* hp_from_slugft2_sec3;
+displacement_tow_power_hp = displacement_drag_lbf .* speed_kt .* ft_sec_from_knot .* hp_from_slugft2_sec3;
+planing_tow_power_hp = planing_drag_lbf .* speed_kt .* ft_sec_from_knot .* hp_from_slugft2_sec3;
+rudder_tow_power_hp = rudder_drag_lbf .* speed_kt .* ft_sec_from_knot .* hp_from_slugft2_sec3;
 
 plot(towtest(:,1), towtest(:,2), "-;MTB model test, 1941;",
-     speed_kt, tow_power_hp,     "+;JSBSim T21-class MTB;")
+     speed_kt, tow_power_hp,     "+;JSBSim T21-class MTB total drag;",
+     speed_kt, displacement_tow_power_hp, "+;JSBSim T21-class MTB disp. drag;",
+     speed_kt, planing_tow_power_hp,      "+;JSBSim T21-class MTB plan. drag;",
+     speed_kt, rudder_tow_power_hp,       "+;JSBSim T21-class MTB rud. drag;")
 title("Tow power vs. speed");
 xlabel("Speed (knot)");
 ylabel("Tow power (hp)");
