@@ -14,3 +14,5 @@ Dependencies (i.e. install these aircraft):
 
 Aircraft/Nordstern      (Instruments/MagneticCompass/compass.xml)
 Aircraft/Short_Empire   (Models/Lights/{Red,Green,White}Light.xml)
+Aircraft/c172p          (Sounds/{water-still,water-fast}.wav
+Aircraft/p51d           (Sounds/p51d_rpm1.wav)

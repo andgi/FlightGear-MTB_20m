@@ -3,7 +3,7 @@
 //
 //  Copyright (C) 2009 - 2011  Tim Moore         (timoore(at)redhat.com)
 //  Copyright (C) 2011 - 2012  Thorsten Renk
-//  Copyright (C) 2013 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+//  Copyright (C) 2013 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 //  This file is licensed under the GPL license version 2 or later.
 
 // Shader that uses OpenGL state values to do per-pixel lighting
@@ -53,15 +53,7 @@ const float terminator_width = 200000.0;
 float earthShade;
 
 // Water specific
-uniform float wave_time_sec;
-uniform float waves_from_deg;
-uniform float wave_length_ft;
-uniform float wave_amplitude_ft;
-uniform float wave_angular_frequency_rad_sec;
-uniform float wave_number_rad_ft;
-//uniform float speed_north_fps;
-//uniform float speed_east_fps;
-
+void water_geometry_func(out vec4 oPosition, out vec3 oNormal);
 // End Water specific
 
 //////////////////////
@@ -79,29 +71,11 @@ float light_func (in float x, in float a, in float b, in float c, in float d, in
 
 void main()
 {
-    // Water specific 
-    // Compute vertex position in object space.
-    vec2 wave_direction = vec2(-cos(0.017453293*waves_from_deg),
-                               sin(0.017453293*waves_from_deg));
-    vec4 oPosition = gl_Vertex;
-    vec3 oNormal   = gl_Normal;
-
-    float k = 3.2808399 * wave_number_rad_ft;         // [rad/m]
-    float omega = wave_angular_frequency_rad_sec;     // [rad/s]
-    float amplitude = 0.3048 * wave_amplitude_ft;     // [m]
-    float angle =                                     // [rad]
-      dot(wave_direction, oPosition.xy) * k  - omega * wave_time_sec;
-
-    float h = amplitude * cos(angle);
-
-    // Reduce amplitude and level towards the edges.
-    float d = clamp(1.0 - 0.005 * (length(oPosition.xy) - 50.0), 0.0, 1.0);
-    oPosition.z += h*sqrt(d) - 0.0*(1.0-d)*wave_amplitude_ft;
-
-    // Compute the vertex normal.
-    float a = atan(amplitude * sin(angle) * k);
-    oNormal = vec3(sin(a) * wave_direction, cos(a));
-    oNormal = normalize(oNormal);
+    // Water specific
+    // Compute vertex position and normal in object space.
+    vec4 oPosition;
+    vec3 oNormal;
+    water_geometry_func(oPosition, oNormal);
     // End Water specific
 
     // Default terrain-haze vertex shader below, except that oPosition replaces

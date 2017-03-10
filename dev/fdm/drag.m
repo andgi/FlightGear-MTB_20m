@@ -1,7 +1,7 @@
 %%
 %% Swedish Navy 20m-class motor torpedo boat comparison of drag to sources.
 %%
-%%   Copyright (C) 2016  Anders Gidenstam  (anders(at)gidenstam.org)
+%%   Copyright (C) 2016 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 %%
 %%   This program is free software; you can redistribute it and/or modify
 %%   it under the terms of the GNU General Public License as published by
@@ -72,6 +72,7 @@ displacement_tow_power_hp = displacement_drag_lbf .* speed_kt .* ft_sec_from_kno
 planing_tow_power_hp = planing_drag_lbf .* speed_kt .* ft_sec_from_knot .* hp_from_slugft2_sec3;
 rudder_tow_power_hp = rudder_drag_lbf .* speed_kt .* ft_sec_from_knot .* hp_from_slugft2_sec3;
 
+figure(1);
 plot(towtest(:,1), towtest(:,2), "-;MTB model test, 1941;",
      speed_kt, tow_power_hp,     "+;JSBSim T21-class MTB total drag;",
      speed_kt, displacement_tow_power_hp, "+;JSBSim T21-class MTB disp. drag;",
@@ -80,3 +81,15 @@ plot(towtest(:,1), towtest(:,2), "-;MTB model test, 1941;",
 title("Tow power vs. speed");
 xlabel("Speed (knot)");
 ylabel("Tow power (hp)");
+
+figure(2);
+plot(towtest(:,1), towtest(:,2)./(towtest(:,1).*ft_sec_from_knot*hp_from_slugft2_sec3), "-;MTB model test, 1941;",
+     speed_kt, drag_lbf,              "+;JSBSim T21-class MTB total drag;",
+     speed_kt, displacement_drag_lbf, "+;JSBSim T21-class MTB disp. drag;",
+     speed_kt, planing_drag_lbf,      "+;JSBSim T21-class MTB plan. drag;",
+     speed_kt, rudder_drag_lbf,       "+;JSBSim T21-class MTB rud. drag;")
+title("Drag vs. speed");
+xlabel("Speed (knot)");
+ylabel("Drag (lbf)");
+
+%print("MTB_20m-drag", "-dpng");

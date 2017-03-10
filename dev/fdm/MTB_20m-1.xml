@@ -8,7 +8,8 @@
  <use aircraft="MTB_20m" initialize="reset00"/>
  <run start="0.0" end="200" dt="0.001041667">
 
-  <property value="0">simulation/notify-time-trigger</property>
+  <property value="0.0">simulation/notify-time-trigger</property>
+  <property value="30.0">simulation/rpm-check-time-trigger</property>
   <property value="0.0">hydro/water-level-ft</property>
 
   <event name="Initialize 1">
@@ -95,6 +96,38 @@
         value="1.00" action="FG_RAMP" tc ="10.0"/>
   </event>
 
+  <event name="Reduce throttle" type="FG_DELTA" persistent="true">
+   <description>Check engine RPM at 1 seconds intervals</description>
+   <condition>
+    simulation/sim-time-sec GE simulation/rpm-check-time-trigger
+    propulsion/engine[0]/engine-rpm GT 2000
+   </condition>
+   <notify>
+    <property>fcs/throttle-cmd-norm[0]</property>
+    <property>propulsion/engine[0]/engine-rpm</property>
+    <property>propulsion/engine[1]/engine-rpm</property>
+   </notify>
+   <set name="fcs/throttle-cmd-norm[0]"  value="-0.01" type="FG_DELTA"/>
+   <set name="fcs/throttle-cmd-norm[1]"  value="-0.01" type="FG_DELTA"/>
+   <set name="simulation/rpm-check-time-trigger" value="1.0" type="FG_DELTA"/>
+  </event>
+  <event name="Increase throttle" type="FG_DELTA" persistent="true">
+   <description>Check engine RPM at 1 seconds intervals</description>
+   <condition>
+    simulation/sim-time-sec GE simulation/rpm-check-time-trigger
+    propulsion/engine[0]/engine-rpm LT 1995
+    fcs/throttle-cmd-norm[0] LT 1.00
+   </condition>
+   <notify>
+    <property>fcs/throttle-cmd-norm[0]</property>
+    <property>propulsion/engine[0]/engine-rpm</property>
+    <property>propulsion/engine[1]/engine-rpm</property>
+   </notify>
+   <set name="fcs/throttle-cmd-norm[0]"  value="0.01" type="FG_DELTA"/>
+   <set name="fcs/throttle-cmd-norm[1]"  value="0.01" type="FG_DELTA"/>
+   <set name="simulation/rpm-check-time-trigger" value="1.0" type="FG_DELTA"/>
+  </event>
+
   <event name="Time Notify" type="FG_DELTA" persistent="true">
    <description>Output message at 5 seconds intervals</description>
    <condition>
@@ -122,6 +155,7 @@
     <property>hydro/yaw-moment-lbsft</property>
     <property>hydro/pitch-moment-lbsft</property>
     <property>hydro/roll-moment-lbsft</property>
+    <property>fcs/throttle-cmd-norm[0]</property>
     <property>propulsion/engine[0]/engine-rpm</property>
     <property>propulsion/engine[0]/power-hp</property>
     <property>propulsion/engine[2]/engine-rpm</property>
