@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2012 - 2016  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2012 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -12,6 +12,20 @@
   <description>Swedish Navy 20m T21 class motor torpedo boat.</description>
   <author>Anders Gidenstam</author>
   <aircraft-version>2016-11-24</aircraft-version>
+
+  <long-description>
+The Swedish Navy T21 motor torpedo boat class was developed during the first years of WWII. The 20 m long boats were powered by two 1500 hp Isotta Fraschini IF184 supercharged petrol engines giving a top speed of about 50 knots. The armament consisted of two 53 cm torpedoes, a 20 mm AA cannon and up to 6 depth charges. The design was provided by the Italian companies Baglietto and CRDA but the 11 boats of the class were manufactured at the Kockums shipyard in Sweden during 1942-43. They remained in service until the late 1950s, and some were retained for special purposes much longer.
+  </long-description>
+
+  <tags>
+   <tag>seacraft</tag>
+   <tag>piston</tag>
+   <tag>supercharged</tag>
+   <tag>twin-engine</tag>
+   <tag>ww2</tag>
+   <tag>1940s</tag>
+   <tag>1950s</tag>
+  </tags>
 
   <status type="string">alpha</status>
   <rating>
@@ -120,7 +134,7 @@
   <!-- Armament etc. -->
   <!-- submodels>
    <serviceable type="bool">true</serviceable>
-   <path></path>
+   <path>Systems/torpedo-submodels.xml</path>
   </submodels -->
 
   <multiplay>
@@ -188,7 +202,15 @@
    </transmission>
   </engines>
   <armament>
-   <training-mode type="bool">false</training-mode> 
+   <training-mode type="bool">0</training-mode>
+   <!-- Left side -->
+   <station n="0">
+    <present type="bool">1</present>
+   </station>
+   <!-- Right side -->
+   <station n="1">
+    <present type="bool">1</present>
+   </station>
   </armament>
  </controls>
  <engines>
