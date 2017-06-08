@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012 - 2016  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -62,8 +62,8 @@
        <property>gear/unit[0]/solid</property>
        <property>gear/unit[1]/solid</property>
        <property>gear/unit[2]/solid</property>
-       <property>gear/unit[3]/solid</property>
-       <property>gear/unit[4]/solid</property>
+       <property>contact/unit[3]/solid</property>
+       <property>contact/unit[4]/solid</property>
       </and>
      </not>
     </product>

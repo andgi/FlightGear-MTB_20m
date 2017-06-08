@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2015 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -48,20 +48,20 @@
    <output>gear/unit[2]/z-position</output>
   </switch>
 
-  <switch name="gear/unit[3]/z-position-in">
+  <switch name="contact/unit[3]/z-position-in">
    <default value="-74.80315"/>
    <test logic="AND" value="40.0">
-     gear/unit[3]/solid EQ 0
+     contact/unit[3]/solid EQ 0
    </test>
-   <output>gear/unit[3]/z-position</output>
+   <output>contact/unit[3]/z-position</output>
   </switch>
 
-  <switch name="gear/unit[4]/z-position-in">
+  <switch name="contact/unit[4]/z-position-in">
    <default value="-74.80315"/>
    <test logic="AND" value="40.0">
-     gear/unit[4]/solid EQ 0
+     contact/unit[4]/solid EQ 0
    </test>
-   <output>gear/unit[4]/z-position</output>
+   <output>contact/unit[4]/z-position</output>
   </switch>
 
  </channel>

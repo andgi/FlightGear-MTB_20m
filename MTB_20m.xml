@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012 - 2016  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -301,7 +301,7 @@
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
 
-  <contact type="BOGEY" name="PORT CHINE">
+  <contact type="STRUCTURE" name="PORT CHINE">
    <location unit="M">
     <x>  7.00 </x>
     <y> -2.50 </y>
@@ -309,11 +309,10 @@
    </location>
    <static_friction>  0.70 </static_friction>
    <dynamic_friction> 0.60 </dynamic_friction>
-   <rolling_friction> 0.30 </rolling_friction>
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
-  <contact type="BOGEY" name="STARBOARD CHINE">
+  <contact type="STRUCTURE" name="STARBOARD CHINE">
    <location unit="M">
     <x>  7.00 </x>
     <y>  2.50 </y>
@@ -321,7 +320,6 @@
    </location>
    <static_friction>  0.70 </static_friction>
    <dynamic_friction> 0.60 </dynamic_friction>
-   <rolling_friction> 0.30 </rolling_friction>
    <spring_coeff unit="LBS/FT">      20000.00 </spring_coeff>
    <damping_coeff unit="LBS/FT/SEC"> 15000.00 </damping_coeff>
   </contact>
