@@ -2,7 +2,7 @@
 ##
 ## Swedish Navy 20m-class motor torpedo boat for FlightGear.
 ##
-##  Copyright (C) 2012 - 2016  Anders Gidenstam  (anders(at)gidenstam.org)
+##  Copyright (C) 2012 - 2018  Anders Gidenstam  (anders(at)gidenstam.org)
 ##  This file is licensed under the GPL license v2 or later.
 ##
 ###############################################################################
@@ -136,5 +136,41 @@ right.add("/fdm/jsbsim/propulsion/propeller[1]/advance-ratio");
 #right.add("/fdm/jsbsim/");
 
 ###############################################################################
+## Armament.
+var torpedo =
+    [props.globals.getNode("/controls/armament/station[0]/present"),
+     props.globals.getNode("/controls/armament/station[1]/present")];
+var trigger =
+    [props.globals.getNode("/controls/armament/station[0]/release-all"),
+     props.globals.getNode("/controls/armament/station[1]/release-all")];
+var weight =
+    [props.globals.getNode("/payload/weight[0]/weight-lb"),
+     props.globals.getNode("/payload/weight[1]/weight-lb")];
+var training_mode =
+    props.globals.getNode("/controls/armament/training-mode");
+var selected = 0;
 
+controls.trigger = func(b) {
+    #if (b) print("Armament trigger!");
+    #debug.dump(torpedo);
+    #debug.dump(trigger);
+    #debug.dump(weight);
+    #debug.dump(training_mode);
+    if (b and training_mode.getValue()) {
+        trigger[selected].setValue(1);
+        return;
+    }
+    if (b and torpedo[selected].getValue()) {
+        # Trigger pressed => launch torpedo.
+        trigger[selected].setValue(1);
+        torpedo[selected].setValue(0);
+        weight[selected].setDoubleValue(0);
+        return;
+    }
+    if (!b) {
+        trigger[selected].setValue(0);
+        selected = math.mod(selected + 1, 2);
+        return;
+    }
+}
 ###############################################################################
