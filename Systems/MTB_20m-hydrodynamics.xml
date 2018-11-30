@@ -3,7 +3,7 @@
 
   Swedish Navy 20m-class motor torpedo boat "flight" model for JSBSim.
 
-    Copyright (C) 2012 - 2017  Anders Gidenstam  (anders(at)gidenstam.org)
+    Copyright (C) 2012 - 2018  Anders Gidenstam  (anders(at)gidenstam.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -623,18 +623,17 @@
    <function>
     <description>Yaw moment due to hull (per radian beta)</description>
     <product>
-     <value>1.0</value>
      <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft3</property>
      <sin><property>hydro/beta-rad</property></sin>
-     <value>0.125</value> <!-- FIXME? Does beta have the right sign? -->
+     <value>0.15</value> <!-- FIXME? Does beta have the right sign? -->
     </product>
    </function>
   </fcs_function>
 
   <!-- fcs_function name="hydro/planing-yaw-moment-lbsft">
    <documentation>
-    Yaw moment due to planing.
+    Yaw moment due to planing. FIXME: Not implemented in the planing system.
    </documentation>
    <function>
     <sum>
@@ -655,7 +654,7 @@
      <property>hydro/qbar-u-psf</property>
      <property>hydro/hull-beam-ft3</property>
      <property>fcs/rudder-pos-norm</property>
-     <value>-0.025</value>
+     <value>-0.05</value> <!-- Guess -->
     </product>
    </function>
   </fcs_function>
@@ -666,9 +665,8 @@
    </documentation>
    <function>
     <product>
-     <value>0.0</value>
-     <value>-12500.0</value> <!-- Guess -->
-     <property>velocities/psidot-rad_sec</property>
+     <value>-400000.0</value> <!-- Guess -->
+     <property>velocities/r-rad_sec</property> <!-- Or psidot-rad_sec? -->
     </product>
    </function>
   </fcs_function>
@@ -870,19 +868,6 @@
    </function>
   </fcs_function>
 
-  <fcs_function name="hydro/fake-planing-roll-moment-lbsft">
-   <documentation>
-    Restoring roll moment due to planing. Guessed. FIXME.
-   </documentation>
-   <function>
-    <product>
-     <value>0.005</value>
-     <property>hydro/qbar-u-psf</property>
-     <property>hydro/buoyancy-roll-moment-lbsft</property>
-    </product>
-   </function>
-  </fcs_function>
-
   <fcs_function name="hydro/planing-roll-moment-lbsft">
    <description>
     Roll moment due to planing.
@@ -927,7 +912,6 @@
      <property>hydro/active-norm</property>
      <sum>
       <property>hydro/buoyancy-roll-moment-lbsft</property>
-      <property>hydro/fake-planing-roll-moment-lbsft</property>
       <property>hydro/planing-roll-moment-lbsft</property>
       <property>hydro/damping-roll-moment-lbsft</property>
      </sum>
