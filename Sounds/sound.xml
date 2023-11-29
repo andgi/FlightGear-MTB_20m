@@ -82,7 +82,7 @@
   <engine>
    <name>engine1</name>
    <mode>looped</mode>
-   <path>Aircraft/p51d/Sounds/p51d_rpm1.wav</path>
+   <path>Aircraft/MTB_20m/Sounds/p51d_rpm1.wav</path>
    <condition>
     <property>engines/engine[0]/running</property>
    </condition>
@@ -222,7 +222,7 @@
   <engine>
    <name>engine2</name>
    <mode>looped</mode>
-   <path>Aircraft/p51d/Sounds/p51d_rpm1.wav</path>
+   <path>Aircraft/MTB_20m/Sounds/p51d_rpm1.wav</path>
    <condition>
     <property>engines/engine[1]/running</property>
    </condition>
@@ -295,7 +295,7 @@
   </engine>
 
   <!-- ========================================================================
-    Engine 3. (Port auxilary engine)
+    Engine 3. (Port auxiliary engine)
   -->
   <crank>
    <name>engstart3</name>
@@ -399,7 +399,7 @@
   </engine>
 
   <!-- ========================================================================
-    Engine 3. (Starboard auxilary engine)
+    Engine 3. (Starboard auxiliary engine)
   -->
   <crank>
    <name>engstart4</name>
@@ -503,12 +503,12 @@
   </engine>
 
   <!-- ========================================================================
-    Water sounds. Depends on the c172p.
+    Water sounds. Comes from the c172p.
   -->
   <hull-in-water>
    <name>hull-in-water</name>
    <mode>looped</mode>
-   <path>Aircraft/c172p/Sounds/water-still.wav</path>
+   <path>Aircraft/MTB_20m/Sounds/water-still.wav</path>
    <condition>
     <greater-than>
      <property>/fdm/jsbsim/hydro/v-kt</property>
@@ -530,7 +530,7 @@
   <at-speed-in-water>
    <name>at-speed-in-water</name>
    <mode>looped</mode>
-   <path>Aircraft/c172p/Sounds/water-fast.wav</path>
+   <path>Aircraft/MTB_20m/Sounds/water-fast.wav</path>
    <condition>
     <greater-than>
      <property>/fdm/jsbsim/hydro/v-kt</property>
@@ -543,7 +543,7 @@
     <z>-2.0</z>
    </position>
    <reference-dist>10.0</reference-dist>
-   <max-dist>50.0</max-dist>
+   <max-dist>100.0</max-dist>
    <volume>
     <property>/fdm/jsbsim/hydro/v-kt</property>
     <factor>0.05</factor>

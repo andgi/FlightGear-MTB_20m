@@ -3,8 +3,14 @@ Anders Gidenstam  (anders(at)gidenstam.org)
   - MTB_20m Flight Dynamics Model configuration
   - MTB_20m 3d model
 
-The model borrows content from the following authors' contributions
-to FlightGear:
+The model borrows content from the following authors' or aircraft's
+contributions to FlightGear:
+
+Aircraft/c172p
+ - Water sounds Sounds/water-{fast,still}.wav.
+
+Aircraft/p51d
+ - The engine sound Sounds/p51d_rpm1.wav.
 
 Thorsten Renk
  - The ALS part of the water vertex shader is based on
@@ -14,5 +20,5 @@ Dependencies (i.e. install these aircraft):
 
 Aircraft/Nordstern      (Instruments/MagneticCompass/compass.xml)
 Aircraft/Short_Empire   (Models/Lights/{Red,Green,White}Light.xml)
-Aircraft/c172p          (Sounds/{water-still,water-fast}.wav
-Aircraft/p51d           (Sounds/p51d_rpm1.wav)
+Aircraft/Submarine_Scout(Models/ALDIS_Lamp.xml)
+Aircraft/ufo            (Models/cursor.ac)
