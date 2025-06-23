@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2012 - 2023  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2012 - 2025  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -11,7 +11,7 @@
 
   <description>Swedish Navy 20m T21 class motor torpedo boat.</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>2023-11-29</aircraft-version>
+  <aircraft-version>2025-06-23</aircraft-version>
 
   <long-description>
 The Swedish Navy T21 motor torpedo boat class was developed during the first years of WWII. The 20 m long boats were powered by two 1500 hp Isotta Fraschini IF184 supercharged petrol engines giving a top speed of about 50 knots. The armament consisted of two 53 cm torpedoes, a 20 mm AA cannon and up to 6 depth charges. The design was provided by the Italian companies Baglietto and CRDA but the 11 boats of the class were manufactured at the Kockums shipyard in Sweden during 1942-43. They remained in service until the late 1950s, and some were retained for special purposes much longer.
@@ -31,7 +31,7 @@ The Swedish Navy T21 motor torpedo boat class was developed during the first yea
   <rating>
    <FDM type="int">2</FDM>
    <systems type="int">1</systems>
-   <cockpit type="int">0</cockpit>
+   <cockpit type="int">1</cockpit>
    <model type="int">1</model>
   </rating>
 
@@ -66,7 +66,8 @@ The Swedish Navy T21 motor torpedo boat class was developed during the first yea
     <x-offset-m type="double">  0.000 </x-offset-m>
     <y-offset-m type="double">  2.000 </y-offset-m>
     <z-offset-m type="double">  9.600 </z-offset-m>
-    <pitch-offset-deg type="double"> 0.0 </pitch-offset-deg>
+    <pitch-offset-deg type="double"> -22.5 </pitch-offset-deg>
+    <default-field-of-view-deg type="double"> 80.0 </default-field-of-view-deg>
    </config>
   </view>
   <view n="100">
@@ -81,7 +82,7 @@ The Swedish Navy T21 motor torpedo boat class was developed during the first yea
     <y-offset-m type="double">  2.0 </y-offset-m>
     <z-offset-m type="double"> 10.5 </z-offset-m>
     <pitch-offset-deg type="double"> -10.0 </pitch-offset-deg>
-    <default-field-of-view-deg type="double"> 65 </default-field-of-view-deg>
+    <default-field-of-view-deg type="double"> 65.0 </default-field-of-view-deg>
    </config>
   </view>
 

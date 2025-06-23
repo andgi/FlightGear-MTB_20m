@@ -389,16 +389,16 @@
  </model>
 
  <!-- Water ================================================================-->
- <model>
+ <!-- model>
   <name>Water</name>
   <path>Aircraft/MTB_20m/Models/water.xml</path>
   <offsets>
-   <!-- x/y/z == back/right/up -->
+   <!- - x/y/z == back/right/up - ->
    <x-m>12.00</x-m>
    <y-m>0.00</y-m>
    <z-m>0.00</z-m>
   </offsets>
- </model>
+ </model-->
 
 
  <!-- Markers for debugging ================================================-->
