@@ -22,15 +22,19 @@ var ground = func {
     }
 
     # Connect the FlightGear wave model to the JSBSim hydrodynamics wave model.
-    #setprop("/fdm/jsbsim/hydro/environment/waves-from-deg",
-    #        getprop("/environment/wave/angle") - 90.0);
-    #setprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft",
-    #        getprop("/environment/wave/amp"));
-    # Additional properties:
+    # Properties:
+    #   /environment/wave/amp
+    #   /environment/wave/angle
     #   /environment/wave/dangle
     #   /environment/wave/factor
     #   /environment/wave/freq
     #   /environment/wave/sharp
+    setprop("/fdm/jsbsim/hydro/environment/waves-from-deg",
+            getprop("/environment/wave/angle") - 90.0);
+    #setprop("/fdm/jsbsim/hydro/environment/wave-amplitude-ft",
+    #        getprop("/environment/wave/amp"));
+    #setprop("/fdm/jsbsim/hydro/environment/wave-length-ft",
+    #        1.0/getprop("/environment/wave/freq"));
 
     # Connect the JSBSim hydrodynamics wave model with the custom water shader.
     setprop("environment/waves/time-sec",

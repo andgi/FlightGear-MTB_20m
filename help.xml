@@ -2,7 +2,7 @@
 <!--
   Swedish Navy 20m-class motor torpedo boat for FlightGear.
 
-  Copyright (C) 2012 - 2015  Anders Gidenstam  (anders(at)gidenstam.org)
+  Copyright (C) 2012 - 2025  Anders Gidenstam  (anders(at)gidenstam.org)
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
@@ -21,6 +21,11 @@
   <name>r/R</name>
   <desc>Dis/engage the reversing gear for the auxiliary engines.</desc>
  </key -->
+
+ <key>
+  <name>f/F</name>
+  <desc>Disengage/engage the search light.</desc>
+ </key>
 
  <key>
   <name>w</name>
