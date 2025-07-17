@@ -17,7 +17,7 @@ var deckConstraint = walkview.makeUnionConstraint
      # Bridge area.
      walkview.SlopingYAlignedPlane.new([ 9.40, -1.10, 0.28],
                                        [11.00,  1.10, 0.22]),
-     # The areas port and starboard of the engine companion.
+     # The areas port and starboard of the engine compartment.
      walkview.SlopingYAlignedPlane.new([11.00, -1.00, 0.22],
                                        [12.70, -0.55, 0.18]),
      walkview.SlopingYAlignedPlane.new([12.70, -0.80, 0.18],

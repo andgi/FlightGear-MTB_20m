@@ -35,6 +35,57 @@
   <texture>Liveries/T21.png</texture>
  </animation>
 
+ <!-- Crew =================================================================-->
+ <model>
+  <name>Pilot View</name>
+  <path>Aircraft/MTB_20m/Models/Crew/crew-base.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 9.70 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 0.28 </z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <view-name>Pilot View</view-name>
+    <upper-animation>
+     <property type="double">tmp/zero</property>
+     <factor type="double">0.0</factor>
+     <offset-deg type="double">90.0</offset-deg>
+     <min type="double">-360.0</min>
+     <max type="double">360.0</max>
+    </upper-animation>
+   </params>
+  </overlay>
+ </model>
+
+ <model>
+  <name>Deck View</name>
+  <path>Aircraft/MTB_20m/Models/Crew/crew-base.xml</path>
+  <offsets>
+   <!-- x/y/z == back/right/up -->
+   <x-m> 9.60 </x-m>
+   <y-m> 0.70 </y-m>
+   <z-m> 0.28 </z-m>
+  </offsets>
+  <overlay>
+   <params>
+    <view-name>Deck View</view-name>
+   </params>
+  </overlay>
+ </model>
+
+ <!-- model>
+  <name>Deck View</name>
+  <path>Aircraft/MTB_20m/Models/Crew/crew-base.xml</path>
+  <offsets>
+   <!- - x/y/z == back/right/up - ->
+   <x-m> 9.70 </x-m>
+   <y-m> 0.00 </y-m>
+   <z-m> 1.15 </z-m>
+  </offsets>
+ </model -->
+
  <!-- Instruments ==========================================================-->
  <model>
   <name>Magnetic compass</name>

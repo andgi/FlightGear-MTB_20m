@@ -11,7 +11,7 @@
 
   <description>Swedish Navy 20m T21 class motor torpedo boat.</description>
   <author>Anders Gidenstam</author>
-  <aircraft-version>2025-06-24</aircraft-version>
+  <aircraft-version>2025-07-17</aircraft-version>
 
   <long-description>
 The Swedish Navy T21 motor torpedo boat class was developed during the first years of WWII. The 20 m long boats were powered by two 1500 hp Isotta Fraschini IF184 supercharged petrol engines giving a top speed of about 50 knots. The armament consisted of two 53 cm torpedoes, a 20 mm AA cannon and up to 6 depth charges. The design was provided by the Italian companies Baglietto and CRDA but the 11 boats of the class were manufactured at the Kockums shipyard in Sweden during 1942-43. They remained in service until the late 1950s, and some were retained for special purposes much longer.
@@ -64,9 +64,9 @@ The Swedish Navy T21 motor torpedo boat class was developed during the first yea
    <config>
     <!-- x/y/z == right/up/back -->
     <x-offset-m type="double">  0.000 </x-offset-m>
-    <y-offset-m type="double">  2.000 </y-offset-m>
+    <y-offset-m type="double">  1.900 </y-offset-m>
     <z-offset-m type="double">  9.600 </z-offset-m>
-    <pitch-offset-deg type="double"> -22.5 </pitch-offset-deg>
+    <pitch-offset-deg type="double"> -20.0 </pitch-offset-deg>
     <default-field-of-view-deg type="double"> 80.0 </default-field-of-view-deg>
    </config>
   </view>
@@ -78,9 +78,24 @@ The Swedish Navy T21 motor torpedo boat class was developed during the first yea
     <!-- x/y/z == right/up/back -->
     <from-model type="bool">true</from-model>
     <from-model-idx type="int">0</from-model-idx>
-    <x-offset-m type="double">  0.7 </x-offset-m>
+    <x-offset-m type="double"> -0.7 </x-offset-m>
     <y-offset-m type="double">  2.0 </y-offset-m>
     <z-offset-m type="double"> 10.5 </z-offset-m>
+    <pitch-offset-deg type="double"> -10.0 </pitch-offset-deg>
+    <default-field-of-view-deg type="double"> 65.0 </default-field-of-view-deg>
+   </config>
+  </view>
+  <view n="101">
+   <!-- Throttle view. -->
+   <name>Throttle View</name>
+   <internal>true</internal>
+   <config>
+    <!-- x/y/z == right/up/back -->
+    <from-model type="bool">true</from-model>
+    <from-model-idx type="int">0</from-model-idx>
+    <x-offset-m type="double"> 0.7 </x-offset-m>
+    <y-offset-m type="double"> 1.8 </y-offset-m>
+    <z-offset-m type="double"> 9.7 </z-offset-m>
     <pitch-offset-deg type="double"> -10.0 </pitch-offset-deg>
     <default-field-of-view-deg type="double"> 65.0 </default-field-of-view-deg>
    </config>
@@ -89,27 +104,27 @@ The Swedish Navy T21 motor torpedo boat class was developed during the first yea
   <!-- Move the center of the external views. -->
   <view n="1">
    <config>
-    <target-z-offset-m> 10.0 </target-z-offset-m>
+    <target-z-offset-m type="double"> 10.0 </target-z-offset-m>
    </config>
   </view>
   <view n="2">
    <config>
-    <target-z-offset-m> 10.0 </target-z-offset-m>
+    <target-z-offset-m type="double"> 10.0 </target-z-offset-m>
    </config>
   </view>
   <view n="3">
    <config>
-    <target-z-offset-m> 10.0 </target-z-offset-m>
+    <target-z-offset-m type="double"> 10.0 </target-z-offset-m>
    </config>
   </view>
   <view n="5">
    <config>
-    <target-z-offset-m> 10.0 </target-z-offset-m>
+    <target-z-offset-m type="double"> 10.0 </target-z-offset-m>
    </config>
   </view>
   <view n="6">
    <config>
-    <target-z-offset-m> 10.0 </target-z-offset-m>
+    <target-z-offset-m type="double"> 10.0 </target-z-offset-m>
    </config>
   </view>
 

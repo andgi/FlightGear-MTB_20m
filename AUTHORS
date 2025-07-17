@@ -16,6 +16,9 @@ Thorsten Renk
  - The ALS part of the water vertex shader is based on
    fgdata/Shaders/generic-ALS-base.vert.
 
+Aircraft/Generic/Pilot
+ - The WWI pilot in fgdata/Aircraft/Generic/Pilot.
+
 Dependencies (i.e. install these aircraft):
 
 Aircraft/Nordstern      (Instruments/MagneticCompass/compass.xml)
