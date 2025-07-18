@@ -22,12 +22,12 @@ var ground = func {
     }
 
     # Connect the FlightGear wave model to the JSBSim hydrodynamics wave model.
-    # Properties:
-    #   /environment/wave/amp
-    #   /environment/wave/angle
-    #   /environment/wave/dangle
-    #   /environment/wave/factor
-    #   /environment/wave/freq
+    # Properties:                  [unit]   (Fragment shader)
+    #   /environment/wave/amp      [m?]     (WaveAmp)
+    #   /environment/wave/angle    [deg?]   (WaveAngle)
+    #   /environment/wave/dangle   [deg?]   (WaveDAngle)
+    #   /environment/wave/factor            (WaveFactor)
+    #   /environment/wave/freq     [Hz?]    (WaveFreq)
     #   /environment/wave/sharp
     setprop("/fdm/jsbsim/hydro/environment/waves-from-deg",
             getprop("/environment/wave/angle") - 90.0);
@@ -50,7 +50,7 @@ var ground = func {
     setprop("environment/waves/wave-number-rad_ft",
             getprop("/fdm/jsbsim/hydro/environment/wave/wave-number-rad_ft"));
 }
-ground_timer = maketimer (0.0, ground);
+ground_timer = maketimer(0.0, ground);
 
 var _MTB20m_initialized = 0;
 setlistener("/sim/signals/fdm-initialized", func {

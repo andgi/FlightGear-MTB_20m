@@ -4,7 +4,10 @@
 
   Based on the fgdata/Aircraft/Generic/Pilot/WWI/pilot.xml .
 
-  Copyright (C) FlightGear team
+  Copyright (C) Bertrand Augras
+  Copyright (C) Emmanuel Baranger
+  Copyright (C) 2025  Anders Gidenstam
+
   This file is licensed under the GPL license version 2 or later.
 -->
 <PropertyList>
