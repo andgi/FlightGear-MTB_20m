@@ -41,7 +41,7 @@
   <path>Aircraft/MTB_20m/Models/Crew/crew-base.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up -->
-   <x-m> 9.70 </x-m>
+   <x-m> 9.80 </x-m>
    <y-m> 0.00 </y-m>
    <z-m> 0.28 </z-m>
   </offsets>
@@ -64,9 +64,9 @@
   <path>Aircraft/MTB_20m/Models/Crew/crew-base.xml</path>
   <offsets>
    <!-- x/y/z == back/right/up -->
-   <x-m> 9.60 </x-m>
+   <x-m> 9.70 </x-m>
    <y-m> 0.70 </y-m>
-   <z-m> 0.28 </z-m>
+   <z-m> 0.27 </z-m>
   </offsets>
   <overlay>
    <params>
@@ -82,7 +82,7 @@
    <!-- x/y/z == back/right/up -->
    <x-m> 0.00 </x-m>
    <y-m> 0.00 </y-m>
-   <z-m> 0.20 </z-m>
+   <z-m> 0.00 </z-m>
   </offsets>
   <overlay>
    <params>

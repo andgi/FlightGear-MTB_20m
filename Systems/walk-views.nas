@@ -15,20 +15,20 @@ var deckConstraint = walkview.makeUnionConstraint
    (
     [
      # Bridge area.
-     walkview.SlopingYAlignedPlane.new([ 9.40, -1.10, 0.28],
-                                       [11.00,  1.10, 0.22]),
+     walkview.SlopingYAlignedPlane.new([ 9.60, -1.00, 0.28],
+                                       [10.90,  1.00, 0.22]),
      # The areas port and starboard of the engine compartment.
-     walkview.SlopingYAlignedPlane.new([11.00, -1.00, 0.22],
-                                       [12.70, -0.55, 0.18]),
+     walkview.SlopingYAlignedPlane.new([10.90, -0.90, 0.22],
+                                       [12.70, -0.65, 0.18]),
      walkview.SlopingYAlignedPlane.new([12.70, -0.80, 0.18],
-                                       [13.70, -0.55, 0.10]),
-     walkview.SlopingYAlignedPlane.new([11.00,  0.55, 0.22],
-                                       [12.70,  1.00, 0.18]),
-     walkview.SlopingYAlignedPlane.new([12.70,  0.55, 0.18],
-                                       [13.70,  0.80, 0.10]),
+                                       [13.80, -0.65, 0.12]),
+     walkview.SlopingYAlignedPlane.new([10.90,  0.65, 0.22],
+                                       [12.70,  0.90, 0.18]),
+     walkview.SlopingYAlignedPlane.new([12.70,  0.65, 0.18],
+                                       [13.80,  0.80, 0.12]),
      # The area aft of the engine companion.
-     walkview.SlopingYAlignedPlane.new([13.70, -0.70, 0.10],
-                                       [14.60,  0.70, 0.08]),
+     walkview.SlopingYAlignedPlane.new([13.80, -0.65, 0.12],
+                                       [14.50,  0.65, 0.10])
     ]);
 
 # ThreeDModel manager.
@@ -95,5 +95,6 @@ var deck_walker =
 #                            [walkview.JSBSimPointmass.new(29)]);
 
 deck_walker.set_eye_height(1.70);
+deck_walker.managers[0].update(deck_walker);
 
 ###############################################################################
