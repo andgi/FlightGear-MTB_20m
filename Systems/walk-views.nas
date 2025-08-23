@@ -35,7 +35,7 @@ var deckConstraint = walkview.makeUnionConstraint
 #   Moves a 3d model representing the crew member together with the view.
 #   The position is in the main 3d coordinate system.
 # CONSTRUCTOR:
-#       3dModel.new(name, maximumMoveValue);
+#       ThreeDModel.new(name, maximumMoveValue);
 #
 #         name             ... Name of the view : string
 #         maximumMoveValue ... Maximum movement of the view i meters : double

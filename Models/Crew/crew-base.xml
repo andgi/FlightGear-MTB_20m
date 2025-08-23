@@ -23,6 +23,7 @@
  <params>
   <view-name type="string" /> <!-- Doesn't work as intended. -->
   <view-number type="int" />  <!-- Doesn't work as intended. -->
+  <visible type="string" />
   <texture type="string">default.png</texture>
   <!-- Below probably doesn't work as intended. -->
   <head>
@@ -81,6 +82,13 @@
    </lower-animation>
   </legs>
  </params>
+
+ <animation>
+  <type>select</type>
+  <condition>
+   <property alias="../../../params/visible" />
+  </condition>
+ </animation>
 
  <animation>
   <type>scale</type>
@@ -208,55 +216,55 @@
    <x-m>0.062</x-m>
    <y-m>0</y-m>
    <z-m>-0.385</z-m>
-   </center>
-  </animation>
+  </center>
+ </animation>
 
-  <!-- Legs -->
-  <animation>
-   <type>rotate</type>
-   <object-name>LeftUpperLeg</object-name>
-   <object-name>LeftLowerLeg</object-name>
-   <object-name>LeftFoot</object-name>
-   <object-name>RightUpperLeg</object-name>
-   <object-name>RightLowerLeg</object-name>
-   <object-name>RightFoot</object-name>
-   <property alias="../../params/legs/upper-animation/property" />
-   <factor alias="../../params/legs/upper-animation/factor" />
-   <offset-deg alias="../../params/legs/upper-animation/offset-deg" />
-   <min alias="../../params/legs/upper-animation/min" />
-   <max alias="../../params/legs/upper-animation/max" />
-   <axis>
-    <x>0</x>
-    <y>1</y>
-    <z>0</z>
-   </axis>
-   <center>
-    <x-m>0.181</x-m>
-    <y-m>0</y-m>
-    <z-m>0.229</z-m>
-   </center>
-  </animation>
-  <animation>
-   <type>rotate</type>
-   <object-name>LeftLowerLeg</object-name>
-   <object-name>LeftFoot</object-name>
-   <object-name>RightLowerLeg</object-name>
-   <object-name>RightFoot</object-name>
-   <property alias="../../params/legs/lower-animation/property" />
-   <factor alias="../../params/legs/lower-animation/factor" />
-   <offset-deg alias="../../params/legs/lower-animation/offset-deg" />
-   <min alias="../../params/legs/lower-animation/min" />
-   <max alias="../../params/legs/lower-animation/max" />
-   <axis>
-    <x>0</x>
-    <y>1</y>
-    <z>0</z>
-   </axis>
-   <center>
-    <x-m>0.246</x-m>
-    <y-m>0</y-m>
-    <z-m>-0.218</z-m>
-   </center>
-  </animation>
+ <!-- Legs -->
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftUpperLeg</object-name>
+  <object-name>LeftLowerLeg</object-name>
+  <object-name>LeftFoot</object-name>
+  <object-name>RightUpperLeg</object-name>
+  <object-name>RightLowerLeg</object-name>
+  <object-name>RightFoot</object-name>
+  <property alias="../../params/legs/upper-animation/property" />
+  <factor alias="../../params/legs/upper-animation/factor" />
+  <offset-deg alias="../../params/legs/upper-animation/offset-deg" />
+  <min alias="../../params/legs/upper-animation/min" />
+  <max alias="../../params/legs/upper-animation/max" />
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+  <center>
+   <x-m>0.181</x-m>
+   <y-m>0</y-m>
+   <z-m>0.229</z-m>
+  </center>
+ </animation>
+ <animation>
+  <type>rotate</type>
+  <object-name>LeftLowerLeg</object-name>
+  <object-name>LeftFoot</object-name>
+  <object-name>RightLowerLeg</object-name>
+  <object-name>RightFoot</object-name>
+  <property alias="../../params/legs/lower-animation/property" />
+  <factor alias="../../params/legs/lower-animation/factor" />
+  <offset-deg alias="../../params/legs/lower-animation/offset-deg" />
+  <min alias="../../params/legs/lower-animation/min" />
+  <max alias="../../params/legs/lower-animation/max" />
+  <axis>
+   <x>0</x>
+   <y>1</y>
+   <z>0</z>
+  </axis>
+  <center>
+   <x-m>0.246</x-m>
+   <y-m>0</y-m>
+   <z-m>-0.218</z-m>
+  </center>
+ </animation>
 
 </PropertyList>

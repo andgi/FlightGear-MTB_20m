@@ -48,6 +48,7 @@
   <overlay>
    <params>
     <view-name>Pilot View</view-name>
+    <visible>crew/pilot-view/visible</visible>
     <upper-animation>
      <property type="double">constants/zero</property>
      <factor type="double">0.0</factor>
@@ -71,6 +72,7 @@
   <overlay>
    <params>
     <view-name>Throttle View</view-name>
+    <visible>crew/throttle-view/visible</visible>
    </params>
   </overlay>
  </model>
@@ -87,6 +89,7 @@
   <overlay>
    <params>
     <view-name>Deck View</view-name>
+    <visible>crew/deck-view/visible</visible>
    </params>
   </overlay>
  </model>
