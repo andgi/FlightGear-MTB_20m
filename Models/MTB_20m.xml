@@ -90,6 +90,15 @@
    <params>
     <view-name>Deck View</view-name>
     <visible>crew/deck-view/visible</visible>
+    <arms>
+     <upper-animation>
+      <property type="string">/constants/zero</property>
+      <factor type="float">140.0</factor>
+      <offset-deg type="float">-50.0</offset-deg>
+      <min type="float">-20.0</min>
+      <max type="float">140.0</max>
+     </upper-animation>
+    </arms>
    </params>
   </overlay>
  </model>
